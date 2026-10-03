@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +8,7 @@
 <title>ABC Life Insurance - Profile Gallery</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -20,10 +21,11 @@ body{
     color:#1d2433;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header{
     text-align:center;
-    padding:35px 20px 20px;
+    padding:35px 20px 25px;
     background:white;
 }
 
@@ -43,14 +45,16 @@ header{
     color:#555;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
+
 .container{
     width:92%;
     max-width:1100px;
     margin:40px auto;
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
+
 .cards{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -89,7 +93,8 @@ header{
     color:#222;
 }
 
-/* PLACEHOLDER CARDS */
+/* PLACEHOLDER */
+
 .placeholder{
     height:250px;
     display:flex;
@@ -100,7 +105,8 @@ header{
     font-size:18px;
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
+
 .modal{
     display:none;
     position:fixed;
@@ -116,20 +122,21 @@ header{
 
 .modal-content{
     width:100%;
-    max-width:1100px;
+    max-width:1150px;
     margin:0 auto;
-    background:#fff;
+    background:white;
     border-radius:16px;
-    padding:25px;
+    padding:30px;
     position:relative;
 }
 
-/* CLOSE BUTTON */
+/* CLOSE */
+
 .close{
     position:absolute;
     right:20px;
-    top:12px;
-    font-size:36px;
+    top:10px;
+    font-size:38px;
     font-weight:bold;
     color:#222;
     cursor:pointer;
@@ -140,17 +147,24 @@ header{
     color:red;
 }
 
+/* TITLE */
+
 .modal-title{
     text-align:center;
-    font-size:28px;
-    margin-bottom:30px;
+    font-size:30px;
+    margin-bottom:35px;
     padding-right:30px;
 }
 
-/* GALLERY GROUP */
-.gallery-group{
-    margin-bottom:40px;
+/* ================= ACTIVITY GROUP ================= */
+
+.activity-group{
+    margin-bottom:45px;
+    padding-bottom:35px;
+    border-bottom:1px solid #ddd;
 }
+
+/* 5 PHOTOS */
 
 .photo-grid{
     display:grid;
@@ -162,29 +176,43 @@ header{
     width:100%;
     height:150px;
     object-fit:cover;
-    border-radius:8px;
+    border-radius:9px;
     display:block;
     cursor:pointer;
     transition:0.25s ease;
+    background:#eee;
 }
 
 .photo-grid img:hover{
-    transform:scale(1.03);
+    transform:scale(1.04);
 }
 
-/* TEXT */
+/* ================= TEXT ================= */
+
 .activity-text{
     margin-top:18px;
-    padding:18px;
+    padding:17px 20px;
     background:#f5f7fb;
     border-left:5px solid #333;
-    border-radius:8px;
-    font-size:16px;
-    line-height:1.7;
-    color:#444;
+    border-radius:7px;
+    min-height:55px;
+    font-size:17px;
+    line-height:1.6;
+    color:#333;
 }
 
-/* FOOTER */
+/* FIRST NAME */
+
+.person-name{
+    text-align:center;
+    margin-top:15px;
+    font-size:20px;
+    font-weight:bold;
+    color:#222;
+}
+
+/* ================= FOOTER ================= */
+
 footer{
     text-align:center;
     padding:30px 15px;
@@ -194,8 +222,10 @@ footer{
     font-size:14px;
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
+
 @media(max-width:900px){
+
     .cards{
         grid-template-columns:repeat(2,1fr);
     }
@@ -206,6 +236,7 @@ footer{
 }
 
 @media(max-width:600px){
+
     .cards{
         grid-template-columns:1fr;
     }
@@ -223,20 +254,32 @@ footer{
         height:140px;
     }
 
+    .modal{
+        padding:10px;
+    }
+
     .modal-content{
         padding:18px;
     }
 
     .modal-title{
-        font-size:23px;
+        font-size:24px;
+    }
+
+    .activity-text{
+        font-size:15px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- HEADER -->
+
+<!-- ================= HEADER ================= -->
+
 <header>
 
     <img
@@ -254,20 +297,23 @@ footer{
 </header>
 
 
-<!-- MAIN CONTENT -->
+<!-- ================= CARDS ================= -->
+
 <main class="container">
 
     <div class="cards">
 
+
         <!-- CARD 1 -->
+
         <div class="profile-box">
 
             <div class="profile-card" onclick="openGallery()">
 
                 <img
-                    src="photos/profile-1.jpg"
+                    src="photos/field-cover.jpg"
                     alt="Field Learning Activity"
-                    onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder\'>Add profile-1.jpg</div>';"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder\'>Field Learning Activity</div>';"
                 >
 
             </div>
@@ -280,6 +326,7 @@ footer{
 
 
         <!-- CARD 2 -->
+
         <div class="profile-box">
 
             <div class="profile-card">
@@ -298,6 +345,7 @@ footer{
 
 
         <!-- CARD 3 -->
+
         <div class="profile-box">
 
             <div class="profile-card">
@@ -314,12 +362,17 @@ footer{
 
         </div>
 
+
     </div>
 
 </main>
 
 
+
+<!-- ================================================= -->
 <!-- FIELD LEARNING ACTIVITY MODAL -->
+<!-- ================================================= -->
+
 <div id="galleryModal" class="modal">
 
     <div class="modal-content">
@@ -331,149 +384,691 @@ footer{
         </h2>
 
 
-        <!-- GROUP 1 -->
-        <div class="gallery-group">
+        <!-- ================= GROUP 1 ================= -->
+
+        <div class="activity-group">
 
             <div class="photo-grid">
 
-                <img src="photos/field-1-01.jpg" alt="Field Learning Activity 1">
-                <img src="photos/field-1-02.jpg" alt="Field Learning Activity 2">
-                <img src="photos/field-1-03.jpg" alt="Field Learning Activity 3">
-                <img src="photos/field-1-04.jpg" alt="Field Learning Activity 4">
-                <img src="photos/field-1-05.jpg" alt="Field Learning Activity 5">
+                <img src="photos/field-01-01.jpg" alt="Photo 1">
+                <img src="photos/field-01-02.jpg" alt="Photo 2">
+                <img src="photos/field-01-03.jpg" alt="Photo 3">
+                <img src="photos/field-01-04.jpg" alt="Photo 4">
+                <img src="photos/field-01-05.jpg" alt="Photo 5">
 
             </div>
 
-            <div class="activity-text">
-                <strong>Activity Description 1</strong><br>
-                Add your text here for the first five photos.
+            <div class="person-name">
+                Pawan BHOYAR
             </div>
 
         </div>
 
 
-        <!-- GROUP 2 -->
-        <div class="gallery-group">
+        <!-- ================= GROUP 2 ================= -->
+
+        <div class="activity-group">
 
             <div class="photo-grid">
 
-                <img src="photos/field-2-01.jpg" alt="Field Learning Activity 6">
-                <img src="photos/field-2-02.jpg" alt="Field Learning Activity 7">
-                <img src="photos/field-2-03.jpg" alt="Field Learning Activity 8">
-                <img src="photos/field-2-04.jpg" alt="Field Learning Activity 9">
-                <img src="photos/field-2-05.jpg" alt="Field Learning Activity 10">
+                <img src="photos/field-02-01.jpg" alt="Photo 6">
+                <img src="photos/field-02-02.jpg" alt="Photo 7">
+                <img src="photos/field-02-03.jpg" alt="Photo 8">
+                <img src="photos/field-02-04.jpg" alt="Photo 9">
+                <img src="photos/field-02-05.jpg" alt="Photo 10">
 
             </div>
 
             <div class="activity-text">
-                <strong>Activity Description 2</strong><br>
-                Add your text here for the next five photos.
+                Add your text here.
             </div>
 
         </div>
 
 
-        <!-- GROUP 3 -->
-        <div class="gallery-group">
+        <!-- ================= GROUP 3 ================= -->
+
+        <div class="activity-group">
 
             <div class="photo-grid">
 
-                <img src="photos/field-3-01.jpg" alt="Field Learning Activity 11">
-                <img src="photos/field-3-02.jpg" alt="Field Learning Activity 12">
-                <img src="photos/field-3-03.jpg" alt="Field Learning Activity 13">
-                <img src="photos/field-3-04.jpg" alt="Field Learning Activity 14">
-                <img src="photos/field-3-05.jpg" alt="Field Learning Activity 15">
+                <img src="photos/field-03-01.jpg" alt="Photo 11">
+                <img src="photos/field-03-02.jpg" alt="Photo 12">
+                <img src="photos/field-03-03.jpg" alt="Photo 13">
+                <img src="photos/field-03-04.jpg" alt="Photo 14">
+                <img src="photos/field-03-05.jpg" alt="Photo 15">
 
             </div>
 
             <div class="activity-text">
-                <strong>Activity Description 3</strong><br>
-                Add your text here for the next five photos.
+                Add your text here.
             </div>
 
         </div>
 
 
-        <!-- GROUP 4 -->
-        <div class="gallery-group">
+        <!-- ================= GROUP 4 ================= -->
+
+        <div class="activity-group">
 
             <div class="photo-grid">
 
-                <img src="photos/field-4-01.jpg" alt="Field Learning Activity 16">
-                <img src="photos/field-4-02.jpg" alt="Field Learning Activity 17">
-                <img src="photos/field-4-03.jpg" alt="Field Learning Activity 18">
-                <img src="photos/field-4-04.jpg" alt="Field Learning Activity 19">
-                <img src="photos/field-4-05.jpg" alt="Field Learning Activity 20">
+                <img src="photos/field-04-01.jpg" alt="Photo 16">
+                <img src="photos/field-04-02.jpg" alt="Photo 17">
+                <img src="photos/field-04-03.jpg" alt="Photo 18">
+                <img src="photos/field-04-04.jpg" alt="Photo 19">
+                <img src="photos/field-04-05.jpg" alt="Photo 20">
 
             </div>
 
             <div class="activity-text">
-                <strong>Activity Description 4</strong><br>
-                Add your text here for the next five photos.
+                Add your text here.
             </div>
 
         </div>
 
 
-        <!-- GROUP 5 -->
-        <div class="gallery-group">
+        <!-- ================= GROUP 5 ================= -->
+
+        <div class="activity-group">
 
             <div class="photo-grid">
 
-                <img src="photos/field-5-01.jpg" alt="Field Learning Activity 21">
-                <img src="photos/field-5-02.jpg" alt="Field Learning Activity 22">
-                <img src="photos/field-5-03.jpg" alt="Field Learning Activity 23">
-                <img src="photos/field-5-04.jpg" alt="Field Learning Activity 24">
-                <img src="photos/field-5-05.jpg" alt="Field Learning Activity 25">
+                <img src="photos/field-05-01.jpg" alt="Photo 21">
+                <img src="photos/field-05-02.jpg" alt="Photo 22">
+                <img src="photos/field-05-03.jpg" alt="Photo 23">
+                <img src="photos/field-05-04.jpg" alt="Photo 24">
+                <img src="photos/field-05-05.jpg" alt="Photo 25">
 
             </div>
 
             <div class="activity-text">
-                <strong>Activity Description 5</strong><br>
-                Add your text here for the last five photos.
+                Add your text here.
             </div>
 
         </div>
+
+
+        <!-- ================= GROUP 6 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-06-01.jpg" alt="Photo 26">
+                <img src="photos/field-06-02.jpg" alt="Photo 27">
+                <img src="photos/field-06-03.jpg" alt="Photo 28">
+                <img src="photos/field-06-04.jpg" alt="Photo 29">
+                <img src="photos/field-06-05.jpg" alt="Photo 30">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 7 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-07-01.jpg" alt="Photo 31">
+                <img src="photos/field-07-02.jpg" alt="Photo 32">
+                <img src="photos/field-07-03.jpg" alt="Photo 33">
+                <img src="photos/field-07-04.jpg" alt="Photo 34">
+                <img src="photos/field-07-05.jpg" alt="Photo 35">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 8 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-08-01.jpg" alt="Photo 36">
+                <img src="photos/field-08-02.jpg" alt="Photo 37">
+                <img src="photos/field-08-03.jpg" alt="Photo 38">
+                <img src="photos/field-08-04.jpg" alt="Photo 39">
+                <img src="photos/field-08-05.jpg" alt="Photo 40">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 9 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-09-01.jpg" alt="Photo 41">
+                <img src="photos/field-09-02.jpg" alt="Photo 42">
+                <img src="photos/field-09-03.jpg" alt="Photo 43">
+                <img src="photos/field-09-04.jpg" alt="Photo 44">
+                <img src="photos/field-09-05.jpg" alt="Photo 45">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 10 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-10-01.jpg" alt="Photo 46">
+                <img src="photos/field-10-02.jpg" alt="Photo 47">
+                <img src="photos/field-10-03.jpg" alt="Photo 48">
+                <img src="photos/field-10-04.jpg" alt="Photo 49">
+                <img src="photos/field-10-05.jpg" alt="Photo 50">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 11 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-11-01.jpg" alt="Photo 51">
+                <img src="photos/field-11-02.jpg" alt="Photo 52">
+                <img src="photos/field-11-03.jpg" alt="Photo 53">
+                <img src="photos/field-11-04.jpg" alt="Photo 54">
+                <img src="photos/field-11-05.jpg" alt="Photo 55">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 12 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-12-01.jpg" alt="Photo 56">
+                <img src="photos/field-12-02.jpg" alt="Photo 57">
+                <img src="photos/field-12-03.jpg" alt="Photo 58">
+                <img src="photos/field-12-04.jpg" alt="Photo 59">
+                <img src="photos/field-12-05.jpg" alt="Photo 60">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 13 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-13-01.jpg" alt="Photo 61">
+                <img src="photos/field-13-02.jpg" alt="Photo 62">
+                <img src="photos/field-13-03.jpg" alt="Photo 63">
+                <img src="photos/field-13-04.jpg" alt="Photo 64">
+                <img src="photos/field-13-05.jpg" alt="Photo 65">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 14 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-14-01.jpg" alt="Photo 66">
+                <img src="photos/field-14-02.jpg" alt="Photo 67">
+                <img src="photos/field-14-03.jpg" alt="Photo 68">
+                <img src="photos/field-14-04.jpg" alt="Photo 69">
+                <img src="photos/field-14-05.jpg" alt="Photo 70">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 15 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-15-01.jpg" alt="Photo 71">
+                <img src="photos/field-15-02.jpg" alt="Photo 72">
+                <img src="photos/field-15-03.jpg" alt="Photo 73">
+                <img src="photos/field-15-04.jpg" alt="Photo 74">
+                <img src="photos/field-15-05.jpg" alt="Photo 75">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 16 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-16-01.jpg" alt="Photo 76">
+                <img src="photos/field-16-02.jpg" alt="Photo 77">
+                <img src="photos/field-16-03.jpg" alt="Photo 78">
+                <img src="photos/field-16-04.jpg" alt="Photo 79">
+                <img src="photos/field-16-05.jpg" alt="Photo 80">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 17 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-17-01.jpg" alt="Photo 81">
+                <img src="photos/field-17-02.jpg" alt="Photo 82">
+                <img src="photos/field-17-03.jpg" alt="Photo 83">
+                <img src="photos/field-17-04.jpg" alt="Photo 84">
+                <img src="photos/field-17-05.jpg" alt="Photo 85">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 18 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-18-01.jpg" alt="Photo 86">
+                <img src="photos/field-18-02.jpg" alt="Photo 87">
+                <img src="photos/field-18-03.jpg" alt="Photo 88">
+                <img src="photos/field-18-04.jpg" alt="Photo 89">
+                <img src="photos/field-18-05.jpg" alt="Photo 90">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 19 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-19-01.jpg" alt="Photo 91">
+                <img src="photos/field-19-02.jpg" alt="Photo 92">
+                <img src="photos/field-19-03.jpg" alt="Photo 93">
+                <img src="photos/field-19-04.jpg" alt="Photo 94">
+                <img src="photos/field-19-05.jpg" alt="Photo 95">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 20 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-20-01.jpg" alt="Photo 96">
+                <img src="photos/field-20-02.jpg" alt="Photo 97">
+                <img src="photos/field-20-03.jpg" alt="Photo 98">
+                <img src="photos/field-20-04.jpg" alt="Photo 99">
+                <img src="photos/field-20-05.jpg" alt="Photo 100">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 21 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-21-01.jpg" alt="Photo 101">
+                <img src="photos/field-21-02.jpg" alt="Photo 102">
+                <img src="photos/field-21-03.jpg" alt="Photo 103">
+                <img src="photos/field-21-04.jpg" alt="Photo 104">
+                <img src="photos/field-21-05.jpg" alt="Photo 105">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 22 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-22-01.jpg" alt="Photo 106">
+                <img src="photos/field-22-02.jpg" alt="Photo 107">
+                <img src="photos/field-22-03.jpg" alt="Photo 108">
+                <img src="photos/field-22-04.jpg" alt="Photo 109">
+                <img src="photos/field-22-05.jpg" alt="Photo 110">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 23 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-23-01.jpg" alt="Photo 111">
+                <img src="photos/field-23-02.jpg" alt="Photo 112">
+                <img src="photos/field-23-03.jpg" alt="Photo 113">
+                <img src="photos/field-23-04.jpg" alt="Photo 114">
+                <img src="photos/field-23-05.jpg" alt="Photo 115">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 24 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-24-01.jpg" alt="Photo 116">
+                <img src="photos/field-24-02.jpg" alt="Photo 117">
+                <img src="photos/field-24-03.jpg" alt="Photo 118">
+                <img src="photos/field-24-04.jpg" alt="Photo 119">
+                <img src="photos/field-24-05.jpg" alt="Photo 120">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 25 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-25-01.jpg" alt="Photo 121">
+                <img src="photos/field-25-02.jpg" alt="Photo 122">
+                <img src="photos/field-25-03.jpg" alt="Photo 123">
+                <img src="photos/field-25-04.jpg" alt="Photo 124">
+                <img src="photos/field-25-05.jpg" alt="Photo 125">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 26 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-26-01.jpg" alt="Photo 126">
+                <img src="photos/field-26-02.jpg" alt="Photo 127">
+                <img src="photos/field-26-03.jpg" alt="Photo 128">
+                <img src="photos/field-26-04.jpg" alt="Photo 129">
+                <img src="photos/field-26-05.jpg" alt="Photo 130">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 27 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-27-01.jpg" alt="Photo 131">
+                <img src="photos/field-27-02.jpg" alt="Photo 132">
+                <img src="photos/field-27-03.jpg" alt="Photo 133">
+                <img src="photos/field-27-04.jpg" alt="Photo 134">
+                <img src="photos/field-27-05.jpg" alt="Photo 135">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 28 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-28-01.jpg" alt="Photo 136">
+                <img src="photos/field-28-02.jpg" alt="Photo 137">
+                <img src="photos/field-28-03.jpg" alt="Photo 138">
+                <img src="photos/field-28-04.jpg" alt="Photo 139">
+                <img src="photos/field-28-05.jpg" alt="Photo 140">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 29 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-29-01.jpg" alt="Photo 141">
+                <img src="photos/field-29-02.jpg" alt="Photo 142">
+                <img src="photos/field-29-03.jpg" alt="Photo 143">
+                <img src="photos/field-29-04.jpg" alt="Photo 144">
+                <img src="photos/field-29-05.jpg" alt="Photo 145">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
+
+        <!-- ================= GROUP 30 ================= -->
+
+        <div class="activity-group">
+
+            <div class="photo-grid">
+
+                <img src="photos/field-30-01.jpg" alt="Photo 146">
+                <img src="photos/field-30-02.jpg" alt="Photo 147">
+                <img src="photos/field-30-03.jpg" alt="Photo 148">
+                <img src="photos/field-30-04.jpg" alt="Photo 149">
+                <img src="photos/field-30-05.jpg" alt="Photo 150">
+
+            </div>
+
+            <div class="activity-text">
+                Add your text here.
+            </div>
+
+        </div>
+
 
     </div>
 
 </div>
 
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
+
 <footer>
     © 2026 ABC Life Insurance. All Rights Reserved.
 </footer>
 
 
+<!-- ================= JAVASCRIPT ================= -->
+
 <script>
 
 function openGallery(){
+
     document.getElementById("galleryModal").style.display = "block";
+
     document.body.style.overflow = "hidden";
 }
 
+
 function closeGallery(){
+
     document.getElementById("galleryModal").style.display = "none";
+
     document.body.style.overflow = "auto";
 }
 
-/* Close when clicking outside the white box */
+
+/* Close when clicking outside */
+
 window.onclick = function(event){
 
     const modal = document.getElementById("galleryModal");
 
     if(event.target === modal){
+
         closeGallery();
+
     }
 
-}
+};
 
-/* ESC key closes gallery */
+
+/* ESC key */
+
 document.addEventListener("keydown", function(event){
 
     if(event.key === "Escape"){
+
         closeGallery();
+
     }
 
 });
