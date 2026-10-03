@@ -18,404 +18,652 @@ body{
   font-family:Arial,Helvetica,sans-serif;
   background:#f5f7fb;
   color:#1d2433;
+  min-height:100vh;
 }
 
-/* ================= HEADER ================= */
-
-header{
-  background:white;
-  padding:12px 6%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
-  position:sticky;
-  top:0;
-  z-index:100;
+.page{
+  width:min(1000px,94%);
+  margin:0 auto;
+  padding:35px 20px 60px;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-}
 
-/* ACTUAL LOGO */
+/* =========================
+   LOGO
+========================= */
 
-.logo-image{
+.logo-box{
+  width:210px;
+  height:105px;
+  margin:0 auto 20px;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
+  background:#fff;
+  border-radius:8px;
+
+  overflow:hidden;
 }
 
-.logo-image img{
-  height:55px;
-  width:auto;
-  max-width:220px;
+.logo-box img{
+  width:100%;
+  height:100%;
+
   object-fit:contain;
+
   display:block;
 }
 
 
-/* ================= HERO ================= */
+/* =========================
+   INTRO TEXT
+========================= */
 
-.hero{
-  background:linear-gradient(135deg,#1769aa,#0b3f70);
-  color:white;
+.intro-text{
   text-align:center;
-  padding:55px 20px;
+  font-size:18px;
+  color:#555;
+  line-height:1.6;
+
+  max-width:650px;
+
+  margin:0 auto 20px;
 }
 
-.hero h1{
-  font-size:38px;
-  margin-bottom:10px;
+
+/* =========================
+   VIEW BUTTON
+========================= */
+
+.view-btn{
+  display:block;
+
+  margin:0 auto 42px;
+
+  border:0;
+  border-radius:12px;
+
+  padding:14px 30px;
+
+  background:#222;
+  color:#fff;
+
+  font-size:16px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.2s;
 }
 
-.hero p{
-  font-size:17px;
+.view-btn:hover{
+  transform:translateY(-2px);
   opacity:.9;
 }
 
 
-/* ================= CONTAINER ================= */
+/* =========================
+   PROFILES
+========================= */
 
-.container{
-  width:90%;
-  max-width:1200px;
-  margin:40px auto;
-}
+.profiles{
+  display:none;
 
-
-/* ================= PROFILE GRID ================= */
-
-.grid{
-  display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:25px;
+
+  gap:55px 75px;
+
+  max-width:760px;
+
+  margin:0 auto;
 }
 
-.card{
-  background:white;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 5px 18px rgba(0,0,0,.08);
+.profiles.show{
+  display:grid;
+}
+
+.profile-card{
+  border:0;
+  background:transparent;
+
   cursor:pointer;
-  transition:.3s;
+
+  text-align:center;
+
+  transition:transform .2s ease;
 }
 
-.card:hover{
+.profile-card:hover{
   transform:translateY(-6px);
-  box-shadow:0 10px 25px rgba(0,0,0,.14);
 }
 
-.card-image{
+
+/* PROFILE IMAGE */
+
+.profile-photo{
+  width:125px;
+  height:125px;
+
+  margin:0 auto;
+
+  border-radius:50%;
+
+  overflow:hidden;
+
+  border:4px solid white;
+
+  box-shadow:0 6px 20px rgba(0,0,0,.16);
+
+  background:linear-gradient(
+    135deg,
+    #dfe5ef,
+    #b9c3d4
+  );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#667085;
+
+  font-size:42px;
+  font-weight:700;
+}
+
+.profile-photo img{
   width:100%;
-  height:220px;
+  height:100%;
+
   object-fit:cover;
-  background:#e9edf3;
+
+  display:block;
 }
 
-.card-content{
-  padding:18px;
+
+/* PROFILE NAME */
+
+.profile-name{
+  margin-top:12px;
+
+  font-size:16px;
+
+  font-weight:600;
 }
 
-.card-content h3{
-  color:#1769aa;
-  margin-bottom:6px;
-  font-size:20px;
-}
 
-.card-content .role{
+/* HINT */
+
+.hint{
+  text-align:center;
+
+  color:#6b7280;
+
+  margin:35px 0 0;
+
   font-size:14px;
-  font-weight:bold;
-  color:#555;
-  margin-bottom:8px;
+
+  display:none;
 }
 
-.card-content p{
-  color:#777;
-  font-size:14px;
-  line-height:1.5;
+.hint.show{
+  display:block;
 }
 
 
-/* ================= MODAL ================= */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
-  display:none;
   position:fixed;
+
   inset:0;
-  background:rgba(0,0,0,.75);
-  z-index:999;
-  padding:30px 15px;
-  overflow:auto;
-}
 
-.modal-box{
-  background:white;
-  width:95%;
-  max-width:900px;
-  margin:20px auto;
-  border-radius:16px;
-  overflow:hidden;
-  animation:popup .25s ease;
-}
+  background:rgba(10,15,25,.65);
 
-@keyframes popup{
-  from{
-    transform:scale(.9);
-    opacity:0;
-  }
+  display:none;
 
-  to{
-    transform:scale(1);
-    opacity:1;
-  }
-}
-
-.modal-header{
-  padding:20px 25px;
-  display:flex;
-  justify-content:space-between;
   align-items:center;
-  border-bottom:1px solid #eee;
+  justify-content:center;
+
+  padding:20px;
+
+  z-index:1000;
 }
 
-.modal-header h2{
-  color:#1769aa;
+.modal.active{
+  display:flex;
 }
+
+.profile-detail{
+  width:min(800px,100%);
+
+  max-height:90vh;
+
+  overflow-y:auto;
+
+  background:#fff;
+
+  border-radius:22px;
+
+  padding:30px;
+
+  position:relative;
+
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.3);
+}
+
+
+/* CLOSE BUTTON */
 
 .close{
-  font-size:30px;
+  position:absolute;
+
+  right:18px;
+  top:14px;
+
+  width:38px;
+  height:38px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:#eef1f6;
+
   cursor:pointer;
-  color:#777;
-}
 
-.close:hover{
-  color:#000;
-}
-
-.modal-body{
-  padding:25px;
-}
-
-.modal-info{
-  margin-bottom:25px;
-}
-
-.modal-info h3{
-  margin-bottom:8px;
-  color:#1769aa;
-}
-
-.modal-info p{
-  color:#555;
-  line-height:1.6;
+  font-size:24px;
 }
 
 
-/* ================= GALLERY ================= */
+/* DETAIL TOP */
 
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
+.detail-top{
+  display:flex;
+
+  align-items:center;
+
+  gap:25px;
+
+  margin-bottom:20px;
+
+  padding-right:40px;
 }
 
-.gallery img{
-  width:100%;
-  height:200px;
+
+/* MAIN PHOTO */
+
+.detail-main-photo{
+  width:145px;
+  height:145px;
+
+  flex:0 0 145px;
+
+  border-radius:50%;
+
   object-fit:cover;
-  border-radius:10px;
-  cursor:pointer;
-  transition:.25s;
-  background:#eee;
+
+  background:linear-gradient(
+    135deg,
+    #dfe5ef,
+    #b9c3d4
+  );
+
+  display:none;
 }
 
-.gallery img:hover{
+
+/* PLACEHOLDER */
+
+.detail-placeholder{
+  width:145px;
+  height:145px;
+
+  flex:0 0 145px;
+
+  border-radius:50%;
+
+  background:linear-gradient(
+    135deg,
+    #dfe5ef,
+    #b9c3d4
+  );
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:48px;
+
+  color:#667085;
+
+  font-weight:700;
+}
+
+
+/* DETAIL TITLE */
+
+.detail-title h2{
+  font-size:28px;
+
+  margin-bottom:7px;
+}
+
+.detail-title p{
+  color:#667085;
+}
+
+
+/* DETAIL TEXT */
+
+.detail-text{
+  line-height:1.7;
+
+  margin:15px 0 20px;
+
+  color:#454b57;
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery-title{
+  margin-bottom:14px;
+}
+
+.inner-gallery{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:14px;
+}
+
+.gallery-item{
+  aspect-ratio:1/1;
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+  background:#e8ecf3;
+}
+
+.gallery-item img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.gallery-item img:hover{
   transform:scale(1.03);
 }
 
 
-/* ================= FOOTER ================= */
+/* EMPTY GALLERY */
 
-footer{
-  background:#0b3f70;
-  color:white;
+.empty-gallery{
+  grid-column:1/-1;
+
   text-align:center;
-  padding:20px;
-  margin-top:50px;
-  font-size:14px;
+
+  color:#778092;
+
+  background:#f1f4f8;
+
+  border-radius:12px;
+
+  padding:28px;
 }
 
 
-/* ================= TABLET ================= */
+/* =========================
+   RESPONSIVE
+========================= */
 
-@media(max-width:900px){
+@media(max-width:650px){
 
-  .grid{
+  .page{
+    padding-top:25px;
+  }
+
+  .logo-box{
+    width:180px;
+    height:90px;
+  }
+
+  .intro-text{
+    font-size:16px;
+  }
+
+  .profiles{
+    grid-template-columns:repeat(2,1fr);
+
+    gap:35px 15px;
+  }
+
+  .profile-photo{
+    width:95px;
+    height:95px;
+
+    font-size:30px;
+  }
+
+  .profile-name{
+    font-size:14px;
+  }
+
+  .profile-detail{
+    padding:22px;
+  }
+
+  .detail-top{
+    gap:16px;
+  }
+
+  .detail-main-photo,
+  .detail-placeholder{
+    width:100px;
+    height:100px;
+
+    flex-basis:100px;
+  }
+
+  .detail-title h2{
+    font-size:22px;
+  }
+
+  .inner-gallery{
     grid-template-columns:repeat(2,1fr);
   }
-
-}
-
-
-/* ================= MOBILE ================= */
-
-@media(max-width:600px){
-
-  header{
-    padding:10px 20px;
-  }
-
-  .logo-image img{
-    height:45px;
-    max-width:180px;
-  }
-
-  .hero{
-    padding:40px 15px;
-  }
-
-  .hero h1{
-    font-size:28px;
-  }
-
-  .hero p{
-    font-size:15px;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .gallery{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .gallery img{
-    height:150px;
-  }
-
-  .modal-body{
-    padding:18px;
-  }
-
 }
 
 </style>
-
 </head>
 
 
 <body>
 
+<div class="page">
 
-<!-- ================= HEADER ================= -->
 
-<header>
+  <!-- =========================
+       LOGO
+  ========================= -->
 
-  <div class="logo">
+  <div class="logo-box">
 
-    <!-- YOUR ACTUAL LOGO -->
-
-    <div class="logo-image">
-
-      <img
-        src="photos/logo.png"
-        alt="Life Insurance Logo"
-      >
-
-    </div>
+    <img
+      src="photos/logo.png"
+      alt="ABC Life Insurance Logo"
+    >
 
   </div>
 
-</header>
 
+  <!-- =========================
+       INTRO
+  ========================= -->
 
+  <p class="intro-text">
 
-<!-- ================= HERO ================= -->
+    Welcome to our profile gallery.
+    Click the button below to explore profiles
+    and view photos for each profile.
 
-<section class="hero">
-
-  <h1>Profile Gallery</h1>
-
-  <p>
-    Meet our team and explore their professional profiles
   </p>
 
-</section>
+
+  <!-- =========================
+       VIEW PROFILES
+  ========================= -->
+
+  <button
+    class="view-btn"
+    id="viewProfilesBtn"
+    onclick="showProfiles()"
+  >
+
+    View Profiles
+
+  </button>
 
 
-
-<!-- ================= PROFILES ================= -->
-
-<div class="container">
+  <!-- =========================
+       PROFILE CONTAINER
+  ========================= -->
 
   <div
-    class="grid"
-    id="profileGrid">
-  </div>
+    class="profiles"
+    id="profiles"
+  ></div>
+
+
+  <p
+    class="hint"
+    id="hint"
+  >
+
+    Click on any profile to view details and photos.
+
+  </p>
 
 </div>
 
 
 
-<!-- ================= MODAL ================= -->
+<!-- =========================
+     PROFILE MODAL
+========================= -->
 
 <div
   class="modal"
-  id="profileModal">
-
-  <div class="modal-box">
-
-    <div class="modal-header">
-
-      <h2 id="modalName">
-        Profile
-      </h2>
-
-      <span
-        class="close"
-        onclick="closeModal()">
-
-        &times;
-
-      </span>
-
-    </div>
+  id="profileModal"
+  onclick="closeOutside(event)"
+>
 
 
-    <div class="modal-body">
+  <div class="profile-detail">
 
-      <div class="modal-info">
 
-        <h3 id="modalRole"></h3>
+    <!-- CLOSE -->
 
-        <p id="modalDescription"></p>
+    <button
+      class="close"
+      onclick="closeProfile()"
+      aria-label="Close"
+    >
 
-      </div>
+      ×
+
+    </button>
+
+
+    <!-- PROFILE HEADER -->
+
+    <div class="detail-top">
 
 
       <div
-        class="gallery"
-        id="modalGallery">
+        id="detailPlaceholder"
+        class="detail-placeholder"
+      >
+
+        1
+
+      </div>
+
+
+      <img
+        id="detailPhoto"
+        class="detail-main-photo"
+        alt="Profile photo"
+      >
+
+
+      <div class="detail-title">
+
+
+        <h2 id="detailName">
+
+          Profile Name
+
+        </h2>
+
+
+        <p id="detailRole">
+
+          Role / Designation
+
+        </p>
+
+
       </div>
 
     </div>
+
+
+    <!-- DESCRIPTION -->
+
+    <p
+      class="detail-text"
+      id="detailText"
+    ></p>
+
+
+    <!-- PHOTOS -->
+
+    <h3 class="gallery-title">
+
+      Photos
+
+    </h3>
+
+
+    <div
+      class="inner-gallery"
+      id="innerGallery"
+    ></div>
+
 
   </div>
 
 </div>
-
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-  © 2026 Life Insurance Profile Gallery
-
-</footer>
 
 
 
@@ -424,14 +672,23 @@ footer{
 
 /* =====================================================
    PROFILE DATA
-   ===================================================== */
+=====================================================
+
+   GitHub photos folder मध्ये photos अशी ठेवायची:
+
+   photos/profile-1-1.jpg
+   photos/profile-1-2.jpg
+   photos/profile-1-3.jpg
+
+===================================================== */
+
 
 const profiles = [
 
   {
     name:"Profile 1",
-    role:"Life Insurance Advisor",
-    description:"Professional life insurance advisor helping customers choose suitable protection and financial solutions.",
+    role:"Role / Designation",
+    text:"Information about Profile 1 will be added here.",
     photos:[
       "profile-1-1.jpg",
       "profile-1-2.jpg",
@@ -439,10 +696,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 2",
-    role:"Insurance Consultant",
-    description:"Dedicated insurance professional focused on customer service and financial protection.",
+    role:"Role / Designation",
+    text:"Information about Profile 2 will be added here.",
     photos:[
       "profile-2-1.jpg",
       "profile-2-2.jpg",
@@ -450,10 +708,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 3",
-    role:"Life Insurance Advisor",
-    description:"Helping individuals and families plan their financial protection with confidence.",
+    role:"Role / Designation",
+    text:"Information about Profile 3 will be added here.",
     photos:[
       "profile-3-1.jpg",
       "profile-3-2.jpg",
@@ -461,10 +720,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 4",
-    role:"Insurance Advisor",
-    description:"Providing professional guidance and customer-focused insurance solutions.",
+    role:"Role / Designation",
+    text:"Information about Profile 4 will be added here.",
     photos:[
       "profile-4-1.jpg",
       "profile-4-2.jpg",
@@ -472,10 +732,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 5",
-    role:"Life Insurance Consultant",
-    description:"Supporting customers with protection planning and insurance solutions.",
+    role:"Role / Designation",
+    text:"Information about Profile 5 will be added here.",
     photos:[
       "profile-5-1.jpg",
       "profile-5-2.jpg",
@@ -483,10 +744,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 6",
-    role:"Insurance Advisor",
-    description:"Committed to delivering reliable insurance guidance and excellent customer service.",
+    role:"Role / Designation",
+    text:"Information about Profile 6 will be added here.",
     photos:[
       "profile-6-1.jpg",
       "profile-6-2.jpg",
@@ -494,10 +756,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 7",
-    role:"Life Insurance Advisor",
-    description:"Helping customers understand insurance and plan for a secure future.",
+    role:"Role / Designation",
+    text:"Information about Profile 7 will be added here.",
     photos:[
       "profile-7-1.jpg",
       "profile-7-2.jpg",
@@ -505,10 +768,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 8",
-    role:"Insurance Consultant",
-    description:"Professional consultant focused on protection, planning and customer satisfaction.",
+    role:"Role / Designation",
+    text:"Information about Profile 8 will be added here.",
     photos:[
       "profile-8-1.jpg",
       "profile-8-2.jpg",
@@ -516,10 +780,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 9",
-    role:"Insurance Advisor",
-    description:"Providing customer-focused insurance and financial protection solutions.",
+    role:"Role / Designation",
+    text:"Information about Profile 9 will be added here.",
     photos:[
       "profile-9-1.jpg",
       "profile-9-2.jpg",
@@ -527,10 +792,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 10",
-    role:"Life Insurance Consultant",
-    description:"Helping families make informed decisions about life insurance protection.",
+    role:"Role / Designation",
+    text:"Information about Profile 10 will be added here.",
     photos:[
       "profile-10-1.jpg",
       "profile-10-2.jpg",
@@ -538,10 +804,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 11",
-    role:"Insurance Advisor",
-    description:"Committed to providing professional insurance guidance and support.",
+    role:"Role / Designation",
+    text:"Information about Profile 11 will be added here.",
     photos:[
       "profile-11-1.jpg",
       "profile-11-2.jpg",
@@ -549,10 +816,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 12",
-    role:"Life Insurance Advisor",
-    description:"Helping customers build stronger financial protection for their future.",
+    role:"Role / Designation",
+    text:"Information about Profile 12 will be added here.",
     photos:[
       "profile-12-1.jpg",
       "profile-12-2.jpg",
@@ -560,10 +828,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 13",
-    role:"Insurance Consultant",
-    description:"Customer-focused professional providing insurance planning assistance.",
+    role:"Role / Designation",
+    text:"Information about Profile 13 will be added here.",
     photos:[
       "profile-13-1.jpg",
       "profile-13-2.jpg",
@@ -571,10 +840,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 14",
-    role:"Insurance Advisor",
-    description:"Helping customers select suitable life insurance solutions.",
+    role:"Role / Designation",
+    text:"Information about Profile 14 will be added here.",
     photos:[
       "profile-14-1.jpg",
       "profile-14-2.jpg",
@@ -582,10 +852,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 15",
-    role:"Life Insurance Consultant",
-    description:"Providing professional advice and long-term protection planning.",
+    role:"Role / Designation",
+    text:"Information about Profile 15 will be added here.",
     photos:[
       "profile-15-1.jpg",
       "profile-15-2.jpg",
@@ -593,10 +864,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 16",
-    role:"Insurance Advisor",
-    description:"Supporting customers through professional insurance consultation.",
+    role:"Role / Designation",
+    text:"Information about Profile 16 will be added here.",
     photos:[
       "profile-16-1.jpg",
       "profile-16-2.jpg",
@@ -604,10 +876,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 17",
-    role:"Life Insurance Advisor",
-    description:"Dedicated to helping customers protect their families and financial future.",
+    role:"Role / Designation",
+    text:"Information about Profile 17 will be added here.",
     photos:[
       "profile-17-1.jpg",
       "profile-17-2.jpg",
@@ -615,10 +888,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 18",
-    role:"Insurance Consultant",
-    description:"Offering customer-focused insurance guidance and solutions.",
+    role:"Role / Designation",
+    text:"Information about Profile 18 will be added here.",
     photos:[
       "profile-18-1.jpg",
       "profile-18-2.jpg",
@@ -626,10 +900,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 19",
-    role:"Insurance Advisor",
-    description:"Helping customers understand their insurance and protection needs.",
+    role:"Role / Designation",
+    text:"Information about Profile 19 will be added here.",
     photos:[
       "profile-19-1.jpg",
       "profile-19-2.jpg",
@@ -637,10 +912,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 20",
-    role:"Life Insurance Consultant",
-    description:"Providing professional support for life insurance and financial planning.",
+    role:"Role / Designation",
+    text:"Information about Profile 20 will be added here.",
     photos:[
       "profile-20-1.jpg",
       "profile-20-2.jpg",
@@ -648,10 +924,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 21",
-    role:"Insurance Advisor",
-    description:"Helping customers make confident insurance decisions.",
+    role:"Role / Designation",
+    text:"Information about Profile 21 will be added here.",
     photos:[
       "profile-21-1.jpg",
       "profile-21-2.jpg",
@@ -659,10 +936,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 22",
-    role:"Life Insurance Advisor",
-    description:"Focused on customer protection and long-term financial security.",
+    role:"Role / Designation",
+    text:"Information about Profile 22 will be added here.",
     photos:[
       "profile-22-1.jpg",
       "profile-22-2.jpg",
@@ -670,10 +948,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 23",
-    role:"Insurance Consultant",
-    description:"Providing clear and professional insurance consultation.",
+    role:"Role / Designation",
+    text:"Information about Profile 23 will be added here.",
     photos:[
       "profile-23-1.jpg",
       "profile-23-2.jpg",
@@ -681,10 +960,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 24",
-    role:"Insurance Advisor",
-    description:"Dedicated to delivering reliable customer-focused insurance solutions.",
+    role:"Role / Designation",
+    text:"Information about Profile 24 will be added here.",
     photos:[
       "profile-24-1.jpg",
       "profile-24-2.jpg",
@@ -692,10 +972,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 25",
-    role:"Life Insurance Consultant",
-    description:"Helping customers plan their financial protection with confidence.",
+    role:"Role / Designation",
+    text:"Information about Profile 25 will be added here.",
     photos:[
       "profile-25-1.jpg",
       "profile-25-2.jpg",
@@ -703,10 +984,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 26",
-    role:"Insurance Advisor",
-    description:"Supporting individuals and families with life insurance planning.",
+    role:"Role / Designation",
+    text:"Information about Profile 26 will be added here.",
     photos:[
       "profile-26-1.jpg",
       "profile-26-2.jpg",
@@ -714,10 +996,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 27",
-    role:"Life Insurance Advisor",
-    description:"Professional advisor focused on protection and customer satisfaction.",
+    role:"Role / Designation",
+    text:"Information about Profile 27 will be added here.",
     photos:[
       "profile-27-1.jpg",
       "profile-27-2.jpg",
@@ -725,10 +1008,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 28",
-    role:"Insurance Consultant",
-    description:"Helping customers understand and choose appropriate insurance solutions.",
+    role:"Role / Designation",
+    text:"Information about Profile 28 will be added here.",
     photos:[
       "profile-28-1.jpg",
       "profile-28-2.jpg",
@@ -736,10 +1020,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 29",
-    role:"Insurance Advisor",
-    description:"Providing trusted insurance guidance and customer support.",
+    role:"Role / Designation",
+    text:"Information about Profile 29 will be added here.",
     photos:[
       "profile-29-1.jpg",
       "profile-29-2.jpg",
@@ -747,10 +1032,11 @@ const profiles = [
     ]
   },
 
+
   {
     name:"Profile 30",
-    role:"Life Insurance Consultant",
-    description:"Helping customers secure their future through professional insurance planning.",
+    role:"Role / Designation",
+    text:"Information about Profile 30 will be added here.",
     photos:[
       "profile-30-1.jpg",
       "profile-30-2.jpg",
@@ -762,207 +1048,347 @@ const profiles = [
 
 
 /* =====================================================
+   CURRENT PROFILE
+===================================================== */
+
+let currentProfile = 0;
+
+
+/* =====================================================
+   SHOW PROFILES
+===================================================== */
+
+function showProfiles(){
+
+  document
+    .getElementById("profiles")
+    .classList.add("show");
+
+  document
+    .getElementById("hint")
+    .classList.add("show");
+
+
+  const button =
+    document.getElementById("viewProfilesBtn");
+
+
+  button.textContent =
+    "Profiles Opened";
+
+
+  button.disabled =
+    true;
+
+
+  button.style.opacity =
+    ".65";
+
+}
+
+
+/* =====================================================
    RENDER PROFILES
-   ===================================================== */
-
-const profileGrid =
-document.getElementById("profileGrid");
-
+===================================================== */
 
 function renderProfiles(){
 
-  profileGrid.innerHTML="";
-
-  profiles.forEach((profile,index)=>{
-
-    const firstPhoto =
-    "photos/"+profile.photos[0];
-
-    const card =
-    document.createElement("div");
-
-    card.className="card";
-
-    card.onclick=function(){
-
-      openProfile(index);
-
-    };
+  const container =
+    document.getElementById("profiles");
 
 
-    card.innerHTML=`
+  container.innerHTML =
+    profiles.map((p,i)=>{
 
-      <img
-        class="card-image"
-        src="${firstPhoto}"
-        alt="${escapeHtml(profile.name)}"
-        onerror="this.style.display='none'"
-      >
 
-      <div class="card-content">
+      const firstPhoto =
+        p.photos && p.photos.length
+        ? `photos/${p.photos[0]}`
+        : "";
 
-        <h3>
-          ${escapeHtml(profile.name)}
-        </h3>
 
-        <div class="role">
-          ${escapeHtml(profile.role)}
-        </div>
+      return `
 
-        <p>
-          ${escapeHtml(profile.description)}
-        </p>
+        <button
+          class="profile-card"
+          onclick="openProfile(${i})"
+        >
+
+          <div class="profile-photo">
+
+            ${
+              firstPhoto
+
+              ?
+
+              `<img
+                src="${firstPhoto}"
+                alt="${escapeHtml(p.name)}"
+                onerror="
+                  this.style.display='none';
+                  this.parentElement.innerHTML='<span>${i+1}</span>';
+                "
+              >`
+
+              :
+
+              `<span>${i+1}</span>`
+            }
+
+          </div>
+
+
+          <div class="profile-name">
+
+            ${escapeHtml(p.name)}
+
+          </div>
+
+        </button>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   OPEN PROFILE
+===================================================== */
+
+function openProfile(index){
+
+  currentProfile =
+    index;
+
+
+  const p =
+    profiles[index];
+
+
+  document
+    .getElementById("detailName")
+    .textContent =
+    p.name;
+
+
+  document
+    .getElementById("detailRole")
+    .textContent =
+    p.role;
+
+
+  document
+    .getElementById("detailText")
+    .textContent =
+    p.text;
+
+
+  document
+    .getElementById("detailPlaceholder")
+    .textContent =
+    index + 1;
+
+
+  const detailPhoto =
+    document.getElementById("detailPhoto");
+
+
+  const placeholder =
+    document.getElementById("detailPlaceholder");
+
+
+  if(
+    p.photos &&
+    p.photos.length
+  ){
+
+    detailPhoto.src =
+      "photos/" + p.photos[0];
+
+
+    detailPhoto.style.display =
+      "block";
+
+
+    placeholder.style.display =
+      "none";
+
+
+    detailPhoto.onerror =
+      function(){
+
+        detailPhoto.style.display =
+          "none";
+
+        placeholder.style.display =
+          "flex";
+
+      };
+
+  }
+
+  else{
+
+    detailPhoto.style.display =
+      "none";
+
+    placeholder.style.display =
+      "flex";
+
+  }
+
+
+  document
+    .getElementById("profileModal")
+    .classList.add("active");
+
+
+  renderGallery();
+
+}
+
+
+/* =====================================================
+   RENDER GALLERY
+===================================================== */
+
+function renderGallery(){
+
+  const gallery =
+    document.getElementById("innerGallery");
+
+
+  const p =
+    profiles[currentProfile];
+
+
+  if(
+    !p.photos ||
+    !p.photos.length
+  ){
+
+    gallery.innerHTML = `
+
+      <div class="empty-gallery">
+
+        No photos added yet.
 
       </div>
 
     `;
 
-
-    profileGrid.appendChild(card);
-
-  });
-
-}
-
-
-
-/* =====================================================
-   OPEN PROFILE
-   ===================================================== */
-
-function openProfile(index){
-
-  const profile =
-  profiles[index];
-
-
-  document.getElementById("modalName")
-  .textContent=profile.name;
-
-
-  document.getElementById("modalRole")
-  .textContent=profile.role;
-
-
-  document.getElementById("modalDescription")
-  .textContent=profile.description;
-
-
-  const gallery =
-  document.getElementById("modalGallery");
-
-
-  gallery.innerHTML="";
-
-
-  profile.photos.forEach(photo=>{
-
-    const img =
-    document.createElement("img");
-
-
-    img.src =
-    "photos/"+photo;
-
-
-    img.alt =
-    profile.name;
-
-
-    img.onerror=function(){
-
-      this.style.display="none";
-
-    };
-
-
-    gallery.appendChild(img);
-
-  });
-
-
-  document.getElementById("profileModal")
-  .style.display="block";
-
-
-  document.body.style.overflow="hidden";
-
-}
-
-
-
-/* =====================================================
-   CLOSE MODAL
-   ===================================================== */
-
-function closeModal(){
-
-  document.getElementById("profileModal")
-  .style.display="none";
-
-
-  document.body.style.overflow="auto";
-
-}
-
-
-
-/* =====================================================
-   CLICK OUTSIDE MODAL
-   ===================================================== */
-
-window.onclick=function(event){
-
-  const modal =
-  document.getElementById("profileModal");
-
-
-  if(event.target===modal){
-
-    closeModal();
+    return;
 
   }
 
-};
 
+  gallery.innerHTML =
+    p.photos.map(
+      (photo,index)=>{
+
+
+        return `
+
+          <div class="gallery-item">
+
+            <img
+              src="photos/${photo}"
+              alt="${escapeHtml(p.name)} Photo ${index+1}"
+              onerror="
+                this.parentElement.style.display='none';
+              "
+            >
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+/* =====================================================
+   CLOSE PROFILE
+===================================================== */
+
+function closeProfile(){
+
+  document
+    .getElementById("profileModal")
+    .classList.remove("active");
+
+}
+
+
+/* =====================================================
+   CLOSE OUTSIDE
+===================================================== */
+
+function closeOutside(event){
+
+  if(
+    event.target.id ===
+    "profileModal"
+  ){
+
+    closeProfile();
+
+  }
+
+}
 
 
 /* =====================================================
    ESC KEY
-   ===================================================== */
+===================================================== */
 
-document.addEventListener("keydown",function(event){
+document.addEventListener(
+  "keydown",
+  function(event){
 
-  if(event.key==="Escape"){
+    if(
+      event.key === "Escape"
+    ){
 
-    closeModal();
+      closeProfile();
+
+    }
 
   }
-
-});
-
+);
 
 
 /* =====================================================
-   HTML SECURITY
-   ===================================================== */
+   ESCAPE HTML
+===================================================== */
 
-function escapeHtml(text){
+function escapeHtml(value){
 
-  const div =
-  document.createElement("div");
+  return value.replace(
+    /[&<>"']/g,
 
-  div.textContent=text;
+    char => ({
 
-  return div.innerHTML;
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+
+    }[char])
+
+  );
 
 }
 
 
-
 /* =====================================================
-   START
-   ===================================================== */
+   START WEBSITE
+===================================================== */
 
 renderProfiles();
 
