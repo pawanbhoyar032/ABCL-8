@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Profile Gallery</title>
+<title>ABC Life Insurance - Profile Gallery</title>
 
 <style>
 *{
@@ -87,38 +87,21 @@ body{
   box-shadow:0 10px 25px rgba(0,0,0,0.12);
 }
 
+/* Profile photo */
 .profile-photo{
-  width:120px;
-  height:120px;
-  border-radius:50%;
+  width:180px;
+  height:180px;
+  border-radius:12px;
   object-fit:cover;
   display:block;
   margin:0 auto 15px;
   background:#e9edf5;
 }
 
-.profile-placeholder{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  margin:0 auto 15px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#e9edf5;
-  color:#555;
-  font-size:28px;
-  font-weight:bold;
-}
-
+/* Profile number */
 .profile-card h3{
   font-size:20px;
-  margin-bottom:7px;
-}
-
-.profile-card p{
-  color:#666;
-  font-size:15px;
+  margin-top:5px;
 }
 
 /* =========================
@@ -204,12 +187,6 @@ body{
 
 .detail-title h2{
   font-size:28px;
-  margin-bottom:8px;
-}
-
-.detail-title p{
-  color:#666;
-  font-size:17px;
 }
 
 .detail-text{
@@ -249,6 +226,11 @@ body{
     grid-template-columns:repeat(2,1fr);
   }
 
+  .profile-photo{
+    width:160px;
+    height:160px;
+  }
+
 }
 
 @media(max-width:550px){
@@ -269,6 +251,11 @@ body{
 
   .profiles{
     grid-template-columns:1fr;
+  }
+
+  .profile-photo{
+    width:220px;
+    height:220px;
   }
 
   .detail-top{
@@ -298,7 +285,10 @@ body{
 
   <!-- LOGO -->
   <div class="logo-box">
-    <img src="photos/logo.png" alt="ABC Life Insurance Logo">
+    <img
+      src="photos/logo.png"
+      alt="ABC Life Insurance Logo"
+    >
   </div>
 
   <!-- INTRO TEXT -->
@@ -308,9 +298,12 @@ body{
   </p>
 
   <!-- PROFILES -->
-  <div class="profiles" id="profiles"></div>
+  <div
+    class="profiles"
+    id="profiles">
+  </div>
 
-  <p class="hint" id="hint">
+  <p class="hint">
     Click on any profile to view details and photos.
   </p>
 
@@ -347,7 +340,8 @@ body{
       <img
         id="detailPhoto"
         class="detail-main-photo"
-        alt="Profile photo">
+        alt="Profile photo"
+      >
 
       <div class="detail-title">
 
@@ -355,18 +349,9 @@ body{
           Profile Name
         </h2>
 
-        <p id="detailRole">
-          Role / Designation
-        </p>
-
       </div>
 
     </div>
-
-    <p
-      class="detail-text"
-      id="detailText">
-    </p>
 
     <h3 class="gallery-title">
       Photos
@@ -391,9 +376,7 @@ body{
 const profiles = [
 
   {
-    name:"Profile 1",
-    role:"Role / Designation",
-    text:"Information about Profile 1 will be added here.",
+    name:"Pawan Bhoyar",
     photos:[
       "profile-1-1.jpg",
       "profile-1-2.jpg",
@@ -403,8 +386,6 @@ const profiles = [
 
   {
     name:"Profile 2",
-    role:"Role / Designation",
-    text:"Information about Profile 2 will be added here.",
     photos:[
       "profile-2-1.jpg",
       "profile-2-2.jpg",
@@ -414,8 +395,6 @@ const profiles = [
 
   {
     name:"Profile 3",
-    role:"Role / Designation",
-    text:"Information about Profile 3 will be added here.",
     photos:[
       "profile-3-1.jpg",
       "profile-3-2.jpg",
@@ -425,8 +404,6 @@ const profiles = [
 
   {
     name:"Profile 4",
-    role:"Role / Designation",
-    text:"Information about Profile 4 will be added here.",
     photos:[
       "profile-4-1.jpg",
       "profile-4-2.jpg",
@@ -436,8 +413,6 @@ const profiles = [
 
   {
     name:"Profile 5",
-    role:"Role / Designation",
-    text:"Information about Profile 5 will be added here.",
     photos:[
       "profile-5-1.jpg",
       "profile-5-2.jpg",
@@ -447,8 +422,6 @@ const profiles = [
 
   {
     name:"Profile 6",
-    role:"Role / Designation",
-    text:"Information about Profile 6 will be added here.",
     photos:[
       "profile-6-1.jpg",
       "profile-6-2.jpg",
@@ -458,8 +431,6 @@ const profiles = [
 
   {
     name:"Profile 7",
-    role:"Role / Designation",
-    text:"Information about Profile 7 will be added here.",
     photos:[
       "profile-7-1.jpg",
       "profile-7-2.jpg",
@@ -469,8 +440,6 @@ const profiles = [
 
   {
     name:"Profile 8",
-    role:"Role / Designation",
-    text:"Information about Profile 8 will be added here.",
     photos:[
       "profile-8-1.jpg",
       "profile-8-2.jpg",
@@ -480,8 +449,6 @@ const profiles = [
 
   {
     name:"Profile 9",
-    role:"Role / Designation",
-    text:"Information about Profile 9 will be added here.",
     photos:[
       "profile-9-1.jpg",
       "profile-9-2.jpg",
@@ -491,8 +458,6 @@ const profiles = [
 
   {
     name:"Profile 10",
-    role:"Role / Designation",
-    text:"Information about Profile 10 will be added here.",
     photos:[
       "profile-10-1.jpg",
       "profile-10-2.jpg",
@@ -502,8 +467,6 @@ const profiles = [
 
   {
     name:"Profile 11",
-    role:"Role / Designation",
-    text:"Information about Profile 11 will be added here.",
     photos:[
       "profile-11-1.jpg",
       "profile-11-2.jpg",
@@ -513,8 +476,6 @@ const profiles = [
 
   {
     name:"Profile 12",
-    role:"Role / Designation",
-    text:"Information about Profile 12 will be added here.",
     photos:[
       "profile-12-1.jpg",
       "profile-12-2.jpg",
@@ -524,8 +485,6 @@ const profiles = [
 
   {
     name:"Profile 13",
-    role:"Role / Designation",
-    text:"Information about Profile 13 will be added here.",
     photos:[
       "profile-13-1.jpg",
       "profile-13-2.jpg",
@@ -535,8 +494,6 @@ const profiles = [
 
   {
     name:"Profile 14",
-    role:"Role / Designation",
-    text:"Information about Profile 14 will be added here.",
     photos:[
       "profile-14-1.jpg",
       "profile-14-2.jpg",
@@ -546,8 +503,6 @@ const profiles = [
 
   {
     name:"Profile 15",
-    role:"Role / Designation",
-    text:"Information about Profile 15 will be added here.",
     photos:[
       "profile-15-1.jpg",
       "profile-15-2.jpg",
@@ -557,8 +512,6 @@ const profiles = [
 
   {
     name:"Profile 16",
-    role:"Role / Designation",
-    text:"Information about Profile 16 will be added here.",
     photos:[
       "profile-16-1.jpg",
       "profile-16-2.jpg",
@@ -568,8 +521,6 @@ const profiles = [
 
   {
     name:"Profile 17",
-    role:"Role / Designation",
-    text:"Information about Profile 17 will be added here.",
     photos:[
       "profile-17-1.jpg",
       "profile-17-2.jpg",
@@ -579,8 +530,6 @@ const profiles = [
 
   {
     name:"Profile 18",
-    role:"Role / Designation",
-    text:"Information about Profile 18 will be added here.",
     photos:[
       "profile-18-1.jpg",
       "profile-18-2.jpg",
@@ -590,8 +539,6 @@ const profiles = [
 
   {
     name:"Profile 19",
-    role:"Role / Designation",
-    text:"Information about Profile 19 will be added here.",
     photos:[
       "profile-19-1.jpg",
       "profile-19-2.jpg",
@@ -601,8 +548,6 @@ const profiles = [
 
   {
     name:"Profile 20",
-    role:"Role / Designation",
-    text:"Information about Profile 20 will be added here.",
     photos:[
       "profile-20-1.jpg",
       "profile-20-2.jpg",
@@ -612,8 +557,6 @@ const profiles = [
 
   {
     name:"Profile 21",
-    role:"Role / Designation",
-    text:"Information about Profile 21 will be added here.",
     photos:[
       "profile-21-1.jpg",
       "profile-21-2.jpg",
@@ -623,8 +566,6 @@ const profiles = [
 
   {
     name:"Profile 22",
-    role:"Role / Designation",
-    text:"Information about Profile 22 will be added here.",
     photos:[
       "profile-22-1.jpg",
       "profile-22-2.jpg",
@@ -634,8 +575,6 @@ const profiles = [
 
   {
     name:"Profile 23",
-    role:"Role / Designation",
-    text:"Information about Profile 23 will be added here.",
     photos:[
       "profile-23-1.jpg",
       "profile-23-2.jpg",
@@ -645,8 +584,6 @@ const profiles = [
 
   {
     name:"Profile 24",
-    role:"Role / Designation",
-    text:"Information about Profile 24 will be added here.",
     photos:[
       "profile-24-1.jpg",
       "profile-24-2.jpg",
@@ -656,8 +593,6 @@ const profiles = [
 
   {
     name:"Profile 25",
-    role:"Role / Designation",
-    text:"Information about Profile 25 will be added here.",
     photos:[
       "profile-25-1.jpg",
       "profile-25-2.jpg",
@@ -667,8 +602,6 @@ const profiles = [
 
   {
     name:"Profile 26",
-    role:"Role / Designation",
-    text:"Information about Profile 26 will be added here.",
     photos:[
       "profile-26-1.jpg",
       "profile-26-2.jpg",
@@ -678,8 +611,6 @@ const profiles = [
 
   {
     name:"Profile 27",
-    role:"Role / Designation",
-    text:"Information about Profile 27 will be added here.",
     photos:[
       "profile-27-1.jpg",
       "profile-27-2.jpg",
@@ -689,8 +620,6 @@ const profiles = [
 
   {
     name:"Profile 28",
-    role:"Role / Designation",
-    text:"Information about Profile 28 will be added here.",
     photos:[
       "profile-28-1.jpg",
       "profile-28-2.jpg",
@@ -700,8 +629,6 @@ const profiles = [
 
   {
     name:"Profile 29",
-    role:"Role / Designation",
-    text:"Information about Profile 29 will be added here.",
     photos:[
       "profile-29-1.jpg",
       "profile-29-2.jpg",
@@ -711,8 +638,6 @@ const profiles = [
 
   {
     name:"Profile 30",
-    role:"Role / Designation",
-    text:"Information about Profile 30 will be added here.",
     photos:[
       "profile-30-1.jpg",
       "profile-30-2.jpg",
@@ -748,38 +673,33 @@ function renderProfiles(){
 
     card.className = "profile-card";
 
-    const firstPhoto =
-      "photos/" + profile.photos[0];
+
+    /* PROFILE PHOTO */
 
     const image =
       document.createElement("img");
 
     image.className = "profile-photo";
 
-    image.src = firstPhoto;
+    image.src =
+      "photos/" + profile.photos[0];
 
-    image.alt = profile.name;
+    image.alt =
+      profile.name;
+
+
+    /* If image doesn't exist */
 
     image.onerror = function(){
 
-      this.style.display = "none";
-
-      const placeholder =
-        document.createElement("div");
-
-      placeholder.className =
-        "profile-placeholder";
-
-      placeholder.textContent =
-        index + 1;
-
-      this.parentNode.insertBefore(
-        placeholder,
-        this
-      );
+      this.src =
+        "https://via.placeholder.com/300x300?text=Profile+" +
+        (index + 1);
 
     };
 
+
+    /* PROFILE NAME */
 
     const name =
       document.createElement("h3");
@@ -788,22 +708,19 @@ function renderProfiles(){
       profile.name;
 
 
-    const role =
-      document.createElement("p");
-
-    role.textContent =
-      profile.role;
-
-
     card.appendChild(image);
+
     card.appendChild(name);
-    card.appendChild(role);
+
+
+    /* CLICK PROFILE */
 
     card.onclick = function(){
 
       openProfile(index);
 
     };
+
 
     container.appendChild(card);
 
@@ -823,20 +740,11 @@ function openProfile(index){
   const profile =
     profiles[index];
 
+
   document.getElementById(
     "detailName"
   ).textContent =
     profile.name;
-
-  document.getElementById(
-    "detailRole"
-  ).textContent =
-    profile.role;
-
-  document.getElementById(
-    "detailText"
-  ).textContent =
-    profile.text;
 
 
   const detailPhoto =
@@ -844,25 +752,48 @@ function openProfile(index){
       "detailPhoto"
     );
 
+
   const placeholder =
     document.getElementById(
       "detailPlaceholder"
     );
 
-  detailPhoto.style.display = "none";
 
-  placeholder.style.display = "flex";
+  detailPhoto.style.display =
+    "none";
+
+  placeholder.style.display =
+    "flex";
+
 
   detailPhoto.src =
-    "photos/" + profile.photos[0];
+    "photos/" +
+    profile.photos[0];
 
-  detailPhoto.onload = function(){
 
-    placeholder.style.display = "none";
+  detailPhoto.onload =
+    function(){
 
-    detailPhoto.style.display = "block";
+      placeholder.style.display =
+        "none";
 
-  };
+      detailPhoto.style.display =
+        "block";
+
+    };
+
+
+  detailPhoto.onerror =
+    function(){
+
+      detailPhoto.style.display =
+        "none";
+
+      placeholder.style.display =
+        "flex";
+
+    };
+
 
   placeholder.textContent =
     index + 1;
@@ -874,6 +805,7 @@ function openProfile(index){
   document.getElementById(
     "profileModal"
   ).classList.add("show");
+
 
   document.body.style.overflow =
     "hidden";
@@ -892,7 +824,9 @@ function renderGallery(){
       "innerGallery"
     );
 
+
   gallery.innerHTML = "";
+
 
   const profile =
     profiles[currentProfile];
@@ -904,11 +838,14 @@ function renderGallery(){
       const img =
         document.createElement("img");
 
+
       img.src =
         "photos/" + photo;
 
+
       img.alt =
         profile.name;
+
 
       img.onerror =
         function(){
@@ -917,6 +854,20 @@ function renderGallery(){
             "none";
 
         };
+
+
+      /* Open large image */
+
+      img.onclick =
+        function(){
+
+          window.open(
+            this.src,
+            "_blank"
+          );
+
+        };
+
 
       gallery.appendChild(img);
 
@@ -935,6 +886,7 @@ function closeProfile(){
   document.getElementById(
     "profileModal"
   ).classList.remove("show");
+
 
   document.body.style.overflow =
     "";
