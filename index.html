@@ -57,32 +57,9 @@ body{
   text-align:center;
   font-size:18px;
   line-height:1.6;
-  margin:0 auto 25px;
+  margin:0 auto 40px;
   max-width:700px;
   color:#555;
-}
-
-/* =========================
-   VIEW BUTTON
-========================= */
-
-.view-btn{
-  display:block;
-  margin:0 auto 40px;
-  padding:14px 32px;
-  font-size:17px;
-  font-weight:600;
-  color:white;
-  background:#1d4ed8;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.view-btn:hover{
-  background:#163ca5;
-  transform:translateY(-2px);
 }
 
 /* =========================
@@ -287,6 +264,7 @@ body{
 
   .intro-text{
     font-size:16px;
+    margin-bottom:30px;
   }
 
   .profiles{
@@ -326,16 +304,8 @@ body{
   <!-- INTRO TEXT -->
   <p class="intro-text">
     Welcome to our profile gallery.<br>
-    Click the button below to explore profiles and view photos.
+    Click on any profile below to explore details and photos.
   </p>
-
-  <!-- VIEW PROFILES BUTTON -->
-  <button
-    class="view-btn"
-    id="viewProfilesBtn"
-    onclick="showProfiles()">
-    View Profiles
-  </button>
 
   <!-- PROFILES -->
   <div class="profiles" id="profiles"></div>
@@ -761,19 +731,6 @@ let currentProfile = 0;
 
 
 /* =================================
-   SHOW PROFILES
-================================= */
-
-function showProfiles(){
-
-  document.getElementById("profiles").scrollIntoView({
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =================================
    RENDER PROFILES
 ================================= */
 
@@ -893,6 +850,7 @@ function openProfile(index){
     );
 
   detailPhoto.style.display = "none";
+
   placeholder.style.display = "flex";
 
   detailPhoto.src =
@@ -905,7 +863,6 @@ function openProfile(index){
     detailPhoto.style.display = "block";
 
   };
-
 
   placeholder.textContent =
     index + 1;
@@ -960,7 +917,6 @@ function renderGallery(){
             "none";
 
         };
-
 
       gallery.appendChild(img);
 
