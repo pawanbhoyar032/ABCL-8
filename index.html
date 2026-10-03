@@ -1,12 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ABC Life Insurance - Profile Gallery</title>
+<title>Profile Gallery</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -23,135 +25,119 @@ body{
 
 header{
   background:white;
-  border-bottom:1px solid #e5e7eb;
-  padding:15px 30px;
+  padding:12px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
   position:sticky;
   top:0;
   z-index:100;
 }
 
-.header-inner{
-  max-width:1200px;
-  margin:auto;
+.logo{
   display:flex;
   align-items:center;
-  justify-content:space-between;
 }
 
-/* LOGO */
+/* ACTUAL LOGO */
 
-.abc-logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo-icon{
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  background:#1769aa;
-  color:white;
+.logo-image{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:26px;
-  font-weight:bold;
-  box-shadow:0 4px 10px rgba(0,0,0,.15);
 }
 
-.logo-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1.1;
+.logo-image img{
+  height:55px;
+  width:auto;
+  max-width:220px;
+  object-fit:contain;
+  display:block;
 }
 
-.logo-text strong{
-  font-size:25px;
-  color:#1769aa;
-  letter-spacing:1px;
-}
-
-.logo-text span{
-  font-size:12px;
-  color:#555;
-  margin-top:5px;
-  letter-spacing:.5px;
-}
 
 /* ================= HERO ================= */
 
 .hero{
-  max-width:1200px;
-  margin:35px auto 20px;
-  padding:0 20px;
+  background:linear-gradient(135deg,#1769aa,#0b3f70);
+  color:white;
+  text-align:center;
+  padding:55px 20px;
 }
 
 .hero h1{
-  font-size:32px;
-  margin-bottom:8px;
-}
-
-.hero p{
-  color:#666;
-  font-size:15px;
-}
-
-/* ================= PROFILE GRID ================= */
-
-.container{
-  max-width:1200px;
-  margin:0 auto;
-  padding:20px;
-}
-
-.profile-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-.profile-card{
-  background:white;
-  border-radius:16px;
-  padding:20px;
-  text-align:center;
-  cursor:pointer;
-  border:1px solid #e5e7eb;
-  transition:.25s;
-}
-
-.profile-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 10px 25px rgba(0,0,0,.10);
-}
-
-.profile-avatar{
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  object-fit:cover;
-  border:4px solid #eef4fb;
-  margin-bottom:12px;
-}
-
-.profile-card h3{
-  font-size:18px;
-  margin-bottom:5px;
-}
-
-.profile-card .role{
-  color:#1769aa;
-  font-size:13px;
-  font-weight:bold;
+  font-size:38px;
   margin-bottom:10px;
 }
 
-.profile-card p{
-  font-size:13px;
-  color:#666;
+.hero p{
+  font-size:17px;
+  opacity:.9;
+}
+
+
+/* ================= CONTAINER ================= */
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:40px auto;
+}
+
+
+/* ================= PROFILE GRID ================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 25px rgba(0,0,0,.14);
+}
+
+.card-image{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  background:#e9edf3;
+}
+
+.card-content{
+  padding:18px;
+}
+
+.card-content h3{
+  color:#1769aa;
+  margin-bottom:6px;
+  font-size:20px;
+}
+
+.card-content .role{
+  font-size:14px;
+  font-weight:bold;
+  color:#555;
+  margin-bottom:8px;
+}
+
+.card-content p{
+  color:#777;
+  font-size:14px;
   line-height:1.5;
 }
+
 
 /* ================= MODAL ================= */
 
@@ -159,165 +145,193 @@ header{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.65);
+  background:rgba(0,0,0,.75);
   z-index:999;
   padding:30px 15px;
-  overflow-y:auto;
+  overflow:auto;
 }
 
-.modal-content{
-  max-width:850px;
+.modal-box{
   background:white;
-  margin:auto;
-  border-radius:18px;
-  padding:25px;
-  position:relative;
+  width:95%;
+  max-width:900px;
+  margin:20px auto;
+  border-radius:16px;
+  overflow:hidden;
+  animation:popup .25s ease;
+}
+
+@keyframes popup{
+  from{
+    transform:scale(.9);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.modal-header{
+  padding:20px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #eee;
+}
+
+.modal-header h2{
+  color:#1769aa;
 }
 
 .close{
-  position:absolute;
-  right:18px;
-  top:12px;
   font-size:30px;
   cursor:pointer;
-  color:#555;
+  color:#777;
 }
 
-.modal-content h2{
-  margin-bottom:5px;
+.close:hover{
+  color:#000;
 }
 
-.modal-role{
+.modal-body{
+  padding:25px;
+}
+
+.modal-info{
+  margin-bottom:25px;
+}
+
+.modal-info h3{
+  margin-bottom:8px;
   color:#1769aa;
-  font-weight:bold;
-  margin-bottom:15px;
 }
 
-.modal-text{
-  color:#666;
+.modal-info p{
+  color:#555;
   line-height:1.6;
-  margin-bottom:20px;
 }
 
-.main-photo{
-  width:100%;
-  max-height:450px;
-  object-fit:contain;
-  border-radius:12px;
-  background:#f1f3f5;
-  margin-bottom:15px;
-}
+
+/* ================= GALLERY ================= */
 
 .gallery{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
 .gallery img{
   width:100%;
-  height:110px;
+  height:200px;
   object-fit:cover;
   border-radius:10px;
   cursor:pointer;
-  border:2px solid transparent;
+  transition:.25s;
+  background:#eee;
 }
 
 .gallery img:hover{
-  border-color:#1769aa;
+  transform:scale(1.03);
 }
+
 
 /* ================= FOOTER ================= */
 
 footer{
-  margin-top:50px;
-  padding:25px;
-  background:#17202a;
+  background:#0b3f70;
   color:white;
   text-align:center;
-  font-size:13px;
+  padding:20px;
+  margin-top:50px;
+  font-size:14px;
 }
 
-/* ================= RESPONSIVE ================= */
 
-@media(max-width:1000px){
-  .profile-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-}
+/* ================= TABLET ================= */
 
-@media(max-width:700px){
-  header{
-    padding:12px 15px;
-  }
+@media(max-width:900px){
 
-  .logo-icon{
-    width:42px;
-    height:42px;
-    font-size:22px;
-  }
-
-  .logo-text strong{
-    font-size:21px;
-  }
-
-  .profile-grid{
+  .grid{
     grid-template-columns:repeat(2,1fr);
-    gap:12px;
   }
 
-  .profile-card{
-    padding:15px;
-  }
-
-  .profile-avatar{
-    width:85px;
-    height:85px;
-  }
-
-  .gallery{
-    grid-template-columns:repeat(3,1fr);
-  }
 }
 
-@media(max-width:450px){
-  .profile-grid{
-    grid-template-columns:1fr;
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+  header{
+    padding:10px 20px;
+  }
+
+  .logo-image img{
+    height:45px;
+    max-width:180px;
+  }
+
+  .hero{
+    padding:40px 15px;
   }
 
   .hero h1{
-    font-size:26px;
+    font-size:28px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
   }
 
   .gallery{
     grid-template-columns:repeat(2,1fr);
   }
+
+  .gallery img{
+    height:150px;
+  }
+
+  .modal-body{
+    padding:18px;
+  }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <!-- ================= HEADER ================= -->
 
 <header>
-  <div class="header-inner">
 
-    <div class="abc-logo">
+  <div class="logo">
 
-      <div class="logo-icon">
-        ♥
-      </div>
+    <!-- YOUR ACTUAL LOGO -->
 
-      <div class="logo-text">
-        <strong>ABC</strong>
-        <span>Life Insurance</span>
-      </div>
+    <div class="logo-image">
+
+      <img
+        src="photos/logo.png"
+        alt="Life Insurance Logo"
+      >
 
     </div>
 
   </div>
+
 </header>
+
 
 
 <!-- ================= HERO ================= -->
@@ -327,59 +341,87 @@ footer{
   <h1>Profile Gallery</h1>
 
   <p>
-    Meet our team and explore their profiles.
+    Meet our team and explore their professional profiles
   </p>
 
 </section>
+
 
 
 <!-- ================= PROFILES ================= -->
 
 <div class="container">
 
-  <div class="profile-grid" id="profileGrid"></div>
+  <div
+    class="grid"
+    id="profileGrid">
+  </div>
 
 </div>
 
 
+
 <!-- ================= MODAL ================= -->
 
-<div class="modal" id="profileModal">
+<div
+  class="modal"
+  id="profileModal">
 
-  <div class="modal-content">
+  <div class="modal-box">
 
-    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-header">
 
-    <h2 id="modalName"></h2>
+      <h2 id="modalName">
+        Profile
+      </h2>
 
-    <div class="modal-role" id="modalRole"></div>
+      <span
+        class="close"
+        onclick="closeModal()">
 
-    <p class="modal-text" id="modalText"></p>
+        &times;
 
-    <img
-      id="mainPhoto"
-      class="main-photo"
-      src=""
-      alt="Profile Photo"
-    >
+      </span>
 
-    <div class="gallery" id="gallery"></div>
+    </div>
+
+
+    <div class="modal-body">
+
+      <div class="modal-info">
+
+        <h3 id="modalRole"></h3>
+
+        <p id="modalDescription"></p>
+
+      </div>
+
+
+      <div
+        class="gallery"
+        id="modalGallery">
+      </div>
+
+    </div>
 
   </div>
 
 </div>
 
 
+
 <!-- ================= FOOTER ================= -->
 
 <footer>
 
-  © 2026 ABC Life Insurance. All Rights Reserved.
+  © 2026 Life Insurance Profile Gallery
 
 </footer>
 
 
+
 <script>
+
 
 /* =====================================================
    PROFILE DATA
@@ -387,335 +429,335 @@ footer{
 
 const profiles = [
 
-{
-  name:"Profile 1",
-  role:"Role / Designation",
-  text:"Information about Profile 1 will be added here.",
-  photos:[
-    "profile-1-1.jpg",
-    "profile-1-2.jpg",
-    "profile-1-3.jpg"
-  ]
-},
+  {
+    name:"Profile 1",
+    role:"Life Insurance Advisor",
+    description:"Professional life insurance advisor helping customers choose suitable protection and financial solutions.",
+    photos:[
+      "profile-1-1.jpg",
+      "profile-1-2.jpg",
+      "profile-1-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 2",
-  role:"Role / Designation",
-  text:"Information about Profile 2 will be added here.",
-  photos:[
-    "profile-2-1.jpg",
-    "profile-2-2.jpg",
-    "profile-2-3.jpg"
-  ]
-},
+  {
+    name:"Profile 2",
+    role:"Insurance Consultant",
+    description:"Dedicated insurance professional focused on customer service and financial protection.",
+    photos:[
+      "profile-2-1.jpg",
+      "profile-2-2.jpg",
+      "profile-2-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 3",
-  role:"Role / Designation",
-  text:"Information about Profile 3 will be added here.",
-  photos:[
-    "profile-3-1.jpg",
-    "profile-3-2.jpg",
-    "profile-3-3.jpg"
-  ]
-},
+  {
+    name:"Profile 3",
+    role:"Life Insurance Advisor",
+    description:"Helping individuals and families plan their financial protection with confidence.",
+    photos:[
+      "profile-3-1.jpg",
+      "profile-3-2.jpg",
+      "profile-3-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 4",
-  role:"Role / Designation",
-  text:"Information about Profile 4 will be added here.",
-  photos:[
-    "profile-4-1.jpg",
-    "profile-4-2.jpg",
-    "profile-4-3.jpg"
-  ]
-},
+  {
+    name:"Profile 4",
+    role:"Insurance Advisor",
+    description:"Providing professional guidance and customer-focused insurance solutions.",
+    photos:[
+      "profile-4-1.jpg",
+      "profile-4-2.jpg",
+      "profile-4-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 5",
-  role:"Role / Designation",
-  text:"Information about Profile 5 will be added here.",
-  photos:[
-    "profile-5-1.jpg",
-    "profile-5-2.jpg",
-    "profile-5-3.jpg"
-  ]
-},
+  {
+    name:"Profile 5",
+    role:"Life Insurance Consultant",
+    description:"Supporting customers with protection planning and insurance solutions.",
+    photos:[
+      "profile-5-1.jpg",
+      "profile-5-2.jpg",
+      "profile-5-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 6",
-  role:"Role / Designation",
-  text:"Information about Profile 6 will be added here.",
-  photos:[
-    "profile-6-1.jpg",
-    "profile-6-2.jpg",
-    "profile-6-3.jpg"
-  ]
-},
+  {
+    name:"Profile 6",
+    role:"Insurance Advisor",
+    description:"Committed to delivering reliable insurance guidance and excellent customer service.",
+    photos:[
+      "profile-6-1.jpg",
+      "profile-6-2.jpg",
+      "profile-6-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 7",
-  role:"Role / Designation",
-  text:"Information about Profile 7 will be added here.",
-  photos:[
-    "profile-7-1.jpg",
-    "profile-7-2.jpg",
-    "profile-7-3.jpg"
-  ]
-},
+  {
+    name:"Profile 7",
+    role:"Life Insurance Advisor",
+    description:"Helping customers understand insurance and plan for a secure future.",
+    photos:[
+      "profile-7-1.jpg",
+      "profile-7-2.jpg",
+      "profile-7-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 8",
-  role:"Role / Designation",
-  text:"Information about Profile 8 will be added here.",
-  photos:[
-    "profile-8-1.jpg",
-    "profile-8-2.jpg",
-    "profile-8-3.jpg"
-  ]
-},
+  {
+    name:"Profile 8",
+    role:"Insurance Consultant",
+    description:"Professional consultant focused on protection, planning and customer satisfaction.",
+    photos:[
+      "profile-8-1.jpg",
+      "profile-8-2.jpg",
+      "profile-8-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 9",
-  role:"Role / Designation",
-  text:"Information about Profile 9 will be added here.",
-  photos:[
-    "profile-9-1.jpg",
-    "profile-9-2.jpg",
-    "profile-9-3.jpg"
-  ]
-},
+  {
+    name:"Profile 9",
+    role:"Insurance Advisor",
+    description:"Providing customer-focused insurance and financial protection solutions.",
+    photos:[
+      "profile-9-1.jpg",
+      "profile-9-2.jpg",
+      "profile-9-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 10",
-  role:"Role / Designation",
-  text:"Information about Profile 10 will be added here.",
-  photos:[
-    "profile-10-1.jpg",
-    "profile-10-2.jpg",
-    "profile-10-3.jpg"
-  ]
-},
+  {
+    name:"Profile 10",
+    role:"Life Insurance Consultant",
+    description:"Helping families make informed decisions about life insurance protection.",
+    photos:[
+      "profile-10-1.jpg",
+      "profile-10-2.jpg",
+      "profile-10-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 11",
-  role:"Role / Designation",
-  text:"Information about Profile 11 will be added here.",
-  photos:[
-    "profile-11-1.jpg",
-    "profile-11-2.jpg",
-    "profile-11-3.jpg"
-  ]
-},
+  {
+    name:"Profile 11",
+    role:"Insurance Advisor",
+    description:"Committed to providing professional insurance guidance and support.",
+    photos:[
+      "profile-11-1.jpg",
+      "profile-11-2.jpg",
+      "profile-11-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 12",
-  role:"Role / Designation",
-  text:"Information about Profile 12 will be added here.",
-  photos:[
-    "profile-12-1.jpg",
-    "profile-12-2.jpg",
-    "profile-12-3.jpg"
-  ]
-},
+  {
+    name:"Profile 12",
+    role:"Life Insurance Advisor",
+    description:"Helping customers build stronger financial protection for their future.",
+    photos:[
+      "profile-12-1.jpg",
+      "profile-12-2.jpg",
+      "profile-12-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 13",
-  role:"Role / Designation",
-  text:"Information about Profile 13 will be added here.",
-  photos:[
-    "profile-13-1.jpg",
-    "profile-13-2.jpg",
-    "profile-13-3.jpg"
-  ]
-},
+  {
+    name:"Profile 13",
+    role:"Insurance Consultant",
+    description:"Customer-focused professional providing insurance planning assistance.",
+    photos:[
+      "profile-13-1.jpg",
+      "profile-13-2.jpg",
+      "profile-13-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 14",
-  role:"Role / Designation",
-  text:"Information about Profile 14 will be added here.",
-  photos:[
-    "profile-14-1.jpg",
-    "profile-14-2.jpg",
-    "profile-14-3.jpg"
-  ]
-},
+  {
+    name:"Profile 14",
+    role:"Insurance Advisor",
+    description:"Helping customers select suitable life insurance solutions.",
+    photos:[
+      "profile-14-1.jpg",
+      "profile-14-2.jpg",
+      "profile-14-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 15",
-  role:"Role / Designation",
-  text:"Information about Profile 15 will be added here.",
-  photos:[
-    "profile-15-1.jpg",
-    "profile-15-2.jpg",
-    "profile-15-3.jpg"
-  ]
-},
+  {
+    name:"Profile 15",
+    role:"Life Insurance Consultant",
+    description:"Providing professional advice and long-term protection planning.",
+    photos:[
+      "profile-15-1.jpg",
+      "profile-15-2.jpg",
+      "profile-15-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 16",
-  role:"Role / Designation",
-  text:"Information about Profile 16 will be added here.",
-  photos:[
-    "profile-16-1.jpg",
-    "profile-16-2.jpg",
-    "profile-16-3.jpg"
-  ]
-},
+  {
+    name:"Profile 16",
+    role:"Insurance Advisor",
+    description:"Supporting customers through professional insurance consultation.",
+    photos:[
+      "profile-16-1.jpg",
+      "profile-16-2.jpg",
+      "profile-16-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 17",
-  role:"Role / Designation",
-  text:"Information about Profile 17 will be added here.",
-  photos:[
-    "profile-17-1.jpg",
-    "profile-17-2.jpg",
-    "profile-17-3.jpg"
-  ]
-},
+  {
+    name:"Profile 17",
+    role:"Life Insurance Advisor",
+    description:"Dedicated to helping customers protect their families and financial future.",
+    photos:[
+      "profile-17-1.jpg",
+      "profile-17-2.jpg",
+      "profile-17-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 18",
-  role:"Role / Designation",
-  text:"Information about Profile 18 will be added here.",
-  photos:[
-    "profile-18-1.jpg",
-    "profile-18-2.jpg",
-    "profile-18-3.jpg"
-  ]
-},
+  {
+    name:"Profile 18",
+    role:"Insurance Consultant",
+    description:"Offering customer-focused insurance guidance and solutions.",
+    photos:[
+      "profile-18-1.jpg",
+      "profile-18-2.jpg",
+      "profile-18-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 19",
-  role:"Role / Designation",
-  text:"Information about Profile 19 will be added here.",
-  photos:[
-    "profile-19-1.jpg",
-    "profile-19-2.jpg",
-    "profile-19-3.jpg"
-  ]
-},
+  {
+    name:"Profile 19",
+    role:"Insurance Advisor",
+    description:"Helping customers understand their insurance and protection needs.",
+    photos:[
+      "profile-19-1.jpg",
+      "profile-19-2.jpg",
+      "profile-19-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 20",
-  role:"Role / Designation",
-  text:"Information about Profile 20 will be added here.",
-  photos:[
-    "profile-20-1.jpg",
-    "profile-20-2.jpg",
-    "profile-20-3.jpg"
-  ]
-},
+  {
+    name:"Profile 20",
+    role:"Life Insurance Consultant",
+    description:"Providing professional support for life insurance and financial planning.",
+    photos:[
+      "profile-20-1.jpg",
+      "profile-20-2.jpg",
+      "profile-20-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 21",
-  role:"Role / Designation",
-  text:"Information about Profile 21 will be added here.",
-  photos:[
-    "profile-21-1.jpg",
-    "profile-21-2.jpg",
-    "profile-21-3.jpg"
-  ]
-},
+  {
+    name:"Profile 21",
+    role:"Insurance Advisor",
+    description:"Helping customers make confident insurance decisions.",
+    photos:[
+      "profile-21-1.jpg",
+      "profile-21-2.jpg",
+      "profile-21-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 22",
-  role:"Role / Designation",
-  text:"Information about Profile 22 will be added here.",
-  photos:[
-    "profile-22-1.jpg",
-    "profile-22-2.jpg",
-    "profile-22-3.jpg"
-  ]
-},
+  {
+    name:"Profile 22",
+    role:"Life Insurance Advisor",
+    description:"Focused on customer protection and long-term financial security.",
+    photos:[
+      "profile-22-1.jpg",
+      "profile-22-2.jpg",
+      "profile-22-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 23",
-  role:"Role / Designation",
-  text:"Information about Profile 23 will be added here.",
-  photos:[
-    "profile-23-1.jpg",
-    "profile-23-2.jpg",
-    "profile-23-3.jpg"
-  ]
-},
+  {
+    name:"Profile 23",
+    role:"Insurance Consultant",
+    description:"Providing clear and professional insurance consultation.",
+    photos:[
+      "profile-23-1.jpg",
+      "profile-23-2.jpg",
+      "profile-23-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 24",
-  role:"Role / Designation",
-  text:"Information about Profile 24 will be added here.",
-  photos:[
-    "profile-24-1.jpg",
-    "profile-24-2.jpg",
-    "profile-24-3.jpg"
-  ]
-},
+  {
+    name:"Profile 24",
+    role:"Insurance Advisor",
+    description:"Dedicated to delivering reliable customer-focused insurance solutions.",
+    photos:[
+      "profile-24-1.jpg",
+      "profile-24-2.jpg",
+      "profile-24-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 25",
-  role:"Role / Designation",
-  text:"Information about Profile 25 will be added here.",
-  photos:[
-    "profile-25-1.jpg",
-    "profile-25-2.jpg",
-    "profile-25-3.jpg"
-  ]
-},
+  {
+    name:"Profile 25",
+    role:"Life Insurance Consultant",
+    description:"Helping customers plan their financial protection with confidence.",
+    photos:[
+      "profile-25-1.jpg",
+      "profile-25-2.jpg",
+      "profile-25-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 26",
-  role:"Role / Designation",
-  text:"Information about Profile 26 will be added here.",
-  photos:[
-    "profile-26-1.jpg",
-    "profile-26-2.jpg",
-    "profile-26-3.jpg"
-  ]
-},
+  {
+    name:"Profile 26",
+    role:"Insurance Advisor",
+    description:"Supporting individuals and families with life insurance planning.",
+    photos:[
+      "profile-26-1.jpg",
+      "profile-26-2.jpg",
+      "profile-26-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 27",
-  role:"Role / Designation",
-  text:"Information about Profile 27 will be added here.",
-  photos:[
-    "profile-27-1.jpg",
-    "profile-27-2.jpg",
-    "profile-27-3.jpg"
-  ]
-},
+  {
+    name:"Profile 27",
+    role:"Life Insurance Advisor",
+    description:"Professional advisor focused on protection and customer satisfaction.",
+    photos:[
+      "profile-27-1.jpg",
+      "profile-27-2.jpg",
+      "profile-27-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 28",
-  role:"Role / Designation",
-  text:"Information about Profile 28 will be added here.",
-  photos:[
-    "profile-28-1.jpg",
-    "profile-28-2.jpg",
-    "profile-28-3.jpg"
-  ]
-},
+  {
+    name:"Profile 28",
+    role:"Insurance Consultant",
+    description:"Helping customers understand and choose appropriate insurance solutions.",
+    photos:[
+      "profile-28-1.jpg",
+      "profile-28-2.jpg",
+      "profile-28-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 29",
-  role:"Role / Designation",
-  text:"Information about Profile 29 will be added here.",
-  photos:[
-    "profile-29-1.jpg",
-    "profile-29-2.jpg",
-    "profile-29-3.jpg"
-  ]
-},
+  {
+    name:"Profile 29",
+    role:"Insurance Advisor",
+    description:"Providing trusted insurance guidance and customer support.",
+    photos:[
+      "profile-29-1.jpg",
+      "profile-29-2.jpg",
+      "profile-29-3.jpg"
+    ]
+  },
 
-{
-  name:"Profile 30",
-  role:"Role / Designation",
-  text:"Information about Profile 30 will be added here.",
-  photos:[
-    "profile-30-1.jpg",
-    "profile-30-2.jpg",
-    "profile-30-3.jpg"
-  ]
-}
+  {
+    name:"Profile 30",
+    role:"Life Insurance Consultant",
+    description:"Helping customers secure their future through professional insurance planning.",
+    photos:[
+      "profile-30-1.jpg",
+      "profile-30-2.jpg",
+      "profile-30-3.jpg"
+    ]
+  }
 
 ];
 
@@ -724,59 +766,65 @@ const profiles = [
    RENDER PROFILES
    ===================================================== */
 
+const profileGrid =
+document.getElementById("profileGrid");
+
+
 function renderProfiles(){
 
-  const grid=document.getElementById("profileGrid");
-
-  grid.innerHTML="";
+  profileGrid.innerHTML="";
 
   profiles.forEach((profile,index)=>{
 
     const firstPhoto =
-      profile.photos.length > 0
-      ? "photos/" + profile.photos[0]
-      : "";
+    "photos/"+profile.photos[0];
 
-    const card=document.createElement("div");
+    const card =
+    document.createElement("div");
 
-    card.className="profile-card";
+    card.className="card";
 
-    card.onclick=()=>{
+    card.onclick=function(){
+
       openProfile(index);
+
     };
+
 
     card.innerHTML=`
 
-      ${
-        firstPhoto
-        ?
-        `<img
-          src="${firstPhoto}"
-          class="profile-avatar"
-          alt="${profile.name}"
-          onerror="this.style.display='none'"
-        >`
-        :
-        ""
-      }
+      <img
+        class="card-image"
+        src="${firstPhoto}"
+        alt="${escapeHtml(profile.name)}"
+        onerror="this.style.display='none'"
+      >
 
-      <h3>${escapeHtml(profile.name)}</h3>
+      <div class="card-content">
 
-      <div class="role">
-        ${escapeHtml(profile.role)}
+        <h3>
+          ${escapeHtml(profile.name)}
+        </h3>
+
+        <div class="role">
+          ${escapeHtml(profile.role)}
+        </div>
+
+        <p>
+          ${escapeHtml(profile.description)}
+        </p>
+
       </div>
-
-      <p>
-        ${escapeHtml(profile.text)}
-      </p>
 
     `;
 
-    grid.appendChild(card);
+
+    profileGrid.appendChild(card);
 
   });
 
 }
+
 
 
 /* =====================================================
@@ -785,56 +833,63 @@ function renderProfiles(){
 
 function openProfile(index){
 
-  const profile=profiles[index];
+  const profile =
+  profiles[index];
 
-  document.getElementById("modalName").textContent=
-    profile.name;
 
-  document.getElementById("modalRole").textContent=
-    profile.role;
+  document.getElementById("modalName")
+  .textContent=profile.name;
 
-  document.getElementById("modalText").textContent=
-    profile.text;
 
-  const mainPhoto=document.getElementById("mainPhoto");
+  document.getElementById("modalRole")
+  .textContent=profile.role;
 
-  const gallery=document.getElementById("gallery");
+
+  document.getElementById("modalDescription")
+  .textContent=profile.description;
+
+
+  const gallery =
+  document.getElementById("modalGallery");
+
 
   gallery.innerHTML="";
 
-  if(profile.photos.length>0){
 
-    mainPhoto.src=
-      "photos/"+profile.photos[0];
+  profile.photos.forEach(photo=>{
 
-    mainPhoto.style.display="block";
+    const img =
+    document.createElement("img");
 
-    profile.photos.forEach(photo=>{
 
-      const img=document.createElement("img");
+    img.src =
+    "photos/"+photo;
 
-      img.src="photos/"+photo;
 
-      img.alt=profile.name;
+    img.alt =
+    profile.name;
 
-      img.onclick=()=>{
-        mainPhoto.src="photos/"+photo;
-      };
 
-      gallery.appendChild(img);
+    img.onerror=function(){
 
-    });
+      this.style.display="none";
 
-  }else{
+    };
 
-    mainPhoto.style.display="none";
 
-  }
+    gallery.appendChild(img);
 
-  document.getElementById("profileModal").style.display="block";
+  });
+
+
+  document.getElementById("profileModal")
+  .style.display="block";
+
 
   document.body.style.overflow="hidden";
+
 }
+
 
 
 /* =====================================================
@@ -843,19 +898,25 @@ function openProfile(index){
 
 function closeModal(){
 
-  document.getElementById("profileModal").style.display="none";
+  document.getElementById("profileModal")
+  .style.display="none";
+
 
   document.body.style.overflow="auto";
+
 }
 
 
+
 /* =====================================================
-   CLOSE WHEN CLICK OUTSIDE
+   CLICK OUTSIDE MODAL
    ===================================================== */
 
 window.onclick=function(event){
 
-  const modal=document.getElementById("profileModal");
+  const modal =
+  document.getElementById("profileModal");
+
 
   if(event.target===modal){
 
@@ -866,25 +927,38 @@ window.onclick=function(event){
 };
 
 
+
 /* =====================================================
-   ESCAPE HTML
+   ESC KEY
+   ===================================================== */
+
+document.addEventListener("keydown",function(event){
+
+  if(event.key==="Escape"){
+
+    closeModal();
+
+  }
+
+});
+
+
+
+/* =====================================================
+   HTML SECURITY
    ===================================================== */
 
 function escapeHtml(text){
 
-  return String(text)
+  const div =
+  document.createElement("div");
 
-    .replace(/&/g,"&amp;")
+  div.textContent=text;
 
-    .replace(/</g,"&lt;")
-
-    .replace(/>/g,"&gt;")
-
-    .replace(/"/g,"&quot;")
-
-    .replace(/'/g,"&#039;");
+  return div.innerHTML;
 
 }
+
 
 
 /* =====================================================
