@@ -47,7 +47,7 @@ body{
 }
 
 /* =========================
-   PROFILE CARDS
+   PROFILE CARD
 ========================= */
 
 .container{
@@ -57,13 +57,13 @@ body{
 }
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:30px;
-    align-items:start;
+    display:flex;
+    justify-content:center;
 }
 
 .card-wrapper{
+    width:360px;
+    max-width:100%;
     text-align:center;
 }
 
@@ -164,12 +164,7 @@ body{
     color:#222;
 }
 
-/*
-   Gallery photos:
-   ORIGINAL RATIO IS PRESERVED.
-   No fixed height.
-   No object-fit:cover.
-*/
+/* Gallery photos keep ORIGINAL ratio */
 .photo-grid{
     display:grid;
     grid-template-columns:repeat(5, 1fr);
@@ -226,10 +221,6 @@ body{
 }
 
 .photo-viewer img{
-    /*
-       Original ratio maintained.
-       No forced width/height.
-    */
     max-width:95vw;
     max-height:90vh;
     width:auto;
@@ -261,10 +252,6 @@ body{
 
 @media(max-width:900px){
 
-    .cards{
-        grid-template-columns:repeat(2, 1fr);
-    }
-
     .photo-grid{
         grid-template-columns:repeat(3, 1fr);
     }
@@ -288,9 +275,9 @@ body{
         margin-top:25px;
     }
 
-    .cards{
-        grid-template-columns:1fr;
-        gap:25px;
+    .card-wrapper{
+        width:100%;
+        max-width:360px;
     }
 
     .profile-card img{
@@ -350,21 +337,20 @@ body{
 
     <p class="intro">
         Welcome to the ABC Life Insurance Profile Gallery.
-        * Connect with our people *
+        Explore our team profiles and connect with our people.
     </p>
 
 </header>
 
 
 <!-- =========================
-     PROFILE CARDS
+     ONLY ONE PROFILE CARD
 ========================= -->
 
 <main class="container">
 
     <div class="cards">
 
-        <!-- CARD 1 -->
         <div class="card-wrapper">
 
             <div
@@ -381,44 +367,6 @@ body{
 
             <div class="profile-name">
                 Field Learning Activity
-            </div>
-
-        </div>
-
-
-        <!-- CARD 2 -->
-        <div class="card-wrapper">
-
-            <div class="profile-card">
-
-                <img
-                    src="photos/profile-2.jpg"
-                    alt="Profile 2"
-                >
-
-            </div>
-
-            <div class="profile-name">
-                Profile 2
-            </div>
-
-        </div>
-
-
-        <!-- CARD 3 -->
-        <div class="card-wrapper">
-
-            <div class="profile-card">
-
-                <img
-                    src="photos/profile-3.jpg"
-                    alt="Profile 3"
-                >
-
-            </div>
-
-            <div class="profile-name">
-                Profile 3
             </div>
 
         </div>
@@ -454,11 +402,7 @@ body{
             Field Learning Activity
         </h2>
 
-
-        <!-- =========================
-             GROUPS 1 TO 30
-        ========================== -->
-
+        <!-- 30 Groups × 5 Photos -->
         <div id="galleryGroups"></div>
 
     </div>
@@ -499,42 +443,53 @@ body{
    GENERATE 30 GROUPS × 5 PHOTOS = 150 PHOTOS
 ========================================== */
 
-const galleryGroups = document.getElementById("galleryGroups");
+const galleryGroups =
+    document.getElementById("galleryGroups");
 
 for(let group = 1; group <= 30; group++){
 
-    const groupNumber = String(group).padStart(2, "0");
+    const groupNumber =
+        String(group).padStart(2, "0");
 
-    const groupDiv = document.createElement("div");
+    const groupDiv =
+        document.createElement("div");
 
-    groupDiv.className = "gallery-group";
+    groupDiv.className =
+        "gallery-group";
 
 
     /* GROUP TITLE */
 
-    const title = document.createElement("div");
+    const title =
+        document.createElement("div");
 
-    title.className = "group-title";
+    title.className =
+        "group-title";
 
-    title.textContent = "Group " + group;
+    title.textContent =
+        "Group " + group;
 
     groupDiv.appendChild(title);
 
 
     /* PHOTO GRID */
 
-    const photoGrid = document.createElement("div");
+    const photoGrid =
+        document.createElement("div");
 
-    photoGrid.className = "photo-grid";
+    photoGrid.className =
+        "photo-grid";
 
 
     /* 5 PHOTOS */
 
     for(let photo = 1; photo <= 5; photo++){
 
-        const photoNumber = String(photo).padStart(2, "0");
+        const photoNumber =
+            String(photo).padStart(2, "0");
 
-        const img = document.createElement("img");
+        const img =
+            document.createElement("img");
 
         img.src =
             "photos/field-" +
@@ -549,10 +504,9 @@ for(let group = 1; group <= 30; group++){
             " Photo " +
             photo;
 
-        /*
-           Clicking any gallery photo
-           opens fullscreen viewer.
-        */
+
+        /* Click → Large Photo */
+
         img.onclick = function(){
 
             openPhoto(this.src);
@@ -563,7 +517,6 @@ for(let group = 1; group <= 30; group++){
 
     }
 
-
     groupDiv.appendChild(photoGrid);
 
 
@@ -571,24 +524,21 @@ for(let group = 1; group <= 30; group++){
        TEXT AFTER 5 PHOTOS
     ========================= */
 
-    const text = document.createElement("div");
+    const text =
+        document.createElement("div");
 
-    text.className = "group-text";
+    text.className =
+        "group-text";
 
 
     if(group === 1){
 
-        /*
-           FIRST GROUP TEXT
-        */
-        text.textContent = "Pawan Bhoyar";
+        text.textContent =
+            "Pawan Bhoyar";
 
     }
     else{
 
-        /*
-           You can change these later.
-        */
         text.textContent =
             "Add your text here.";
 
@@ -608,10 +558,11 @@ for(let group = 1; group <= 30; group++){
 
 function openGallery(){
 
-    document.getElementById("galleryModal").style.display = "block";
+    document.getElementById("galleryModal").style.display =
+        "block";
 
-    document.body.style.overflow = "hidden";
-
+    document.body.style.overflow =
+        "hidden";
 }
 
 
@@ -621,10 +572,11 @@ function openGallery(){
 
 function closeGallery(){
 
-    document.getElementById("galleryModal").style.display = "none";
+    document.getElementById("galleryModal").style.display =
+        "none";
 
-    document.body.style.overflow = "";
-
+    document.body.style.overflow =
+        "";
 }
 
 
@@ -640,10 +592,11 @@ function openPhoto(src){
     const largePhoto =
         document.getElementById("largePhoto");
 
-    largePhoto.src = src;
+    largePhoto.src =
+        src;
 
-    viewer.style.display = "flex";
-
+    viewer.style.display =
+        "flex";
 }
 
 
@@ -659,10 +612,11 @@ function closePhoto(){
     const largePhoto =
         document.getElementById("largePhoto");
 
-    viewer.style.display = "none";
+    viewer.style.display =
+        "none";
 
-    largePhoto.src = "";
-
+    largePhoto.src =
+        "";
 }
 
 
@@ -700,39 +654,41 @@ function galleryBackgroundClick(event){
    ESC KEY
 ========================================== */
 
-document.addEventListener("keydown", function(event){
+document.addEventListener(
+    "keydown",
+    function(event){
 
-    if(event.key === "Escape"){
+        if(event.key === "Escape"){
 
-        const viewer =
-            document.getElementById("photoViewer");
+            const viewer =
+                document.getElementById("photoViewer");
 
-        const gallery =
-            document.getElementById("galleryModal");
-
-
-        /* Close large photo first */
-
-        if(viewer.style.display === "flex"){
-
-            closePhoto();
-
-            return;
-
-        }
+            const gallery =
+                document.getElementById("galleryModal");
 
 
-        /* Then close gallery */
+            /* Close large photo first */
 
-        if(gallery.style.display === "block"){
+            if(viewer.style.display === "flex"){
 
-            closeGallery();
+                closePhoto();
+
+                return;
+            }
+
+
+            /* Then close gallery */
+
+            if(gallery.style.display === "block"){
+
+                closeGallery();
+
+            }
 
         }
 
     }
-
-});
+);
 
 </script>
 
