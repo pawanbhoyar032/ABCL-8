@@ -452,14 +452,14 @@ body{
    2  = Photo 6-10
    3  = Photo 11-15
    4  = Photo 16-20
-   5  = Photo 21-25
    ...
    30 = Photo 146-150
+   31 = Photo 151-155
    ========================================================= */
 
 const names = [
 
-     "1. Pawan Bhoyar",
+    "1. Pawan Bhoyar",
     "2. Satyam Pandey",
     "3. Vinod Kumar",
     "4. Yogendra Rana",
@@ -491,8 +491,9 @@ const names = [
     "27. Rahul Kumar",
     "28. Bandaru Venkateshwarlu",
     "29. Vinita Bhardwaj",
-    "30. Shivani Rajpoot"
+    "30. Shivani Rajpoot",
 
+    "31. Beddala Raj Kumar"
 
 ];
 
@@ -533,14 +534,14 @@ const oldPhotos = [
 
 
 /* =========================================================
-   NEXT 130 PHOTOS
+   NEXT 135 PHOTOS
 
-   21.jpg to 150.jpg
+   21.jpg to 155.jpg
    ========================================================= */
 
 const newPhotos = [];
 
-for(let i = 21; i <= 150; i++){
+for(let i = 21; i <= 155; i++){
 
     newPhotos.push(i + ".jpg");
 
@@ -549,7 +550,7 @@ for(let i = 21; i <= 150; i++){
 
 
 /* =========================================================
-   COMBINE ALL 150 PHOTOS
+   COMBINE ALL 155 PHOTOS
    ========================================================= */
 
 const allPhotos = [
@@ -562,16 +563,18 @@ const allPhotos = [
 
 
 /* =========================================================
-   CREATE 30 GROUPS
+   CREATE 31 GROUPS
 
    Every group contains exactly 5 photos.
+
+   31 groups × 5 photos = 155 photos
    ========================================================= */
 
 const galleryGroups =
     document.getElementById("galleryGroups");
 
 
-for(let group = 0; group < 30; group++){
+for(let group = 0; group < 31; group++){
 
 
     const groupDiv =
