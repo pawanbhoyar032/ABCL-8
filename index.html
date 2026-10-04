@@ -7,6 +7,7 @@
 <title>ABC Life Insurance - Profile Gallery</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -19,7 +20,11 @@ body{
     color:#1d2433;
 }
 
-/* HEADER */
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 .header{
     text-align:center;
     padding:30px 20px 20px;
@@ -39,14 +44,24 @@ body{
     line-height:1.6;
 }
 
-/* MAIN */
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
 .container{
     max-width:1200px;
     margin:30px auto;
     padding:0 20px;
 }
 
-/* PROFILE CARD */
+
+/* =========================================================
+   COVER CARD
+   IMPORTANT:
+   COVER CARD IS NOT CHANGED
+   ========================================================= */
+
 .card-wrapper{
     display:flex;
     justify-content:center;
@@ -84,7 +99,11 @@ body{
     text-align:center;
 }
 
-/* GALLERY MODAL */
+
+/* =========================================================
+   GALLERY MODAL
+   ========================================================= */
+
 .modal{
     display:none;
     position:fixed;
@@ -125,10 +144,21 @@ body{
     background:none;
 }
 
-/* PHOTO GROUP */
+
+/* =========================================================
+   PHOTO GROUP
+   ========================================================= */
+
 .gallery-group{
     margin-bottom:40px;
 }
+
+
+/* =========================================================
+   GALLERY PHOTO GRID
+   3:4 RATIO
+   NO CROP
+   ========================================================= */
 
 .photo-grid{
     display:grid;
@@ -139,11 +169,13 @@ body{
 
 .photo-grid img{
     width:100%;
+    aspect-ratio:3 / 4;
     height:auto;
     display:block;
     cursor:pointer;
     border-radius:8px;
     background:#fff;
+    object-fit:contain;
     transition:transform 0.2s ease;
 }
 
@@ -159,7 +191,11 @@ body{
     margin-top:14px;
 }
 
-/* FULLSCREEN PHOTO VIEWER */
+
+/* =========================================================
+   FULLSCREEN PHOTO VIEWER
+   ========================================================= */
+
 .photo-viewer{
     display:none;
     position:fixed;
@@ -193,7 +229,11 @@ body{
     line-height:1;
 }
 
-/* FOOTER */
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 .footer{
     text-align:center;
     padding:30px 15px;
@@ -202,7 +242,11 @@ body{
     font-size:14px;
 }
 
-/* RESPONSIVE */
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
 @media(max-width:900px){
 
     .photo-grid{
@@ -210,6 +254,7 @@ body{
     }
 
 }
+
 
 @media(max-width:600px){
 
@@ -248,12 +293,18 @@ body{
     }
 
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
 <header class="header">
 
     <img
@@ -271,12 +322,21 @@ body{
 </header>
 
 
-<!-- MAIN CONTENT -->
+
+<!-- =========================================================
+     MAIN CONTENT
+     ========================================================= -->
+
 <main class="container">
 
     <div class="card-wrapper">
 
-        <!-- ONLY ONE CARD -->
+
+        <!-- =================================================
+             COVER CARD
+             THIS IS EXACTLY THE SAME
+             ================================================= -->
+
         <div class="profile-card" onclick="openGallery()">
 
             <img
@@ -285,6 +345,7 @@ body{
             >
 
         </div>
+
 
         <div class="profile-name">
             Field Learning Activity
@@ -295,7 +356,11 @@ body{
 </main>
 
 
-<!-- GALLERY MODAL -->
+
+<!-- =========================================================
+     GALLERY MODAL
+     ========================================================= -->
+
 <div
     id="galleryModal"
     class="modal"
@@ -304,11 +369,13 @@ body{
 
     <div class="modal-content">
 
+
         <div class="modal-header">
 
             <div class="modal-title">
                 Field Learning Activity
             </div>
+
 
             <button
                 class="close-btn"
@@ -320,6 +387,7 @@ body{
 
         </div>
 
+
         <div id="galleryGroups"></div>
 
     </div>
@@ -327,12 +395,17 @@ body{
 </div>
 
 
-<!-- FULLSCREEN PHOTO VIEWER -->
+
+<!-- =========================================================
+     FULLSCREEN PHOTO VIEWER
+     ========================================================= -->
+
 <div
     id="photoViewer"
     class="photo-viewer"
     onclick="viewerBackgroundClick(event)"
 >
+
 
     <span
         class="viewer-close"
@@ -341,6 +414,7 @@ body{
     >
         &times;
     </span>
+
 
     <img
         id="largePhoto"
@@ -351,33 +425,41 @@ body{
 </div>
 
 
-<!-- FOOTER -->
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
 <footer class="footer">
 
-    <p>© 2026 ABC Life Insurance | All Rights Reserved.</p>
+    <p>
+        © 2026 ABC Life Insurance | All Rights Reserved.
+    </p>
 
 </footer>
 
 
+
 <script>
+
 
 /* =========================================================
    NAMES
 
-   प्रत्येक नावाला 5 photos चा एक group आहे.
+   Each name belongs to ONE SET OF 5 PHOTOS.
 
-   1. Pawan Bhoyar       = Photo 1-5
-   2. Satyam Pandey      = Photo 6-10
-   3. Vinod Kumar        = Photo 11-15
-   4. Yogendra Rana      = Photo 16-20
-   5. Add Name Here      = Photo 21-25
+   1  = Photo 1-5
+   2  = Photo 6-10
+   3  = Photo 11-15
+   4  = Photo 16-20
+   5  = Photo 21-25
    ...
-   30. Add Name Here     = Photo 146-150
+   30 = Photo 146-150
    ========================================================= */
 
 const names = [
 
-    "1. Pawan Bhoyar",
+     "1. Pawan Bhoyar",
     "2. Satyam Pandey",
     "3. Vinod Kumar",
     "4. Yogendra Rana",
@@ -397,27 +479,27 @@ const names = [
     "16. Adhithya Kumar",
     "17. Add Name Here",
     "18. Lokesh Kaimoria",
-    "19. Add Name Here",
-    "20. Add Name Here",
+    "19. Kshma Kumari",
+    "20. Jayakrishna Sai",
 
-    "21. Add Name Here",
-    "22. Add Name Here",
-    "23. Add Name Here",
-    "24. Add Name Here",
-    "25. Add Name Here",
-    "26. Add Name Here",
-    "27. Add Name Here",
-    "28. Add Name Here",
-    "29. Add Name Here",
-    "30. Add Name Here"
+    "21. Apanna Patra",
+    "22. Rakesh Chaurasiya",
+    "23. Gourav Sengupta",
+    "24. Shubham Kharde",
+    "25. Sonam Kumari",
+    "26. Siva Bramha Ganesh",
+    "27. Rahul Kumar",
+    "28. Bandaru Venkateshwarlu",
+    "29. Vinita Bhardwaj",
+    "30. Shivani Rajpoot"
+
 
 ];
 
 
+
 /* =========================================================
    EXISTING FIRST 20 PHOTOS
-
-   हे filenames exactly same ठेवले आहेत.
    ========================================================= */
 
 const oldPhotos = [
@@ -449,10 +531,11 @@ const oldPhotos = [
 ];
 
 
+
 /* =========================================================
    NEXT 130 PHOTOS
 
-   21.jpg ते 150.jpg
+   21.jpg to 150.jpg
    ========================================================= */
 
 const newPhotos = [];
@@ -464,20 +547,24 @@ for(let i = 21; i <= 150; i++){
 }
 
 
+
 /* =========================================================
    COMBINE ALL 150 PHOTOS
    ========================================================= */
 
 const allPhotos = [
+
     ...oldPhotos,
     ...newPhotos
+
 ];
+
 
 
 /* =========================================================
    CREATE 30 GROUPS
 
-   प्रत्येक group मध्ये exactly 5 photos.
+   Every group contains exactly 5 photos.
    ========================================================= */
 
 const galleryGroups =
@@ -485,6 +572,7 @@ const galleryGroups =
 
 
 for(let group = 0; group < 30; group++){
+
 
     const groupDiv =
         document.createElement("div");
@@ -498,11 +586,13 @@ for(let group = 0; group < 30; group++){
     photoGrid.className = "photo-grid";
 
 
-    /* -----------------------------------------
-       Add 5 photos to this group
-       ----------------------------------------- */
+
+    /* =====================================================
+       ADD 5 PHOTOS
+       ===================================================== */
 
     for(let photo = 0; photo < 5; photo++){
+
 
         const photoIndex =
             (group * 5) + photo;
@@ -533,17 +623,21 @@ for(let group = 0; group < 30; group++){
     }
 
 
+
     groupDiv.appendChild(photoGrid);
 
 
-    /* -----------------------------------------
-       Add numbered name after every 5 photos
-       ----------------------------------------- */
+
+    /* =====================================================
+       ADD NAME AFTER EVERY 5 PHOTOS
+       ===================================================== */
 
     const text =
         document.createElement("div");
 
+
     text.className = "group-text";
+
 
     text.textContent =
         names[group] || "Add Name Here";
@@ -557,6 +651,7 @@ for(let group = 0; group < 30; group++){
 }
 
 
+
 /* =========================================================
    OPEN GALLERY
    ========================================================= */
@@ -566,9 +661,11 @@ function openGallery(){
     document.getElementById("galleryModal")
         .style.display = "block";
 
+
     document.body.style.overflow = "hidden";
 
 }
+
 
 
 /* =========================================================
@@ -580,9 +677,11 @@ function closeGallery(){
     document.getElementById("galleryModal")
         .style.display = "none";
 
+
     document.body.style.overflow = "";
 
 }
+
 
 
 /* =========================================================
@@ -594,15 +693,18 @@ function openPhoto(src){
     const viewer =
         document.getElementById("photoViewer");
 
+
     const largePhoto =
         document.getElementById("largePhoto");
 
 
     largePhoto.src = src;
 
+
     viewer.style.display = "flex";
 
 }
+
 
 
 /* =========================================================
@@ -623,6 +725,7 @@ function closePhoto(){
 }
 
 
+
 /* =========================================================
    CLOSE PHOTO WHEN CLICKING OUTSIDE IMAGE
    ========================================================= */
@@ -636,6 +739,7 @@ function viewerBackgroundClick(event){
     }
 
 }
+
 
 
 /* =========================================================
@@ -653,19 +757,24 @@ function galleryBackgroundClick(event){
 }
 
 
+
 /* =========================================================
    ESC KEY
    ========================================================= */
 
 document.addEventListener("keydown", function(event){
 
+
     if(event.key === "Escape"){
+
 
         const viewer =
             document.getElementById("photoViewer");
 
+
         const gallery =
             document.getElementById("galleryModal");
+
 
 
         if(viewer.style.display === "flex"){
@@ -685,6 +794,7 @@ document.addEventListener("keydown", function(event){
 });
 
 </script>
+
 
 </body>
 </html>
