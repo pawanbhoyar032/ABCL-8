@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,10 +158,6 @@ body{
     border-bottom:none;
 }
 
-/*
-   NO GROUP NUMBER / GROUP TITLE
-*/
-
 /* =========================
    PHOTO GRID
 ========================= */
@@ -173,9 +169,7 @@ body{
     align-items:start;
 }
 
-/*
-   ORIGINAL PHOTO RATIO PRESERVED
-*/
+/* Original photo ratio preserved */
 
 .photo-grid img{
     width:100%;
@@ -253,6 +247,24 @@ body{
 }
 
 /* =========================
+   FOOTER / COPYRIGHT
+========================= */
+
+.footer{
+    text-align:center;
+    padding:25px 15px;
+    margin-top:20px;
+    background:#ffffff;
+    border-top:1px solid #e5e5e5;
+}
+
+.footer p{
+    font-size:14px;
+    color:#666;
+    line-height:1.5;
+}
+
+/* =========================
    RESPONSIVE
 ========================= */
 
@@ -322,6 +334,10 @@ body{
     .photo-viewer{
         padding:15px;
     }
+
+    .footer p{
+        font-size:13px;
+    }
 }
 </style>
 </head>
@@ -343,7 +359,7 @@ body{
 
     <p class="intro">
         Welcome to the ABC Life Insurance Profile Gallery.
-        Explore our team profiles and connect with our people.
+        Explore and Connect with our people.
     </p>
 
 </header>
@@ -443,11 +459,23 @@ body{
 </div>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <p>
+        © 2026 ABC Life Insurance | All Rights Reserved.
+    </p>
+
+</footer>
+
+
 <script>
 
 /* ==========================================
    NAMES
-   प्रत्येक 5 photos नंतर एक नाव
 ========================================== */
 
 const names = [
@@ -536,9 +564,7 @@ for(let group = 1; group <= 30; group++){
         "gallery-group";
 
 
-    /* =========================
-       PHOTO GRID
-    ========================= */
+    /* PHOTO GRID */
 
     const photoGrid =
         document.createElement("div");
@@ -571,9 +597,7 @@ for(let group = 1; group <= 30; group++){
             "Field Learning Activity Photo";
 
 
-        /*
-           CLICK PHOTO → LARGE
-        */
+        /* CLICK PHOTO → LARGE */
 
         img.onclick = function(){
 
@@ -590,9 +614,7 @@ for(let group = 1; group <= 30; group++){
     groupDiv.appendChild(photoGrid);
 
 
-    /* =========================
-       NAME AFTER 5 PHOTOS
-    ========================= */
+    /* NAME AFTER 5 PHOTOS */
 
     const text =
         document.createElement("div");
