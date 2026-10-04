@@ -47,7 +47,6 @@ body{
 }
 
 /* PROFILE CARD */
-/* COVER CARD - NO CHANGE */
 .card-wrapper{
     display:flex;
     justify-content:center;
@@ -138,16 +137,13 @@ body{
     align-items:start;
 }
 
-/* GALLERY PHOTOS - 3:4 WITHOUT CROPPING */
 .photo-grid img{
     width:100%;
-    aspect-ratio:3 / 4;
     height:auto;
     display:block;
     cursor:pointer;
     border-radius:8px;
     background:#fff;
-    object-fit:contain;
     transition:transform 0.2s ease;
 }
 
@@ -246,14 +242,12 @@ body{
         font-size:18px;
     }
 
-    /* COVER CARD - NO CHANGE */
     .profile-card{
         width:100%;
         max-width:340px;
     }
 
 }
-
 </style>
 </head>
 
@@ -282,7 +276,7 @@ body{
 
     <div class="card-wrapper">
 
-        <!-- ONLY ONE COVER CARD -->
+        <!-- ONLY ONE CARD -->
         <div class="profile-card" onclick="openGallery()">
 
             <img
@@ -359,7 +353,9 @@ body{
 
 <!-- FOOTER -->
 <footer class="footer">
+
     <p>© 2026 ABC Life Insurance | All Rights Reserved.</p>
+
 </footer>
 
 
@@ -367,58 +363,61 @@ body{
 
 /* =========================================================
    NAMES
-   Each name belongs to ONE SET OF 5 PHOTOS.
 
-   1st name  = photos 1-5
-   2nd name  = photos 6-10
-   3rd name  = photos 11-15
-   4th name  = photos 16-20
-   5th name  = photos 21-25
+   प्रत्येक नावाला 5 photos चा एक group आहे.
+
+   1. Pawan Bhoyar       = Photo 1-5
+   2. Satyam Pandey      = Photo 6-10
+   3. Vinod Kumar        = Photo 11-15
+   4. Yogendra Rana      = Photo 16-20
+   5. Add Name Here      = Photo 21-25
    ...
-   30th name = photos 146-150
+   30. Add Name Here     = Photo 146-150
    ========================================================= */
 
 const names = [
 
-    "Pawan Bhoyar",
-    "Satyam Pandey",
-    "Vinod Kumar",
-    "Yogendra Rana",
+    "1. Pawan Bhoyar",
+    "2. Satyam Pandey",
+    "3. Vinod Kumar",
+    "4. Yogendra Rana",
 
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
+    "5. Add Name Here",
+    "6. Add Name Here",
+    "7. Add Name Here",
+    "8. Add Name Here",
+    "9. Add Name Here",
+    "10. Add Name Here",
 
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
+    "11. Add Name Here",
+    "12. Add Name Here",
+    "13. Add Name Here",
+    "14. Add Name Here",
+    "15. Add Name Here",
+    "16. Add Name Here",
+    "17. Add Name Here",
+    "18. Add Name Here",
+    "19. Add Name Here",
+    "20. Add Name Here",
 
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here",
-    "Add Name Here"
+    "21. Add Name Here",
+    "22. Add Name Here",
+    "23. Add Name Here",
+    "24. Add Name Here",
+    "25. Add Name Here",
+    "26. Add Name Here",
+    "27. Add Name Here",
+    "28. Add Name Here",
+    "29. Add Name Here",
+    "30. Add Name Here"
 
 ];
 
 
 /* =========================================================
    EXISTING FIRST 20 PHOTOS
+
+   हे filenames exactly same ठेवले आहेत.
    ========================================================= */
 
 const oldPhotos = [
@@ -452,7 +451,8 @@ const oldPhotos = [
 
 /* =========================================================
    NEXT 130 PHOTOS
-   21.jpg to 150.jpg
+
+   21.jpg ते 150.jpg
    ========================================================= */
 
 const newPhotos = [];
@@ -476,20 +476,24 @@ const allPhotos = [
 
 /* =========================================================
    CREATE 30 GROUPS
-   Each group contains exactly 5 photos.
+
+   प्रत्येक group मध्ये exactly 5 photos.
    ========================================================= */
 
-const galleryGroups = document.getElementById("galleryGroups");
+const galleryGroups =
+    document.getElementById("galleryGroups");
 
 
 for(let group = 0; group < 30; group++){
 
-    const groupDiv = document.createElement("div");
+    const groupDiv =
+        document.createElement("div");
 
     groupDiv.className = "gallery-group";
 
 
-    const photoGrid = document.createElement("div");
+    const photoGrid =
+        document.createElement("div");
 
     photoGrid.className = "photo-grid";
 
@@ -500,14 +504,21 @@ for(let group = 0; group < 30; group++){
 
     for(let photo = 0; photo < 5; photo++){
 
-        const photoIndex = (group * 5) + photo;
+        const photoIndex =
+            (group * 5) + photo;
 
-        const img = document.createElement("img");
+
+        const img =
+            document.createElement("img");
 
 
-        img.src = "photos/" + allPhotos[photoIndex];
+        img.src =
+            "photos/" + allPhotos[photoIndex];
 
-        img.alt = "Field Learning Activity Photo " + (photoIndex + 1);
+
+        img.alt =
+            "Field Learning Activity Photo " +
+            (photoIndex + 1);
 
 
         img.onclick = function(){
@@ -526,14 +537,16 @@ for(let group = 0; group < 30; group++){
 
 
     /* -----------------------------------------
-       Add name after every 5 photos
+       Add numbered name after every 5 photos
        ----------------------------------------- */
 
-    const text = document.createElement("div");
+    const text =
+        document.createElement("div");
 
     text.className = "group-text";
 
-    text.textContent = names[group] || "Add Name Here";
+    text.textContent =
+        names[group] || "Add Name Here";
 
 
     groupDiv.appendChild(text);
@@ -550,7 +563,8 @@ for(let group = 0; group < 30; group++){
 
 function openGallery(){
 
-    document.getElementById("galleryModal").style.display = "block";
+    document.getElementById("galleryModal")
+        .style.display = "block";
 
     document.body.style.overflow = "hidden";
 
@@ -563,7 +577,8 @@ function openGallery(){
 
 function closeGallery(){
 
-    document.getElementById("galleryModal").style.display = "none";
+    document.getElementById("galleryModal")
+        .style.display = "none";
 
     document.body.style.overflow = "";
 
@@ -576,9 +591,11 @@ function closeGallery(){
 
 function openPhoto(src){
 
-    const viewer = document.getElementById("photoViewer");
+    const viewer =
+        document.getElementById("photoViewer");
 
-    const largePhoto = document.getElementById("largePhoto");
+    const largePhoto =
+        document.getElementById("largePhoto");
 
 
     largePhoto.src = src;
@@ -594,9 +611,12 @@ function openPhoto(src){
 
 function closePhoto(){
 
-    const viewer = document.getElementById("photoViewer");
+    const viewer =
+        document.getElementById("photoViewer");
+
 
     viewer.style.display = "none";
+
 
     document.getElementById("largePhoto").src = "";
 
@@ -641,9 +661,11 @@ document.addEventListener("keydown", function(event){
 
     if(event.key === "Escape"){
 
-        const viewer = document.getElementById("photoViewer");
+        const viewer =
+            document.getElementById("photoViewer");
 
-        const gallery = document.getElementById("galleryModal");
+        const gallery =
+            document.getElementById("galleryModal");
 
 
         if(viewer.style.display === "flex"){
@@ -651,6 +673,7 @@ document.addEventListener("keydown", function(event){
             closePhoto();
 
         }
+
         else if(gallery.style.display === "block"){
 
             closeGallery();
