@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,7 +82,8 @@ body{
     box-shadow:0 10px 28px rgba(0,0,0,0.16);
 }
 
-/* Main cover photo can be cropped */
+/* Cover photo can be cropped */
+
 .profile-card img{
     width:100%;
     height:250px;
@@ -144,7 +145,7 @@ body{
 }
 
 /* =========================
-   GROUP
+   GALLERY SECTION
 ========================= */
 
 .gallery-group{
@@ -157,20 +158,24 @@ body{
     border-bottom:none;
 }
 
-.group-title{
-    font-size:20px;
-    font-weight:700;
-    margin-bottom:18px;
-    color:#222;
-}
+/*
+   NO GROUP NUMBER / GROUP TITLE
+*/
 
-/* Gallery photos keep ORIGINAL ratio */
+/* =========================
+   PHOTO GRID
+========================= */
+
 .photo-grid{
     display:grid;
     grid-template-columns:repeat(5, 1fr);
     gap:14px;
     align-items:start;
 }
+
+/*
+   ORIGINAL PHOTO RATIO PRESERVED
+*/
 
 .photo-grid img{
     width:100%;
@@ -190,7 +195,7 @@ body{
 }
 
 /* =========================
-   TEXT AFTER 5 PHOTOS
+   NAME AFTER 5 PHOTOS
 ========================= */
 
 .group-text{
@@ -198,10 +203,11 @@ body{
     padding:15px 18px;
     background:#f5f7fb;
     border-radius:10px;
-    font-size:17px;
+    font-size:18px;
     line-height:1.6;
     text-align:center;
-    color:#333;
+    color:#222;
+    font-weight:700;
     min-height:55px;
 }
 
@@ -304,7 +310,7 @@ body{
     }
 
     .group-text{
-        font-size:15px;
+        font-size:16px;
     }
 
     .viewer-close{
@@ -402,7 +408,7 @@ body{
             Field Learning Activity
         </h2>
 
-        <!-- 30 Groups × 5 Photos -->
+        <!-- 30 Sections × 5 Photos -->
         <div id="galleryGroups"></div>
 
     </div>
@@ -440,16 +446,88 @@ body{
 <script>
 
 /* ==========================================
-   GENERATE 30 GROUPS × 5 PHOTOS = 150 PHOTOS
+   NAMES
+   प्रत्येक 5 photos नंतर एक नाव
+========================================== */
+
+const names = [
+
+    "Pawan Bhoyar",
+
+    "Satyam Pandey",
+
+    "Vinod Kumar",
+
+    "Yogendra Rana",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here",
+
+    "Add Name Here"
+
+];
+
+
+/* ==========================================
+   GENERATE 30 × 5 = 150 PHOTOS
 ========================================== */
 
 const galleryGroups =
     document.getElementById("galleryGroups");
 
+
 for(let group = 1; group <= 30; group++){
 
     const groupNumber =
         String(group).padStart(2, "0");
+
 
     const groupDiv =
         document.createElement("div");
@@ -458,21 +536,9 @@ for(let group = 1; group <= 30; group++){
         "gallery-group";
 
 
-    /* GROUP TITLE */
-
-    const title =
-        document.createElement("div");
-
-    title.className =
-        "group-title";
-
-    title.textContent =
-        "Group " + group;
-
-    groupDiv.appendChild(title);
-
-
-    /* PHOTO GRID */
+    /* =========================
+       PHOTO GRID
+    ========================= */
 
     const photoGrid =
         document.createElement("div");
@@ -488,8 +554,10 @@ for(let group = 1; group <= 30; group++){
         const photoNumber =
             String(photo).padStart(2, "0");
 
+
         const img =
             document.createElement("img");
+
 
         img.src =
             "photos/field-" +
@@ -498,14 +566,14 @@ for(let group = 1; group <= 30; group++){
             photoNumber +
             ".jpg";
 
+
         img.alt =
-            "Field Learning Activity - Group " +
-            group +
-            " Photo " +
-            photo;
+            "Field Learning Activity Photo";
 
 
-        /* Click → Large Photo */
+        /*
+           CLICK PHOTO → LARGE
+        */
 
         img.onclick = function(){
 
@@ -513,15 +581,17 @@ for(let group = 1; group <= 30; group++){
 
         };
 
+
         photoGrid.appendChild(img);
 
     }
+
 
     groupDiv.appendChild(photoGrid);
 
 
     /* =========================
-       TEXT AFTER 5 PHOTOS
+       NAME AFTER 5 PHOTOS
     ========================= */
 
     const text =
@@ -531,21 +601,12 @@ for(let group = 1; group <= 30; group++){
         "group-text";
 
 
-    if(group === 1){
-
-        text.textContent =
-            "Pawan Bhoyar";
-
-    }
-    else{
-
-        text.textContent =
-            "Add your text here.";
-
-    }
+    text.textContent =
+        names[group - 1];
 
 
     groupDiv.appendChild(text);
+
 
     galleryGroups.appendChild(groupDiv);
 
@@ -592,8 +653,10 @@ function openPhoto(src){
     const largePhoto =
         document.getElementById("largePhoto");
 
+
     largePhoto.src =
         src;
+
 
     viewer.style.display =
         "flex";
@@ -612,8 +675,10 @@ function closePhoto(){
     const largePhoto =
         document.getElementById("largePhoto");
 
+
     viewer.style.display =
         "none";
+
 
     largePhoto.src =
         "";
