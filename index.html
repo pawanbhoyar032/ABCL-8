@@ -5,10 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ABC Life Insurance - Profile Gallery</title>
+<title>ABC Life Insurance Profile Gallery</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -21,20 +20,22 @@ body{
     color:#1d2433;
 }
 
-/* ================= HEADER ================= */
+/* =========================
+   HEADER
+========================= */
 
-header{
+.header{
     text-align:center;
     padding:35px 20px 25px;
-    background:white;
+    background:#ffffff;
 }
 
 .logo{
-    width:240px;
+    width:230px;
     max-width:80%;
     height:auto;
     display:block;
-    margin:0 auto 20px;
+    margin:0 auto 18px;
 }
 
 .intro{
@@ -45,252 +46,303 @@ header{
     color:#555;
 }
 
-/* ================= MAIN ================= */
+/* =========================
+   PROFILE CARDS
+========================= */
 
 .container{
-    width:92%;
-    max-width:1100px;
+    max-width:1200px;
     margin:40px auto;
+    padding:0 20px;
 }
-
-/* ================= CARDS ================= */
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(3, 1fr);
     gap:30px;
+    align-items:start;
 }
 
-.profile-box{
+.card-wrapper{
     text-align:center;
 }
 
 .profile-card{
-    background:white;
+    background:#ffffff;
     border-radius:14px;
     overflow:hidden;
-    box-shadow:0 5px 18px rgba(0,0,0,0.10);
+    box-shadow:0 5px 20px rgba(0,0,0,0.10);
     cursor:pointer;
-    transition:0.3s ease;
+    transition:transform 0.25s ease,
+               box-shadow 0.25s ease;
 }
 
 .profile-card:hover{
     transform:translateY(-6px);
-    box-shadow:0 10px 25px rgba(0,0,0,0.16);
+    box-shadow:0 10px 28px rgba(0,0,0,0.16);
 }
 
-/* CARD PHOTO - NO CROP */
-
+/* Main cover photo can be cropped */
 .profile-card img{
     width:100%;
     height:250px;
-    object-fit:contain;
-    background:#f1f1f1;
+    object-fit:cover;
     display:block;
 }
 
-/* PROFILE NAME */
-
 .profile-name{
-    margin-top:14px;
-    font-size:20px;
-    font-weight:bold;
+    margin-top:13px;
+    font-size:19px;
+    font-weight:700;
     color:#222;
 }
 
-/* PLACEHOLDER */
+/* =========================
+   GALLERY MODAL
+========================= */
 
-.placeholder{
-    height:250px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#e9edf5;
-    color:#777;
-    font-size:18px;
-}
-
-/* ================= MODAL ================= */
-
-.modal{
+.gallery-modal{
     display:none;
     position:fixed;
-    z-index:9999;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.88);
+    z-index:1000;
+    inset:0;
+    background:rgba(0,0,0,0.82);
     overflow-y:auto;
-    padding:25px 15px;
+    padding:35px 15px;
 }
 
-.modal-content{
-    width:100%;
-    max-width:1150px;
-    margin:0 auto;
-    background:white;
-    border-radius:16px;
-    padding:30px;
+.gallery-box{
+    width:min(1400px, 100%);
+    margin:auto;
+    background:#ffffff;
+    border-radius:15px;
+    padding:25px;
     position:relative;
 }
 
-/* CLOSE BUTTON */
-
-.close{
-    position:absolute;
-    right:20px;
-    top:10px;
-    font-size:38px;
-    font-weight:bold;
-    color:#222;
-    cursor:pointer;
-    line-height:1;
-}
-
-.close:hover{
-    color:red;
-}
-
-/* TITLE */
-
-.modal-title{
+.gallery-title{
     text-align:center;
-    font-size:30px;
-    margin-bottom:35px;
-    padding-right:30px;
+    font-size:28px;
+    margin-bottom:30px;
+    color:#222;
 }
 
-/* ================= ACTIVITY GROUP ================= */
+.gallery-close{
+    position:absolute;
+    top:10px;
+    right:18px;
+    font-size:38px;
+    line-height:1;
+    color:#333;
+    cursor:pointer;
+    font-weight:bold;
+    z-index:5;
+}
 
-.activity-group{
+.gallery-close:hover{
+    color:#d00;
+}
+
+/* =========================
+   GROUP
+========================= */
+
+.gallery-group{
     margin-bottom:45px;
     padding-bottom:35px;
     border-bottom:1px solid #ddd;
 }
 
-/* 5 PHOTOS */
-
-.photo-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:12px;
+.gallery-group:last-child{
+    border-bottom:none;
 }
 
-/* GALLERY PHOTO - NO CROP */
-
-.photo-grid img{
-    width:100%;
-    height:150px;
-    object-fit:contain;
-    background:#f1f1f1;
-    border-radius:9px;
-    display:block;
-    cursor:pointer;
-    transition:0.25s ease;
-}
-
-.photo-grid img:hover{
-    transform:scale(1.03);
-}
-
-/* ================= TEXT ================= */
-
-.activity-text{
-    margin-top:18px;
-    padding:17px 20px;
-    background:#f5f7fb;
-    border-left:5px solid #333;
-    border-radius:7px;
-    min-height:55px;
-    font-size:17px;
-    line-height:1.6;
-    color:#333;
-}
-
-/* FIRST NAME */
-
-.person-name{
-    text-align:center;
-    margin-top:15px;
+.group-title{
     font-size:20px;
-    font-weight:bold;
+    font-weight:700;
+    margin-bottom:18px;
     color:#222;
 }
 
-/* ================= FOOTER ================= */
-
-footer{
-    text-align:center;
-    padding:30px 15px;
-    margin-top:50px;
-    background:white;
-    color:#777;
-    font-size:14px;
+/*
+   Gallery photos:
+   ORIGINAL RATIO IS PRESERVED.
+   No fixed height.
+   No object-fit:cover.
+*/
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:14px;
+    align-items:start;
 }
 
-/* ================= RESPONSIVE ================= */
+.photo-grid img{
+    width:100%;
+    height:auto;
+    max-width:100%;
+    display:block;
+    border-radius:9px;
+    cursor:pointer;
+    background:#f1f1f1;
+    transition:transform 0.2s ease,
+               box-shadow 0.2s ease;
+}
+
+.photo-grid img:hover{
+    transform:scale(1.02);
+    box-shadow:0 5px 18px rgba(0,0,0,0.20);
+}
+
+/* =========================
+   TEXT AFTER 5 PHOTOS
+========================= */
+
+.group-text{
+    margin-top:18px;
+    padding:15px 18px;
+    background:#f5f7fb;
+    border-radius:10px;
+    font-size:17px;
+    line-height:1.6;
+    text-align:center;
+    color:#333;
+    min-height:55px;
+}
+
+/* =========================
+   FULLSCREEN PHOTO VIEWER
+========================= */
+
+.photo-viewer{
+    display:none;
+    position:fixed;
+    z-index:2000;
+    inset:0;
+    background:rgba(0,0,0,0.94);
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+}
+
+.photo-viewer img{
+    /*
+       Original ratio maintained.
+       No forced width/height.
+    */
+    max-width:95vw;
+    max-height:90vh;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    border-radius:5px;
+    display:block;
+}
+
+.viewer-close{
+    position:absolute;
+    top:12px;
+    right:25px;
+    color:white;
+    font-size:48px;
+    line-height:1;
+    cursor:pointer;
+    font-weight:300;
+    z-index:10;
+}
+
+.viewer-close:hover{
+    color:#ff5555;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:900px){
 
     .cards{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:repeat(2, 1fr);
     }
 
     .photo-grid{
-        grid-template-columns:repeat(3,1fr);
+        grid-template-columns:repeat(3, 1fr);
     }
 }
 
 @media(max-width:600px){
 
-    .cards{
-        grid-template-columns:1fr;
+    .header{
+        padding-top:25px;
     }
 
-    .profile-card img,
-    .placeholder{
+    .logo{
+        width:190px;
+    }
+
+    .intro{
+        font-size:15px;
+    }
+
+    .container{
+        margin-top:25px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .profile-card img{
         height:230px;
     }
 
+    .gallery-modal{
+        padding:15px 8px;
+    }
+
+    .gallery-box{
+        padding:18px 12px;
+        border-radius:10px;
+    }
+
+    .gallery-title{
+        font-size:22px;
+        padding-right:25px;
+    }
+
     .photo-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:repeat(2, 1fr);
+        gap:10px;
     }
 
-    .photo-grid img{
-        height:140px;
-    }
-
-    .modal{
-        padding:10px;
-    }
-
-    .modal-content{
-        padding:18px;
-    }
-
-    .modal-title{
-        font-size:24px;
-    }
-
-    .activity-text{
+    .group-text{
         font-size:15px;
     }
-}
 
+    .viewer-close{
+        top:8px;
+        right:15px;
+        font-size:42px;
+    }
+
+    .photo-viewer{
+        padding:15px;
+    }
+}
 </style>
 </head>
 
-
 <body>
 
+<!-- =========================
+     HEADER
+========================= -->
 
-<!-- ================= HEADER ================= -->
-
-<header>
+<header class="header">
 
     <img
-        id="vdzmll"
+        id="ap1kaz"
         class="logo"
         src="photos/logo.png"
         alt="ABC Life Insurance Logo"
@@ -304,23 +356,25 @@ footer{
 </header>
 
 
-<!-- ================= CARDS ================= -->
+<!-- =========================
+     PROFILE CARDS
+========================= -->
 
 <main class="container">
 
     <div class="cards">
 
-
         <!-- CARD 1 -->
+        <div class="card-wrapper">
 
-        <div class="profile-box">
-
-            <div class="profile-card" onclick="openGallery()">
+            <div
+                class="profile-card"
+                onclick="openGallery()"
+            >
 
                 <img
                     src="photos/field-cover.jpg"
                     alt="Field Learning Activity"
-                    onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder\'>Field Learning Activity</div>';"
                 >
 
             </div>
@@ -333,14 +387,14 @@ footer{
 
 
         <!-- CARD 2 -->
-
-        <div class="profile-box">
+        <div class="card-wrapper">
 
             <div class="profile-card">
 
-                <div class="placeholder">
-                    Profile 2
-                </div>
+                <img
+                    src="photos/profile-2.jpg"
+                    alt="Profile 2"
+                >
 
             </div>
 
@@ -352,14 +406,14 @@ footer{
 
 
         <!-- CARD 3 -->
-
-        <div class="profile-box">
+        <div class="card-wrapper">
 
             <div class="profile-card">
 
-                <div class="placeholder">
-                    Profile 3
-                </div>
+                <img
+                    src="photos/profile-3.jpg"
+                    alt="Profile 3"
+                >
 
             </div>
 
@@ -369,712 +423,312 @@ footer{
 
         </div>
 
-
     </div>
 
 </main>
 
 
+<!-- =========================
+     GALLERY MODAL
+========================= -->
 
-<!-- ================================================= -->
-<!-- FIELD LEARNING ACTIVITY MODAL -->
-<!-- ================================================= -->
+<div
+    id="galleryModal"
+    class="gallery-modal"
+    onclick="galleryBackgroundClick(event)"
+>
 
-<div id="galleryModal" class="modal">
+    <div
+        class="gallery-box"
+        onclick="event.stopPropagation()"
+    >
 
-    <div class="modal-content">
+        <span
+            class="gallery-close"
+            onclick="closeGallery()"
+        >
+            &times;
+        </span>
 
-        <span class="close" onclick="closeGallery()">&times;</span>
-
-        <h2 class="modal-title">
+        <h2 class="gallery-title">
             Field Learning Activity
         </h2>
 
 
-        <!-- ================= GROUP 1 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-01-01.jpg" alt="Photo 1">
-                <img src="photos/field-01-02.jpg" alt="Photo 2">
-                <img src="photos/field-01-03.jpg" alt="Photo 3">
-                <img src="photos/field-01-04.jpg" alt="Photo 4">
-                <img src="photos/field-01-05.jpg" alt="Photo 5">
-
-            </div>
-
-            <div class="person-name">
-                Pawan BHOYAR
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 2 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-02-01.jpg" alt="Photo 6">
-                <img src="photos/field-02-02.jpg" alt="Photo 7">
-                <img src="photos/field-02-03.jpg" alt="Photo 8">
-                <img src="photos/field-02-04.jpg" alt="Photo 9">
-                <img src="photos/field-02-05.jpg" alt="Photo 10">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 3 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-03-01.jpg" alt="Photo 11">
-                <img src="photos/field-03-02.jpg" alt="Photo 12">
-                <img src="photos/field-03-03.jpg" alt="Photo 13">
-                <img src="photos/field-03-04.jpg" alt="Photo 14">
-                <img src="photos/field-03-05.jpg" alt="Photo 15">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 4 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-04-01.jpg" alt="Photo 16">
-                <img src="photos/field-04-02.jpg" alt="Photo 17">
-                <img src="photos/field-04-03.jpg" alt="Photo 18">
-                <img src="photos/field-04-04.jpg" alt="Photo 19">
-                <img src="photos/field-04-05.jpg" alt="Photo 20">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 5 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-05-01.jpg" alt="Photo 21">
-                <img src="photos/field-05-02.jpg" alt="Photo 22">
-                <img src="photos/field-05-03.jpg" alt="Photo 23">
-                <img src="photos/field-05-04.jpg" alt="Photo 24">
-                <img src="photos/field-05-05.jpg" alt="Photo 25">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 6 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-06-01.jpg" alt="Photo 26">
-                <img src="photos/field-06-02.jpg" alt="Photo 27">
-                <img src="photos/field-06-03.jpg" alt="Photo 28">
-                <img src="photos/field-06-04.jpg" alt="Photo 29">
-                <img src="photos/field-06-05.jpg" alt="Photo 30">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 7 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-07-01.jpg" alt="Photo 31">
-                <img src="photos/field-07-02.jpg" alt="Photo 32">
-                <img src="photos/field-07-03.jpg" alt="Photo 33">
-                <img src="photos/field-07-04.jpg" alt="Photo 34">
-                <img src="photos/field-07-05.jpg" alt="Photo 35">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 8 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-08-01.jpg" alt="Photo 36">
-                <img src="photos/field-08-02.jpg" alt="Photo 37">
-                <img src="photos/field-08-03.jpg" alt="Photo 38">
-                <img src="photos/field-08-04.jpg" alt="Photo 39">
-                <img src="photos/field-08-05.jpg" alt="Photo 40">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 9 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-09-01.jpg" alt="Photo 41">
-                <img src="photos/field-09-02.jpg" alt="Photo 42">
-                <img src="photos/field-09-03.jpg" alt="Photo 43">
-                <img src="photos/field-09-04.jpg" alt="Photo 44">
-                <img src="photos/field-09-05.jpg" alt="Photo 45">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 10 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-10-01.jpg" alt="Photo 46">
-                <img src="photos/field-10-02.jpg" alt="Photo 47">
-                <img src="photos/field-10-03.jpg" alt="Photo 48">
-                <img src="photos/field-10-04.jpg" alt="Photo 49">
-                <img src="photos/field-10-05.jpg" alt="Photo 50">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 11 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-11-01.jpg" alt="Photo 51">
-                <img src="photos/field-11-02.jpg" alt="Photo 52">
-                <img src="photos/field-11-03.jpg" alt="Photo 53">
-                <img src="photos/field-11-04.jpg" alt="Photo 54">
-                <img src="photos/field-11-05.jpg" alt="Photo 55">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 12 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-12-01.jpg" alt="Photo 56">
-                <img src="photos/field-12-02.jpg" alt="Photo 57">
-                <img src="photos/field-12-03.jpg" alt="Photo 58">
-                <img src="photos/field-12-04.jpg" alt="Photo 59">
-                <img src="photos/field-12-05.jpg" alt="Photo 60">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 13 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-13-01.jpg" alt="Photo 61">
-                <img src="photos/field-13-02.jpg" alt="Photo 62">
-                <img src="photos/field-13-03.jpg" alt="Photo 63">
-                <img src="photos/field-13-04.jpg" alt="Photo 64">
-                <img src="photos/field-13-05.jpg" alt="Photo 65">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 14 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-14-01.jpg" alt="Photo 66">
-                <img src="photos/field-14-02.jpg" alt="Photo 67">
-                <img src="photos/field-14-03.jpg" alt="Photo 68">
-                <img src="photos/field-14-04.jpg" alt="Photo 69">
-                <img src="photos/field-14-05.jpg" alt="Photo 70">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 15 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-15-01.jpg" alt="Photo 71">
-                <img src="photos/field-15-02.jpg" alt="Photo 72">
-                <img src="photos/field-15-03.jpg" alt="Photo 73">
-                <img src="photos/field-15-04.jpg" alt="Photo 74">
-                <img src="photos/field-15-05.jpg" alt="Photo 75">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 16 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-16-01.jpg" alt="Photo 76">
-                <img src="photos/field-16-02.jpg" alt="Photo 77">
-                <img src="photos/field-16-03.jpg" alt="Photo 78">
-                <img src="photos/field-16-04.jpg" alt="Photo 79">
-                <img src="photos/field-16-05.jpg" alt="Photo 80">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 17 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-17-01.jpg" alt="Photo 81">
-                <img src="photos/field-17-02.jpg" alt="Photo 82">
-                <img src="photos/field-17-03.jpg" alt="Photo 83">
-                <img src="photos/field-17-04.jpg" alt="Photo 84">
-                <img src="photos/field-17-05.jpg" alt="Photo 85">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 18 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-18-01.jpg" alt="Photo 86">
-                <img src="photos/field-18-02.jpg" alt="Photo 87">
-                <img src="photos/field-18-03.jpg" alt="Photo 88">
-                <img src="photos/field-18-04.jpg" alt="Photo 89">
-                <img src="photos/field-18-05.jpg" alt="Photo 90">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 19 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-19-01.jpg" alt="Photo 91">
-                <img src="photos/field-19-02.jpg" alt="Photo 92">
-                <img src="photos/field-19-03.jpg" alt="Photo 93">
-                <img src="photos/field-19-04.jpg" alt="Photo 94">
-                <img src="photos/field-19-05.jpg" alt="Photo 95">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 20 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-20-01.jpg" alt="Photo 96">
-                <img src="photos/field-20-02.jpg" alt="Photo 97">
-                <img src="photos/field-20-03.jpg" alt="Photo 98">
-                <img src="photos/field-20-04.jpg" alt="Photo 99">
-                <img src="photos/field-20-05.jpg" alt="Photo 100">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 21 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-21-01.jpg" alt="Photo 101">
-                <img src="photos/field-21-02.jpg" alt="Photo 102">
-                <img src="photos/field-21-03.jpg" alt="Photo 103">
-                <img src="photos/field-21-04.jpg" alt="Photo 104">
-                <img src="photos/field-21-05.jpg" alt="Photo 105">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 22 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-22-01.jpg" alt="Photo 106">
-                <img src="photos/field-22-02.jpg" alt="Photo 107">
-                <img src="photos/field-22-03.jpg" alt="Photo 108">
-                <img src="photos/field-22-04.jpg" alt="Photo 109">
-                <img src="photos/field-22-05.jpg" alt="Photo 110">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 23 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-23-01.jpg" alt="Photo 111">
-                <img src="photos/field-23-02.jpg" alt="Photo 112">
-                <img src="photos/field-23-03.jpg" alt="Photo 113">
-                <img src="photos/field-23-04.jpg" alt="Photo 114">
-                <img src="photos/field-23-05.jpg" alt="Photo 115">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 24 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-24-01.jpg" alt="Photo 116">
-                <img src="photos/field-24-02.jpg" alt="Photo 117">
-                <img src="photos/field-24-03.jpg" alt="Photo 118">
-                <img src="photos/field-24-04.jpg" alt="Photo 119">
-                <img src="photos/field-24-05.jpg" alt="Photo 120">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 25 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-25-01.jpg" alt="Photo 121">
-                <img src="photos/field-25-02.jpg" alt="Photo 122">
-                <img src="photos/field-25-03.jpg" alt="Photo 123">
-                <img src="photos/field-25-04.jpg" alt="Photo 124">
-                <img src="photos/field-25-05.jpg" alt="Photo 125">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 26 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-26-01.jpg" alt="Photo 126">
-                <img src="photos/field-26-02.jpg" alt="Photo 127">
-                <img src="photos/field-26-03.jpg" alt="Photo 128">
-                <img src="photos/field-26-04.jpg" alt="Photo 129">
-                <img src="photos/field-26-05.jpg" alt="Photo 130">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 27 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-27-01.jpg" alt="Photo 131">
-                <img src="photos/field-27-02.jpg" alt="Photo 132">
-                <img src="photos/field-27-03.jpg" alt="Photo 133">
-                <img src="photos/field-27-04.jpg" alt="Photo 134">
-                <img src="photos/field-27-05.jpg" alt="Photo 135">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 28 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-28-01.jpg" alt="Photo 136">
-                <img src="photos/field-28-02.jpg" alt="Photo 137">
-                <img src="photos/field-28-03.jpg" alt="Photo 138">
-                <img src="photos/field-28-04.jpg" alt="Photo 139">
-                <img src="photos/field-28-05.jpg" alt="Photo 140">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 29 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-29-01.jpg" alt="Photo 141">
-                <img src="photos/field-29-02.jpg" alt="Photo 142">
-                <img src="photos/field-29-03.jpg" alt="Photo 143">
-                <img src="photos/field-29-04.jpg" alt="Photo 144">
-                <img src="photos/field-29-05.jpg" alt="Photo 145">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
-
-        <!-- ================= GROUP 30 ================= -->
-
-        <div class="activity-group">
-
-            <div class="photo-grid">
-
-                <img src="photos/field-30-01.jpg" alt="Photo 146">
-                <img src="photos/field-30-02.jpg" alt="Photo 147">
-                <img src="photos/field-30-03.jpg" alt="Photo 148">
-                <img src="photos/field-30-04.jpg" alt="Photo 149">
-                <img src="photos/field-30-05.jpg" alt="Photo 150">
-
-            </div>
-
-            <div class="activity-text">
-                Add your text here.
-            </div>
-
-        </div>
-
+        <!-- =========================
+             GROUPS 1 TO 30
+        ========================== -->
+
+        <div id="galleryGroups"></div>
 
     </div>
 
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =========================
+     FULLSCREEN PHOTO VIEWER
+========================= -->
 
-<footer>
-    © 2026 ABC Life Insurance. All Rights Reserved.
-</footer>
+<div
+    id="photoViewer"
+    class="photo-viewer"
+    onclick="viewerBackgroundClick(event)"
+>
 
+    <span
+        class="viewer-close"
+        onclick="closePhoto()"
+    >
+        &times;
+    </span>
 
-<!-- ================= JAVASCRIPT ================= -->
+    <img
+        id="largePhoto"
+        src=""
+        alt="Large Photo"
+        onclick="event.stopPropagation()"
+    >
+
+</div>
+
 
 <script>
+
+/* ==========================================
+   GENERATE 30 GROUPS × 5 PHOTOS = 150 PHOTOS
+========================================== */
+
+const galleryGroups = document.getElementById("galleryGroups");
+
+for(let group = 1; group <= 30; group++){
+
+    const groupNumber = String(group).padStart(2, "0");
+
+    const groupDiv = document.createElement("div");
+
+    groupDiv.className = "gallery-group";
+
+
+    /* GROUP TITLE */
+
+    const title = document.createElement("div");
+
+    title.className = "group-title";
+
+    title.textContent = "Group " + group;
+
+    groupDiv.appendChild(title);
+
+
+    /* PHOTO GRID */
+
+    const photoGrid = document.createElement("div");
+
+    photoGrid.className = "photo-grid";
+
+
+    /* 5 PHOTOS */
+
+    for(let photo = 1; photo <= 5; photo++){
+
+        const photoNumber = String(photo).padStart(2, "0");
+
+        const img = document.createElement("img");
+
+        img.src =
+            "photos/field-" +
+            groupNumber +
+            "-" +
+            photoNumber +
+            ".jpg";
+
+        img.alt =
+            "Field Learning Activity - Group " +
+            group +
+            " Photo " +
+            photo;
+
+        /*
+           Clicking any gallery photo
+           opens fullscreen viewer.
+        */
+        img.onclick = function(){
+
+            openPhoto(this.src);
+
+        };
+
+        photoGrid.appendChild(img);
+
+    }
+
+
+    groupDiv.appendChild(photoGrid);
+
+
+    /* =========================
+       TEXT AFTER 5 PHOTOS
+    ========================= */
+
+    const text = document.createElement("div");
+
+    text.className = "group-text";
+
+
+    if(group === 1){
+
+        /*
+           FIRST GROUP TEXT
+        */
+        text.textContent = "Pawan Bhoyar";
+
+    }
+    else{
+
+        /*
+           You can change these later.
+        */
+        text.textContent =
+            "Add your text here.";
+
+    }
+
+
+    groupDiv.appendChild(text);
+
+    galleryGroups.appendChild(groupDiv);
+
+}
+
+
+/* ==========================================
+   OPEN GALLERY
+========================================== */
 
 function openGallery(){
 
     document.getElementById("galleryModal").style.display = "block";
 
     document.body.style.overflow = "hidden";
+
 }
 
+
+/* ==========================================
+   CLOSE GALLERY
+========================================== */
 
 function closeGallery(){
 
     document.getElementById("galleryModal").style.display = "none";
 
-    document.body.style.overflow = "auto";
+    document.body.style.overflow = "";
+
 }
 
 
-/* Close when clicking outside */
+/* ==========================================
+   OPEN LARGE PHOTO
+========================================== */
 
-window.onclick = function(event){
+function openPhoto(src){
 
-    const modal = document.getElementById("galleryModal");
+    const viewer =
+        document.getElementById("photoViewer");
 
-    if(event.target === modal){
+    const largePhoto =
+        document.getElementById("largePhoto");
+
+    largePhoto.src = src;
+
+    viewer.style.display = "flex";
+
+}
+
+
+/* ==========================================
+   CLOSE LARGE PHOTO
+========================================== */
+
+function closePhoto(){
+
+    const viewer =
+        document.getElementById("photoViewer");
+
+    const largePhoto =
+        document.getElementById("largePhoto");
+
+    viewer.style.display = "none";
+
+    largePhoto.src = "";
+
+}
+
+
+/* ==========================================
+   CLICK OUTSIDE LARGE PHOTO
+========================================== */
+
+function viewerBackgroundClick(event){
+
+    if(event.target.id === "photoViewer"){
+
+        closePhoto();
+
+    }
+
+}
+
+
+/* ==========================================
+   CLICK OUTSIDE GALLERY
+========================================== */
+
+function galleryBackgroundClick(event){
+
+    if(event.target.id === "galleryModal"){
 
         closeGallery();
 
     }
 
-};
+}
 
 
-/* ESC key */
+/* ==========================================
+   ESC KEY
+========================================== */
 
 document.addEventListener("keydown", function(event){
 
     if(event.key === "Escape"){
 
-        closeGallery();
+        const viewer =
+            document.getElementById("photoViewer");
+
+        const gallery =
+            document.getElementById("galleryModal");
+
+
+        /* Close large photo first */
+
+        if(viewer.style.display === "flex"){
+
+            closePhoto();
+
+            return;
+
+        }
+
+
+        /* Then close gallery */
+
+        if(gallery.style.display === "block"){
+
+            closeGallery();
+
+        }
 
     }
 
