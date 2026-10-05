@@ -35,6 +35,7 @@ header img{
     height:auto;
 }
 
+
 /* INTRO */
 
 .intro{
@@ -51,6 +52,7 @@ header img{
     font-size:16px;
     color:#666;
 }
+
 
 /* COVER CARDS */
 
@@ -96,6 +98,7 @@ header img{
     color:#1d2433;
 }
 
+
 /* MODAL */
 
 .modal{
@@ -120,7 +123,7 @@ header img{
 .modal-header{
     position:relative;
     text-align:center;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
 .modal-header h2{
@@ -140,14 +143,40 @@ header img{
     line-height:1;
 }
 
-.close:hover{
-    opacity:0.7;
+
+/* DOWNLOAD BUTTON */
+
+.download-button-wrapper{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.download-btn{
+    display:inline-block;
+    background:white;
+    color:#1d2433;
+    border:none;
+    padding:13px 24px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.download-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 7px 18px rgba(0,0,0,0.3);
+}
+
+.download-btn:disabled{
+    opacity:0.6;
+    cursor:not-allowed;
 }
 
 
-/* =========================================================
-   FIELD LEARNING ACTIVITY
-   ========================================================= */
+/* FIELD LEARNING */
 
 .photo-group{
     margin-bottom:55px;
@@ -187,12 +216,7 @@ header img{
 }
 
 
-/* =========================================================
-   INSURANCE AWARENESS – ROLE PLAY
-   ONE PHOTO
-   16:9 PHOTO CARD
-   NO CROPPING
-   ========================================================= */
+/* INSURANCE */
 
 .insurance-group{
     margin-bottom:55px;
@@ -214,20 +238,11 @@ header img{
     width:100%;
     aspect-ratio:16 / 9;
     height:auto;
-
     display:block;
     cursor:pointer;
-
     border-radius:10px;
-
     background:white;
-
-    /* IMPORTANT:
-       Full photo will fit inside 16:9
-       without cropping
-    */
     object-fit:contain;
-
     transition:transform 0.2s ease;
 }
 
@@ -253,9 +268,7 @@ header img{
 }
 
 
-/* =========================================================
-   FULL SCREEN PHOTO VIEWER
-   ========================================================= */
+/* FULL SCREEN PHOTO */
 
 .photo-viewer{
     display:none;
@@ -276,12 +289,9 @@ header img{
 .photo-viewer img{
     max-width:95%;
     max-height:92%;
-
     width:auto;
     height:auto;
-
     object-fit:contain;
-
     border-radius:6px;
 }
 
@@ -289,7 +299,6 @@ header img{
     position:absolute;
     top:15px;
     right:25px;
-
     color:white;
     font-size:45px;
     cursor:pointer;
@@ -297,9 +306,7 @@ header img{
 }
 
 
-/* =========================================================
-   TABLET
-   ========================================================= */
+/* TABLET */
 
 @media(max-width:900px){
 
@@ -310,9 +317,7 @@ header img{
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* MOBILE */
 
 @media(max-width:600px){
 
@@ -348,9 +353,6 @@ header img{
         font-size:19px;
     }
 
-
-    /* Insurance 16:9 remains */
-
     .insurance-photo-grid{
         width:100%;
         max-width:100%;
@@ -373,30 +375,17 @@ header img{
 }
 
 
-/* Very small screens */
-
-@media(max-width:400px){
-
-    .photo-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .insurance-text{
-        font-size:18px;
-    }
-
-}
+/* =========================================================
+   JAVASCRIPT
+   ========================================================= */
 
 </style>
 </head>
 
-
 <body>
 
 
-<!-- =========================================================
-     HEADER
-     ========================================================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -408,9 +397,7 @@ header img{
 </header>
 
 
-<!-- =========================================================
-     INTRO
-     ========================================================= -->
+<!-- INTRO -->
 
 <section class="intro">
 
@@ -426,14 +413,12 @@ header img{
 </section>
 
 
-<!-- =========================================================
-     COVER CARDS
-     ========================================================= -->
+<!-- COVER CARDS -->
 
 <div class="card-wrapper">
 
 
-    <!-- FIELD LEARNING -->
+    <!-- FIELD LEARNING CARD -->
 
     <div
         class="profile-card"
@@ -452,7 +437,7 @@ header img{
     </div>
 
 
-    <!-- INSURANCE AWARENESS -->
+    <!-- INSURANCE CARD -->
 
     <div
         class="profile-card"
@@ -470,7 +455,6 @@ header img{
 
     </div>
 
-
 </div>
 
 
@@ -478,10 +462,7 @@ header img{
      FIELD LEARNING MODAL
      ========================================================= -->
 
-<div
-    id="galleryModal"
-    class="modal"
->
+<div id="galleryModal" class="modal">
 
     <span
         class="close"
@@ -502,6 +483,21 @@ header img{
         </div>
 
 
+        <!-- DOWNLOAD ALL FIELD PHOTOS -->
+
+        <div class="download-button-wrapper">
+
+            <button
+                class="download-btn"
+                id="fieldDownloadBtn"
+                onclick="downloadAllFieldPhotos()"
+            >
+                📥 Download All Photos
+            </button>
+
+        </div>
+
+
         <div id="galleryContainer"></div>
 
     </div>
@@ -510,13 +506,10 @@ header img{
 
 
 <!-- =========================================================
-     INSURANCE AWARENESS MODAL
+     INSURANCE MODAL
      ========================================================= -->
 
-<div
-    id="insuranceGalleryModal"
-    class="modal"
->
+<div id="insuranceGalleryModal" class="modal">
 
     <span
         class="close"
@@ -537,6 +530,21 @@ header img{
         </div>
 
 
+        <!-- DOWNLOAD ALL INSURANCE PHOTOS -->
+
+        <div class="download-button-wrapper">
+
+            <button
+                class="download-btn"
+                id="insuranceDownloadBtn"
+                onclick="downloadAllInsurancePhotos()"
+            >
+                📥 Download All Photos
+            </button>
+
+        </div>
+
+
         <div id="insuranceContainer"></div>
 
     </div>
@@ -545,7 +553,7 @@ header img{
 
 
 <!-- =========================================================
-     FULL SCREEN PHOTO VIEWER
+     FULL SCREEN VIEWER
      ========================================================= -->
 
 <div
@@ -559,7 +567,6 @@ header img{
     >
         &times;
     </span>
-
 
     <img
         id="viewerImage"
@@ -575,11 +582,11 @@ header img{
 
 
 /* =========================================================
-   FIELD LEARNING ACTIVITY
+   FIELD LEARNING PHOTOS
    ========================================================= */
 
 
-/* Existing first 20 photos */
+/* First 20 */
 
 const oldPhotos = [
 
@@ -610,9 +617,7 @@ const oldPhotos = [
 ];
 
 
-/* =========================================================
-   PHOTOS 21 TO 155
-   ========================================================= */
+/* 21 to 155 */
 
 const newPhotos = [];
 
@@ -625,10 +630,7 @@ for(let i = 21; i <= 155; i++){
 }
 
 
-/* =========================================================
-   SECTION 32
-   PHOTOS 156 TO 160
-   ========================================================= */
+/* Section 32 = 156 to 160 */
 
 const section32Photos = [
 
@@ -641,9 +643,7 @@ const section32Photos = [
 ];
 
 
-/* =========================================================
-   ALL FIELD PHOTOS
-   ========================================================= */
+/* All 160 photos */
 
 const allPhotos = [
 
@@ -654,9 +654,7 @@ const allPhotos = [
 ];
 
 
-/* =========================================================
-   FIELD NAMES
-   ========================================================= */
+/* Names */
 
 const names = [
 
@@ -691,8 +689,7 @@ const names = [
     "29. Vinita Bhardwaj",
     "30. Shivani Rajpoot",
     "31. Beddala Raj Kumar",
-
-    "32. Ajit Gupta"
+    "32. Add Name Here"
 
 ];
 
@@ -708,20 +705,13 @@ function openGallery(){
             "galleryModal"
         );
 
-
     const container =
         document.getElementById(
             "galleryContainer"
         );
 
-
     container.innerHTML = "";
 
-
-    /*
-       32 Sections
-       Each section has 5 photos
-    */
 
     for(
         let section = 0;
@@ -797,8 +787,6 @@ function openGallery(){
         group.appendChild(grid);
 
 
-        /* Name after 5 photos */
-
         if(names[section]){
 
             const name =
@@ -806,14 +794,11 @@ function openGallery(){
                     "div"
                 );
 
-
             name.className =
                 "photo-name";
 
-
             name.textContent =
                 names[section];
-
 
             group.appendChild(name);
 
@@ -828,9 +813,84 @@ function openGallery(){
     modal.style.display =
         "block";
 
-
     document.body.style.overflow =
         "hidden";
+
+}
+
+
+/* =========================================================
+   DOWNLOAD ALL FIELD PHOTOS
+   ========================================================= */
+
+async function downloadAllFieldPhotos(){
+
+    const button =
+        document.getElementById(
+            "fieldDownloadBtn"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ Preparing downloads...";
+
+
+    for(
+        let i = 0;
+        i < allPhotos.length;
+        i++
+    ){
+
+        const photo =
+            allPhotos[i];
+
+
+        const url =
+            "photos/" + photo;
+
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href = url;
+
+        link.download = photo;
+
+        link.style.display = "none";
+
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+
+
+        /*
+           Small delay between downloads
+           so browser does not block them
+        */
+
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    150
+                )
+        );
+
+    }
+
+
+    button.disabled = false;
+
+    button.textContent =
+        "📥 Download All Photos";
 
 }
 
@@ -846,7 +906,6 @@ function closeGallery(){
     ).style.display =
         "none";
 
-
     document.body.style.overflow =
         "auto";
 
@@ -854,7 +913,7 @@ function closeGallery(){
 
 
 /* =========================================================
-   INSURANCE AWARENESS
+   INSURANCE PHOTOS
    ONE PHOTO PER SECTION
    ========================================================= */
 
@@ -981,7 +1040,6 @@ function openInsuranceGallery(){
                     "div"
                 );
 
-
             group.className =
                 "insurance-group";
 
@@ -991,14 +1049,11 @@ function openInsuranceGallery(){
                     "div"
                 );
 
-
             photoGrid.className =
                 "insurance-photo-grid";
 
 
-            /*
-               ONE PHOTO ONLY
-            */
+            /* ONE PHOTO */
 
             section.photos.forEach(
                 function(photo){
@@ -1041,42 +1096,34 @@ function openInsuranceGallery(){
             );
 
 
-            /* Section Text */
+            /* TEXT */
 
             const text =
                 document.createElement(
                     "div"
                 );
 
-
             text.className =
                 "insurance-text";
-
 
             text.textContent =
                 section.text;
 
-
-            group.appendChild(
-                text
-            );
+            group.appendChild(text);
 
 
-            /* Description */
+            /* DESCRIPTION */
 
             const description =
                 document.createElement(
                     "div"
                 );
 
-
             description.className =
                 "insurance-description";
 
-
             description.textContent =
                 section.description;
-
 
             group.appendChild(
                 description
@@ -1094,7 +1141,6 @@ function openInsuranceGallery(){
     modal.style.display =
         "block";
 
-
     document.body.style.overflow =
         "hidden";
 
@@ -1102,7 +1148,96 @@ function openInsuranceGallery(){
 
 
 /* =========================================================
-   CLOSE INSURANCE GALLERY
+   DOWNLOAD ALL INSURANCE PHOTOS
+   ========================================================= */
+
+async function downloadAllInsurancePhotos(){
+
+    const button =
+        document.getElementById(
+            "insuranceDownloadBtn"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ Preparing downloads...";
+
+
+    const photos = [];
+
+
+    insuranceSections.forEach(
+        function(section){
+
+            section.photos.forEach(
+                function(photo){
+
+                    photos.push(photo);
+
+                }
+            );
+
+        }
+    );
+
+
+    for(
+        let i = 0;
+        i < photos.length;
+        i++
+    ){
+
+        const photo =
+            photos[i];
+
+
+        const url =
+            "photos/" + photo;
+
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href = url;
+
+        link.download = photo;
+
+        link.style.display = "none";
+
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+
+
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    200
+                )
+        );
+
+    }
+
+
+    button.disabled = false;
+
+    button.textContent =
+        "📥 Download All Photos";
+
+}
+
+
+/* =========================================================
+   CLOSE INSURANCE
    ========================================================= */
 
 function closeInsuranceGallery(){
@@ -1111,7 +1246,6 @@ function closeInsuranceGallery(){
         "insuranceGalleryModal"
     ).style.display =
         "none";
-
 
     document.body.style.overflow =
         "auto";
@@ -1130,16 +1264,13 @@ function openPhoto(src){
             "photoViewer"
         );
 
-
     const image =
         document.getElementById(
             "viewerImage"
         );
 
 
-    image.src =
-        src;
-
+    image.src = src;
 
     viewer.style.display =
         "flex";
@@ -1147,17 +1278,12 @@ function openPhoto(src){
 }
 
 
-/* =========================================================
-   CLOSE FULL SCREEN PHOTO
-   ========================================================= */
-
 function closePhoto(){
 
     const viewer =
         document.getElementById(
             "photoViewer"
         );
-
 
     const image =
         document.getElementById(
@@ -1168,15 +1294,13 @@ function closePhoto(){
     viewer.style.display =
         "none";
 
-
-    image.src =
-        "";
+    image.src = "";
 
 }
 
 
 /* =========================================================
-   CLOSE MODAL OUTSIDE CLICK
+   OUTSIDE CLICK
    ========================================================= */
 
 window.onclick =
