@@ -144,7 +144,10 @@ header img{
     opacity:0.7;
 }
 
-/* FIELD LEARNING */
+
+/* =========================================================
+   FIELD LEARNING ACTIVITY
+   ========================================================= */
 
 .photo-group{
     margin-bottom:55px;
@@ -183,7 +186,13 @@ header img{
     margin-top:18px;
 }
 
-/* INSURANCE AWARENESS */
+
+/* =========================================================
+   INSURANCE AWARENESS – ROLE PLAY
+   ONE PHOTO
+   16:9 PHOTO CARD
+   NO CROPPING
+   ========================================================= */
 
 .insurance-group{
     margin-bottom:55px;
@@ -192,28 +201,38 @@ header img{
 }
 
 .insurance-photo-grid{
+    width:100%;
+    max-width:850px;
+    margin:0 auto;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    max-width:500px;
-    margin:0 auto;
 }
 
 .insurance-photo-grid img{
     width:100%;
-    max-width:500px;
-    aspect-ratio:3 / 4;
+    aspect-ratio:16 / 9;
     height:auto;
+
     display:block;
     cursor:pointer;
+
     border-radius:10px;
+
     background:white;
+
+    /* IMPORTANT:
+       Full photo will fit inside 16:9
+       without cropping
+    */
     object-fit:contain;
+
     transition:transform 0.2s ease;
 }
 
 .insurance-photo-grid img:hover{
-    transform:scale(1.03);
+    transform:scale(1.02);
 }
 
 .insurance-text{
@@ -233,7 +252,10 @@ header img{
     margin:10px auto 0;
 }
 
-/* FULL SCREEN PHOTO VIEWER */
+
+/* =========================================================
+   FULL SCREEN PHOTO VIEWER
+   ========================================================= */
 
 .photo-viewer{
     display:none;
@@ -244,17 +266,22 @@ header img{
     width:100%;
     height:100%;
     background:rgba(0,0,0,0.96);
+
     justify-content:center;
     align-items:center;
+
     padding:30px;
 }
 
 .photo-viewer img{
     max-width:95%;
     max-height:92%;
+
     width:auto;
     height:auto;
+
     object-fit:contain;
+
     border-radius:6px;
 }
 
@@ -262,13 +289,17 @@ header img{
     position:absolute;
     top:15px;
     right:25px;
+
     color:white;
     font-size:45px;
     cursor:pointer;
     z-index:2100;
 }
 
-/* MOBILE */
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media(max-width:900px){
 
@@ -277,6 +308,11 @@ header img{
     }
 
 }
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media(max-width:600px){
 
@@ -312,8 +348,18 @@ header img{
         font-size:19px;
     }
 
+
+    /* Insurance 16:9 remains */
+
     .insurance-photo-grid{
+        width:100%;
         max-width:100%;
+    }
+
+    .insurance-photo-grid img{
+        width:100%;
+        aspect-ratio:16 / 9;
+        object-fit:contain;
     }
 
     .insurance-text{
@@ -326,22 +372,51 @@ header img{
 
 }
 
+
+/* Very small screens */
+
+@media(max-width:400px){
+
+    .photo-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .insurance-text{
+        font-size:18px;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
 
 <header>
-    <img src="photos/logo.png" alt="ABC Life Insurance Logo">
+
+    <img
+        src="photos/logo.png"
+        alt="ABC Life Insurance Logo"
+    >
+
 </header>
 
-<!-- INTRO -->
+
+<!-- =========================================================
+     INTRO
+     ========================================================= -->
 
 <section class="intro">
 
-    <h1>ABC Life Insurance Profile Gallery</h1>
+    <h1>
+        ABC Life Insurance Profile Gallery
+    </h1>
 
     <p>
         Welcome to the ABC Life Insurance Profile Gallery.
@@ -351,13 +426,19 @@ header img{
 </section>
 
 
-<!-- COVER CARDS -->
+<!-- =========================================================
+     COVER CARDS
+     ========================================================= -->
 
 <div class="card-wrapper">
 
-    <!-- FIELD LEARNING CARD -->
 
-    <div class="profile-card" onclick="openGallery()">
+    <!-- FIELD LEARNING -->
+
+    <div
+        class="profile-card"
+        onclick="openGallery()"
+    >
 
         <img
             src="photos/field-cover.jpg"
@@ -371,9 +452,12 @@ header img{
     </div>
 
 
-    <!-- INSURANCE AWARENESS CARD -->
+    <!-- INSURANCE AWARENESS -->
 
-    <div class="profile-card" onclick="openInsuranceGallery()">
+    <div
+        class="profile-card"
+        onclick="openInsuranceGallery()"
+    >
 
         <img
             src="photos/insurance-awareness-cover.jpg"
@@ -386,14 +470,26 @@ header img{
 
     </div>
 
+
 </div>
 
 
-<!-- FIELD LEARNING MODAL -->
+<!-- =========================================================
+     FIELD LEARNING MODAL
+     ========================================================= -->
 
-<div id="galleryModal" class="modal">
+<div
+    id="galleryModal"
+    class="modal"
+>
 
-    <span class="close" onclick="closeGallery()">&times;</span>
+    <span
+        class="close"
+        onclick="closeGallery()"
+    >
+        &times;
+    </span>
+
 
     <div class="modal-content">
 
@@ -405,6 +501,7 @@ header img{
 
         </div>
 
+
         <div id="galleryContainer"></div>
 
     </div>
@@ -412,11 +509,22 @@ header img{
 </div>
 
 
-<!-- INSURANCE AWARENESS MODAL -->
+<!-- =========================================================
+     INSURANCE AWARENESS MODAL
+     ========================================================= -->
 
-<div id="insuranceGalleryModal" class="modal">
+<div
+    id="insuranceGalleryModal"
+    class="modal"
+>
 
-    <span class="close" onclick="closeInsuranceGallery()">&times;</span>
+    <span
+        class="close"
+        onclick="closeInsuranceGallery()"
+    >
+        &times;
+    </span>
+
 
     <div class="modal-content">
 
@@ -428,6 +536,7 @@ header img{
 
         </div>
 
+
         <div id="insuranceContainer"></div>
 
     </div>
@@ -435,20 +544,35 @@ header img{
 </div>
 
 
-<!-- FULL SCREEN PHOTO VIEWER -->
+<!-- =========================================================
+     FULL SCREEN PHOTO VIEWER
+     ========================================================= -->
 
-<div id="photoViewer" class="photo-viewer">
+<div
+    id="photoViewer"
+    class="photo-viewer"
+>
 
-    <span class="viewer-close" onclick="closePhoto()">
+    <span
+        class="viewer-close"
+        onclick="closePhoto()"
+    >
         &times;
     </span>
 
-    <img id="viewerImage" src="" alt="Full Size Photo">
+
+    <img
+        id="viewerImage"
+        src=""
+        alt="Full Size Photo"
+    >
 
 </div>
 
 
+
 <script>
+
 
 /* =========================================================
    FIELD LEARNING ACTIVITY
@@ -486,20 +610,25 @@ const oldPhotos = [
 ];
 
 
-/* Photos 21 to 155 */
+/* =========================================================
+   PHOTOS 21 TO 155
+   ========================================================= */
 
 const newPhotos = [];
 
 for(let i = 21; i <= 155; i++){
 
-    newPhotos.push(i + ".jpg");
+    newPhotos.push(
+        i + ".jpg"
+    );
 
 }
 
 
-/* Section 32 photos
-   156.jpg to 160.jpg
-*/
+/* =========================================================
+   SECTION 32
+   PHOTOS 156 TO 160
+   ========================================================= */
 
 const section32Photos = [
 
@@ -512,7 +641,9 @@ const section32Photos = [
 ];
 
 
-/* Combine all photos */
+/* =========================================================
+   ALL FIELD PHOTOS
+   ========================================================= */
 
 const allPhotos = [
 
@@ -523,7 +654,9 @@ const allPhotos = [
 ];
 
 
-/* Names */
+/* =========================================================
+   FIELD NAMES
+   ========================================================= */
 
 const names = [
 
@@ -559,66 +692,99 @@ const names = [
     "30. Shivani Rajpoot",
     "31. Beddala Raj Kumar",
 
-    /* Section 32 */
-    "32. Add Name Here"
+    "32. Ajit Gupta"
 
 ];
 
 
-/* Open Field Gallery */
+/* =========================================================
+   OPEN FIELD GALLERY
+   ========================================================= */
 
 function openGallery(){
 
     const modal =
-        document.getElementById("galleryModal");
+        document.getElementById(
+            "galleryModal"
+        );
+
 
     const container =
-        document.getElementById("galleryContainer");
+        document.getElementById(
+            "galleryContainer"
+        );
+
 
     container.innerHTML = "";
 
 
     /*
-       32 sections
-       Each section = 5 photos
+       32 Sections
+       Each section has 5 photos
     */
 
-    for(let section = 0; section < 32; section++){
+    for(
+        let section = 0;
+        section < 32;
+        section++
+    ){
 
         const group =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        group.className = "photo-group";
+        group.className =
+            "photo-group";
 
 
         const grid =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        grid.className = "photo-grid";
+        grid.className =
+            "photo-grid";
 
 
-        for(let i = 0; i < 5; i++){
+        for(
+            let i = 0;
+            i < 5;
+            i++
+        ){
 
             const photoIndex =
                 section * 5 + i;
 
 
-            if(photoIndex < allPhotos.length){
+            if(
+                photoIndex <
+                allPhotos.length
+            ){
 
                 const img =
-                    document.createElement("img");
+                    document.createElement(
+                        "img"
+                    );
+
 
                 img.src =
-                    "photos/" + allPhotos[photoIndex];
+                    "photos/" +
+                    allPhotos[photoIndex];
+
 
                 img.alt =
                     "Field Learning Activity";
 
-                img.onclick = function(){
 
-                    openPhoto(this.src);
+                img.onclick =
+                    function(){
 
-                };
+                        openPhoto(
+                            this.src
+                        );
+
+                    };
 
 
                 grid.appendChild(img);
@@ -631,17 +797,23 @@ function openGallery(){
         group.appendChild(grid);
 
 
-        /* Name after every 5 photos */
+        /* Name after 5 photos */
 
         if(names[section]){
 
             const name =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
-            name.className = "photo-name";
+
+            name.className =
+                "photo-name";
+
 
             name.textContent =
                 names[section];
+
 
             group.appendChild(name);
 
@@ -653,34 +825,43 @@ function openGallery(){
     }
 
 
-    modal.style.display = "block";
-
-    document.body.style.overflow = "hidden";
-
-}
+    modal.style.display =
+        "block";
 
 
-/* Close Field Gallery */
-
-function closeGallery(){
-
-    document.getElementById("galleryModal")
-        .style.display = "none";
-
-    document.body.style.overflow = "auto";
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
 /* =========================================================
-   INSURANCE AWARENESS – ROLE PLAY
-   ONE PHOTO PER SECTION
+   CLOSE FIELD GALLERY
    ========================================================= */
 
+function closeGallery(){
+
+    document.getElementById(
+        "galleryModal"
+    ).style.display =
+        "none";
+
+
+    document.body.style.overflow =
+        "auto";
+
+}
+
+
+/* =========================================================
+   INSURANCE AWARENESS
+   ONE PHOTO PER SECTION
+   ========================================================= */
 
 const insuranceSections = [
 
     {
+
         photos:[
             "insurance-01-01.jpg"
         ],
@@ -690,10 +871,12 @@ const insuranceSections = [
 
         description:
             "Students introduced the importance of insurance and explained why financial protection is important."
+
     },
 
 
     {
+
         photos:[
             "insurance-02-01.jpg"
         ],
@@ -703,10 +886,12 @@ const insuranceSections = [
 
         description:
             "The role play helped students understand the basic concept of insurance in a simple and engaging way."
+
     },
 
 
     {
+
         photos:[
             "insurance-03-01.jpg"
         ],
@@ -716,10 +901,12 @@ const insuranceSections = [
 
         description:
             "Students presented situations showing how insurance can provide financial support during unexpected events."
+
     },
 
 
     {
+
         photos:[
             "insurance-04-01.jpg"
         ],
@@ -729,10 +916,12 @@ const insuranceSections = [
 
         description:
             "Students performed different roles to demonstrate insurance awareness through a practical role play."
+
     },
 
 
     {
+
         photos:[
             "insurance-05-01.jpg"
         ],
@@ -742,10 +931,12 @@ const insuranceSections = [
 
         description:
             "The activity encouraged students to learn important insurance concepts through participation and teamwork."
+
     },
 
 
     {
+
         photos:[
             "insurance-06-01.jpg"
         ],
@@ -755,12 +946,15 @@ const insuranceSections = [
 
         description:
             "The role play concluded with a simple message highlighting the importance of awareness and financial protection."
+
     }
 
 ];
 
 
-/* Open Insurance Gallery */
+/* =========================================================
+   OPEN INSURANCE GALLERY
+   ========================================================= */
 
 function openInsuranceGallery(){
 
@@ -769,107 +963,158 @@ function openInsuranceGallery(){
             "insuranceGalleryModal"
         );
 
+
     const container =
         document.getElementById(
             "insuranceContainer"
         );
 
+
     container.innerHTML = "";
 
 
-    insuranceSections.forEach(function(section){
+    insuranceSections.forEach(
+        function(section){
 
-        const group =
-            document.createElement("div");
-
-        group.className =
-            "insurance-group";
-
-
-        const photoGrid =
-            document.createElement("div");
-
-        photoGrid.className =
-            "insurance-photo-grid";
+            const group =
+                document.createElement(
+                    "div"
+                );
 
 
-        /*
-           Only ONE photo per section
-        */
+            group.className =
+                "insurance-group";
 
-        section.photos.forEach(function(photo){
 
-            const img =
-                document.createElement("img");
+            const photoGrid =
+                document.createElement(
+                    "div"
+                );
 
-            img.src =
-                "photos/" + photo;
 
-            img.alt =
+            photoGrid.className =
+                "insurance-photo-grid";
+
+
+            /*
+               ONE PHOTO ONLY
+            */
+
+            section.photos.forEach(
+                function(photo){
+
+                    const img =
+                        document.createElement(
+                            "img"
+                        );
+
+
+                    img.src =
+                        "photos/" +
+                        photo;
+
+
+                    img.alt =
+                        section.text;
+
+
+                    img.onclick =
+                        function(){
+
+                            openPhoto(
+                                this.src
+                            );
+
+                        };
+
+
+                    photoGrid.appendChild(
+                        img
+                    );
+
+                }
+            );
+
+
+            group.appendChild(
+                photoGrid
+            );
+
+
+            /* Section Text */
+
+            const text =
+                document.createElement(
+                    "div"
+                );
+
+
+            text.className =
+                "insurance-text";
+
+
+            text.textContent =
                 section.text;
 
-            img.onclick = function(){
 
-                openPhoto(this.src);
-
-            };
-
-
-            photoGrid.appendChild(img);
-
-        });
+            group.appendChild(
+                text
+            );
 
 
-        group.appendChild(photoGrid);
+            /* Description */
+
+            const description =
+                document.createElement(
+                    "div"
+                );
 
 
-        const text =
-            document.createElement("div");
-
-        text.className =
-            "insurance-text";
-
-        text.textContent =
-            section.text;
+            description.className =
+                "insurance-description";
 
 
-        group.appendChild(text);
+            description.textContent =
+                section.description;
 
 
-        const description =
-            document.createElement("div");
-
-        description.className =
-            "insurance-description";
-
-        description.textContent =
-            section.description;
+            group.appendChild(
+                description
+            );
 
 
-        group.appendChild(description);
+            container.appendChild(
+                group
+            );
+
+        }
+    );
 
 
-        container.appendChild(group);
+    modal.style.display =
+        "block";
 
-    });
 
-
-    modal.style.display = "block";
-
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
-/* Close Insurance Gallery */
+/* =========================================================
+   CLOSE INSURANCE GALLERY
+   ========================================================= */
 
 function closeInsuranceGallery(){
 
     document.getElementById(
         "insuranceGalleryModal"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
-    document.body.style.overflow = "auto";
+
+    document.body.style.overflow =
+        "auto";
 
 }
 
@@ -878,87 +1123,127 @@ function closeInsuranceGallery(){
    FULL SCREEN PHOTO
    ========================================================= */
 
-
 function openPhoto(src){
 
     const viewer =
-        document.getElementById("photoViewer");
+        document.getElementById(
+            "photoViewer"
+        );
+
 
     const image =
-        document.getElementById("viewerImage");
+        document.getElementById(
+            "viewerImage"
+        );
 
 
-    image.src = src;
-
-    viewer.style.display = "flex";
-
-}
+    image.src =
+        src;
 
 
-function closePhoto(){
-
-    const viewer =
-        document.getElementById("photoViewer");
-
-    const image =
-        document.getElementById("viewerImage");
-
-
-    viewer.style.display = "none";
-
-    image.src = "";
+    viewer.style.display =
+        "flex";
 
 }
 
 
 /* =========================================================
-   CLOSE MODALS BY CLICKING OUTSIDE
+   CLOSE FULL SCREEN PHOTO
    ========================================================= */
 
-window.onclick = function(event){
-
-    const galleryModal =
-        document.getElementById("galleryModal");
-
-    const insuranceModal =
-        document.getElementById(
-            "insuranceGalleryModal"
-        );
+function closePhoto(){
 
     const viewer =
-        document.getElementById("photoViewer");
+        document.getElementById(
+            "photoViewer"
+        );
 
 
-    if(event.target === galleryModal){
-
-        closeGallery();
-
-    }
-
-
-    if(event.target === insuranceModal){
-
-        closeInsuranceGallery();
-
-    }
+    const image =
+        document.getElementById(
+            "viewerImage"
+        );
 
 
-    if(event.target === viewer){
-
-        closePhoto();
-
-    }
-
-};
+    viewer.style.display =
+        "none";
 
 
-/* ESC KEY */
+    image.src =
+        "";
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL OUTSIDE CLICK
+   ========================================================= */
+
+window.onclick =
+    function(event){
+
+        const galleryModal =
+            document.getElementById(
+                "galleryModal"
+            );
+
+
+        const insuranceModal =
+            document.getElementById(
+                "insuranceGalleryModal"
+            );
+
+
+        const viewer =
+            document.getElementById(
+                "photoViewer"
+            );
+
+
+        if(
+            event.target ===
+            galleryModal
+        ){
+
+            closeGallery();
+
+        }
+
+
+        if(
+            event.target ===
+            insuranceModal
+        ){
+
+            closeInsuranceGallery();
+
+        }
+
+
+        if(
+            event.target ===
+            viewer
+        ){
+
+            closePhoto();
+
+        }
+
+    };
+
+
+/* =========================================================
+   ESC KEY
+   ========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event){
 
-        if(event.key === "Escape"){
+        if(
+            event.key ===
+            "Escape"
+        ){
 
             closeGallery();
 
