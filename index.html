@@ -143,6 +143,10 @@ header img{
     line-height:1;
 }
 
+.close:hover{
+    opacity:0.7;
+}
+
 
 /* DOWNLOAD BUTTON */
 
@@ -216,7 +220,7 @@ header img{
 }
 
 
-/* INSURANCE */
+/* INSURANCE AWARENESS */
 
 .insurance-group{
     margin-bottom:55px;
@@ -279,10 +283,8 @@ header img{
     width:100%;
     height:100%;
     background:rgba(0,0,0,0.96);
-
     justify-content:center;
     align-items:center;
-
     padding:30px;
 }
 
@@ -373,11 +375,6 @@ header img{
     }
 
 }
-
-
-/* =========================================================
-   JAVASCRIPT
-   ========================================================= */
 
 </style>
 </head>
@@ -483,8 +480,6 @@ header img{
         </div>
 
 
-        <!-- DOWNLOAD ALL FIELD PHOTOS -->
-
         <div class="download-button-wrapper">
 
             <button
@@ -530,8 +525,6 @@ header img{
         </div>
 
 
-        <!-- DOWNLOAD ALL INSURANCE PHOTOS -->
-
         <div class="download-button-wrapper">
 
             <button
@@ -552,9 +545,7 @@ header img{
 </div>
 
 
-<!-- =========================================================
-     FULL SCREEN VIEWER
-     ========================================================= -->
+<!-- FULL SCREEN PHOTO VIEWER -->
 
 <div
     id="photoViewer"
@@ -582,11 +573,11 @@ header img{
 
 
 /* =========================================================
-   FIELD LEARNING PHOTOS
+   FIELD LEARNING ACTIVITY
    ========================================================= */
 
 
-/* First 20 */
+/* First 20 photos */
 
 const oldPhotos = [
 
@@ -871,11 +862,6 @@ async function downloadAllFieldPhotos(){
         document.body.removeChild(link);
 
 
-        /*
-           Small delay between downloads
-           so browser does not block them
-        */
-
         await new Promise(
             resolve =>
                 setTimeout(
@@ -913,16 +899,15 @@ function closeGallery(){
 
 
 /* =========================================================
-   INSURANCE PHOTOS
+   INSURANCE AWARENESS
    ONE PHOTO PER SECTION
    ========================================================= */
 
 const insuranceSections = [
 
     {
-
         photos:[
-            "insurance-01-01.jpg"
+            "a1.jpg"
         ],
 
         text:
@@ -930,14 +915,12 @@ const insuranceSections = [
 
         description:
             "Students introduced the importance of insurance and explained why financial protection is important."
-
     },
 
 
     {
-
         photos:[
-            "insurance-02-01.jpg"
+            "a2.jpg"
         ],
 
         text:
@@ -945,14 +928,12 @@ const insuranceSections = [
 
         description:
             "The role play helped students understand the basic concept of insurance in a simple and engaging way."
-
     },
 
 
     {
-
         photos:[
-            "insurance-03-01.jpg"
+            "a3.jpg"
         ],
 
         text:
@@ -960,14 +941,12 @@ const insuranceSections = [
 
         description:
             "Students presented situations showing how insurance can provide financial support during unexpected events."
-
     },
 
 
     {
-
         photos:[
-            "insurance-04-01.jpg"
+            "a4.jpg"
         ],
 
         text:
@@ -975,14 +954,12 @@ const insuranceSections = [
 
         description:
             "Students performed different roles to demonstrate insurance awareness through a practical role play."
-
     },
 
 
     {
-
         photos:[
-            "insurance-05-01.jpg"
+            "a5.jpg"
         ],
 
         text:
@@ -990,14 +967,12 @@ const insuranceSections = [
 
         description:
             "The activity encouraged students to learn important insurance concepts through participation and teamwork."
-
     },
 
 
     {
-
         photos:[
-            "insurance-06-01.jpg"
+            "a6.jpg"
         ],
 
         text:
@@ -1005,7 +980,6 @@ const insuranceSections = [
 
         description:
             "The role play concluded with a simple message highlighting the importance of awareness and financial protection."
-
     }
 
 ];
@@ -1237,7 +1211,7 @@ async function downloadAllInsurancePhotos(){
 
 
 /* =========================================================
-   CLOSE INSURANCE
+   CLOSE INSURANCE GALLERY
    ========================================================= */
 
 function closeInsuranceGallery(){
