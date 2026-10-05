@@ -55,19 +55,18 @@ body{
     padding:0 20px;
 }
 
-
-/* =========================================================
-   COVER CARD
-   IMPORTANT:
-   COVER CARD IS NOT CHANGED
-   ========================================================= */
-
 .card-wrapper{
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    gap:35px;
 }
+
+
+/* =========================================================
+   COVER CARD
+   ========================================================= */
 
 .profile-card{
     width:320px;
@@ -93,10 +92,21 @@ body{
 }
 
 .profile-name{
+    margin-top:-22px;
+    padding:0 10px;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.card-title{
     margin-top:14px;
     font-size:20px;
     font-weight:bold;
     text-align:center;
+    color:#1d2433;
 }
 
 
@@ -146,19 +156,12 @@ body{
 
 
 /* =========================================================
-   PHOTO GROUP
+   OLD GALLERY PHOTO GROUP
    ========================================================= */
 
 .gallery-group{
     margin-bottom:40px;
 }
-
-
-/* =========================================================
-   GALLERY PHOTO GRID
-   3:4 RATIO
-   NO CROP
-   ========================================================= */
 
 .photo-grid{
     display:grid;
@@ -189,6 +192,61 @@ body{
     font-size:21px;
     font-weight:bold;
     margin-top:14px;
+}
+
+
+/* =========================================================
+   NEW INSURANCE AWARENESS GALLERY
+   2 PHOTOS
+   TEXT
+   DESCRIPTION
+   ========================================================= */
+
+.insurance-group{
+    margin-bottom:55px;
+    padding-bottom:35px;
+    border-bottom:1px solid rgba(255,255,255,0.25);
+}
+
+.insurance-photo-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:18px;
+    max-width:850px;
+    margin:0 auto;
+}
+
+.insurance-photo-grid img{
+    width:100%;
+    aspect-ratio:3 / 4;
+    height:auto;
+    display:block;
+    cursor:pointer;
+    border-radius:10px;
+    background:white;
+    object-fit:contain;
+    transition:transform 0.2s ease;
+}
+
+.insurance-photo-grid img:hover{
+    transform:scale(1.02);
+}
+
+.insurance-text{
+    color:white;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    margin-top:18px;
+}
+
+.insurance-description{
+    color:#e5e5e5;
+    text-align:center;
+    font-size:16px;
+    line-height:1.7;
+    max-width:850px;
+    margin:10px auto 0;
 }
 
 
@@ -275,6 +333,11 @@ body{
         gap:8px;
     }
 
+    .insurance-photo-grid{
+        grid-template-columns:repeat(2, 1fr);
+        gap:8px;
+    }
+
     .modal{
         padding:20px 10px;
     }
@@ -285,6 +348,14 @@ body{
 
     .group-text{
         font-size:18px;
+    }
+
+    .insurance-text{
+        font-size:19px;
+    }
+
+    .insurance-description{
+        font-size:14px;
     }
 
     .profile-card{
@@ -333,23 +404,49 @@ body{
 
 
         <!-- =================================================
-             COVER CARD
-             THIS IS EXACTLY THE SAME
+             OLD COVER CARD
+             FIELD LEARNING ACTIVITY
              ================================================= -->
 
-        <div class="profile-card" onclick="openGallery()">
+        <div
+            class="profile-card"
+            onclick="openGallery()"
+        >
 
             <img
                 src="photos/field-cover.jpg"
                 alt="Field Learning Activity"
             >
 
+            <div class="card-title">
+                Field Learning Activity
+            </div>
+
         </div>
 
 
-        <div class="profile-name">
-            Field Learning Activity
+
+        <!-- =================================================
+             NEW COVER CARD
+             INSURANCE AWARENESS – ROLE PLAY
+             ================================================= -->
+
+        <div
+            class="profile-card"
+            onclick="openInsuranceGallery()"
+        >
+
+            <img
+                src="photos/insurance-awareness-cover.jpg"
+                alt="Insurance Awareness – Role Play"
+            >
+
+            <div class="card-title">
+                Insurance Awareness – Role Play
+            </div>
+
         </div>
+
 
     </div>
 
@@ -358,7 +455,8 @@ body{
 
 
 <!-- =========================================================
-     GALLERY MODAL
+     OLD GALLERY MODAL
+     FIELD LEARNING ACTIVITY
      ========================================================= -->
 
 <div
@@ -369,13 +467,11 @@ body{
 
     <div class="modal-content">
 
-
         <div class="modal-header">
 
             <div class="modal-title">
                 Field Learning Activity
             </div>
-
 
             <button
                 class="close-btn"
@@ -387,8 +483,44 @@ body{
 
         </div>
 
-
         <div id="galleryGroups"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     NEW GALLERY MODAL
+     INSURANCE AWARENESS – ROLE PLAY
+     ========================================================= -->
+
+<div
+    id="insuranceGalleryModal"
+    class="modal"
+    onclick="insuranceBackgroundClick(event)"
+>
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div class="modal-title">
+                Insurance Awareness – Role Play
+            </div>
+
+            <button
+                class="close-btn"
+                onclick="closeInsuranceGallery()"
+                aria-label="Close Gallery"
+            >
+                &times;
+            </button>
+
+        </div>
+
+        <div id="insuranceGroups"></div>
 
     </div>
 
@@ -406,7 +538,6 @@ body{
     onclick="viewerBackgroundClick(event)"
 >
 
-
     <span
         class="viewer-close"
         onclick="closePhoto()"
@@ -414,7 +545,6 @@ body{
     >
         &times;
     </span>
-
 
     <img
         id="largePhoto"
@@ -444,17 +574,8 @@ body{
 
 
 /* =========================================================
+   OLD GALLERY
    NAMES
-
-   Each name belongs to ONE SET OF 5 PHOTOS.
-
-   1  = Photo 1-5
-   2  = Photo 6-10
-   3  = Photo 11-15
-   4  = Photo 16-20
-   ...
-   30 = Photo 146-150
-   31 = Photo 151-155
    ========================================================= */
 
 const names = [
@@ -476,6 +597,7 @@ const names = [
     "13. Akash Mohanty",
     "14. Devendra singh",
     "15. Deepak Jatav",
+
     "16. C R Adhithya Kumar",
     "17. Sumit Kumar",
     "18. Lokesh Kaimoria",
@@ -535,8 +657,7 @@ const oldPhotos = [
 
 /* =========================================================
    NEXT 135 PHOTOS
-
-   21.jpg to 155.jpg
+   21.jpg TO 155.jpg
    ========================================================= */
 
 const newPhotos = [];
@@ -563,11 +684,8 @@ const allPhotos = [
 
 
 /* =========================================================
-   CREATE 31 GROUPS
-
-   Every group contains exactly 5 photos.
-
-   31 groups × 5 photos = 155 photos
+   CREATE OLD 31 GROUPS
+   EVERY GROUP = 5 PHOTOS
    ========================================================= */
 
 const galleryGroups =
@@ -575,7 +693,6 @@ const galleryGroups =
 
 
 for(let group = 0; group < 31; group++){
-
 
     const groupDiv =
         document.createElement("div");
@@ -589,13 +706,9 @@ for(let group = 0; group < 31; group++){
     photoGrid.className = "photo-grid";
 
 
-
-    /* =====================================================
-       ADD 5 PHOTOS
-       ===================================================== */
+    /* ADD 5 PHOTOS */
 
     for(let photo = 0; photo < 5; photo++){
-
 
         const photoIndex =
             (group * 5) + photo;
@@ -626,14 +739,10 @@ for(let group = 0; group < 31; group++){
     }
 
 
-
     groupDiv.appendChild(photoGrid);
 
 
-
-    /* =====================================================
-       ADD NAME AFTER EVERY 5 PHOTOS
-       ===================================================== */
+    /* ADD NAME AFTER EVERY 5 PHOTOS */
 
     const text =
         document.createElement("div");
@@ -656,14 +765,194 @@ for(let group = 0; group < 31; group++){
 
 
 /* =========================================================
-   OPEN GALLERY
+   NEW INSURANCE AWARENESS DATA
+   6 GROUPS
+   2 PHOTOS PER GROUP
+   ========================================================= */
+
+const insuranceSections = [
+
+    {
+        photos: [
+            "insurance-01-01.jpg",
+            "insurance-01-02.jpg"
+        ],
+
+        text: "1. Insurance Awareness",
+
+        description:
+        "Students introduced the importance of insurance and explained why financial protection is important."
+    },
+
+
+    {
+        photos: [
+            "insurance-02-01.jpg",
+            "insurance-02-02.jpg"
+        ],
+
+        text: "2. Understanding Insurance",
+
+        description:
+        "The role play helped students understand the basic concept of insurance in a simple and engaging way."
+    },
+
+
+    {
+        photos: [
+            "insurance-03-01.jpg",
+            "insurance-03-02.jpg"
+        ],
+
+        text: "3. Customer Awareness",
+
+        description:
+        "Students presented situations showing how insurance can provide financial support during unexpected events."
+    },
+
+
+    {
+        photos: [
+            "insurance-04-01.jpg",
+            "insurance-04-02.jpg"
+        ],
+
+        text: "4. Role Play Activity",
+
+        description:
+        "Students performed different roles to demonstrate insurance awareness through a practical role play."
+    },
+
+
+    {
+        photos: [
+            "insurance-05-01.jpg",
+            "insurance-05-02.jpg"
+        ],
+
+        text: "5. Learning Through Activity",
+
+        description:
+        "The activity encouraged students to learn important insurance concepts through participation and teamwork."
+    },
+
+
+    {
+        photos: [
+            "insurance-06-01.jpg",
+            "insurance-06-02.jpg"
+        ],
+
+        text: "6. Insurance Awareness Message",
+
+        description:
+        "The role play concluded with a simple message highlighting the importance of awareness and financial protection."
+    }
+
+];
+
+
+
+/* =========================================================
+   CREATE INSURANCE GALLERY
+   6 GROUPS
+   ========================================================= */
+
+const insuranceGroups =
+    document.getElementById("insuranceGroups");
+
+
+insuranceSections.forEach(function(section, index){
+
+    const groupDiv =
+        document.createElement("div");
+
+    groupDiv.className =
+        "insurance-group";
+
+
+    /* PHOTO GRID */
+
+    const photoGrid =
+        document.createElement("div");
+
+    photoGrid.className =
+        "insurance-photo-grid";
+
+
+    section.photos.forEach(function(photoName){
+
+        const img =
+            document.createElement("img");
+
+
+        img.src =
+            "photos/" + photoName;
+
+
+        img.alt =
+            "Insurance Awareness – Role Play Photo";
+
+
+        img.onclick = function(){
+
+            openPhoto(this.src);
+
+        };
+
+
+        photoGrid.appendChild(img);
+
+    });
+
+
+    groupDiv.appendChild(photoGrid);
+
+
+    /* TEXT */
+
+    const text =
+        document.createElement("div");
+
+    text.className =
+        "insurance-text";
+
+    text.textContent =
+        section.text;
+
+
+    groupDiv.appendChild(text);
+
+
+    /* DESCRIPTION */
+
+    const description =
+        document.createElement("div");
+
+    description.className =
+        "insurance-description";
+
+    description.textContent =
+        section.description;
+
+
+    groupDiv.appendChild(description);
+
+
+    insuranceGroups.appendChild(groupDiv);
+
+});
+
+
+
+/* =========================================================
+   OPEN OLD GALLERY
    ========================================================= */
 
 function openGallery(){
 
     document.getElementById("galleryModal")
         .style.display = "block";
-
 
     document.body.style.overflow = "hidden";
 
@@ -672,7 +961,7 @@ function openGallery(){
 
 
 /* =========================================================
-   CLOSE GALLERY
+   CLOSE OLD GALLERY
    ========================================================= */
 
 function closeGallery(){
@@ -680,6 +969,35 @@ function closeGallery(){
     document.getElementById("galleryModal")
         .style.display = "none";
 
+    document.body.style.overflow = "";
+
+}
+
+
+
+/* =========================================================
+   OPEN NEW INSURANCE GALLERY
+   ========================================================= */
+
+function openInsuranceGallery(){
+
+    document.getElementById("insuranceGalleryModal")
+        .style.display = "block";
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+
+/* =========================================================
+   CLOSE NEW INSURANCE GALLERY
+   ========================================================= */
+
+function closeInsuranceGallery(){
+
+    document.getElementById("insuranceGalleryModal")
+        .style.display = "none";
 
     document.body.style.overflow = "";
 
@@ -746,7 +1064,7 @@ function viewerBackgroundClick(event){
 
 
 /* =========================================================
-   CLOSE GALLERY WHEN CLICKING OUTSIDE CONTENT
+   CLOSE OLD GALLERY OUTSIDE CONTENT
    ========================================================= */
 
 function galleryBackgroundClick(event){
@@ -762,22 +1080,37 @@ function galleryBackgroundClick(event){
 
 
 /* =========================================================
+   CLOSE NEW GALLERY OUTSIDE CONTENT
+   ========================================================= */
+
+function insuranceBackgroundClick(event){
+
+    if(event.target.id === "insuranceGalleryModal"){
+
+        closeInsuranceGallery();
+
+    }
+
+}
+
+
+
+/* =========================================================
    ESC KEY
    ========================================================= */
 
 document.addEventListener("keydown", function(event){
 
-
     if(event.key === "Escape"){
-
 
         const viewer =
             document.getElementById("photoViewer");
 
-
         const gallery =
             document.getElementById("galleryModal");
 
+        const insuranceGallery =
+            document.getElementById("insuranceGalleryModal");
 
 
         if(viewer.style.display === "flex"){
@@ -789,6 +1122,12 @@ document.addEventListener("keydown", function(event){
         else if(gallery.style.display === "block"){
 
             closeGallery();
+
+        }
+
+        else if(insuranceGallery.style.display === "block"){
+
+            closeInsuranceGallery();
 
         }
 
