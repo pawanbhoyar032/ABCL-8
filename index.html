@@ -1,654 +1,574 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ABC Life Insurance - Profile Gallery</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+:root {
+    --brand-red: #c8102e;
+    --brand-dark: #8d1025;
+    --brand-light: #fff4f5;
+    --page-bg: #f7f7f9;
+    --text: #252525;
 }
 
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f5f7fb;
-    color:#1d2433;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* HEADER */
-
-header{
-    background:white;
-    padding:25px 20px;
-    text-align:center;
-    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--page-bg);
+    color: var(--text);
 }
 
-header img{
-    width:190px;
-    max-width:80%;
-    height:auto;
+header {
+    background: white;
+    padding: 22px 20px;
+    text-align: center;
+    border-bottom: 3px solid var(--brand-red);
+    box-shadow: 0 3px 14px rgba(0,0,0,.07);
 }
 
-
-/* INTRO */
-
-.intro{
-    text-align:center;
-    padding:30px 20px 10px;
+header img {
+    width: 190px;
+    max-width: 80%;
+    height: auto;
 }
 
-.intro h1{
-    font-size:30px;
-    margin-bottom:10px;
+.intro {
+    text-align: center;
+    padding: 32px 18px 10px;
 }
 
-.intro p{
-    font-size:16px;
-    color:#666;
+.intro h1 {
+    font-size: 30px;
+    color: var(--brand-dark);
+    margin-bottom: 10px;
 }
 
-
-/* COVER CARDS */
-
-.card-wrapper{
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    flex-direction:row;
-    gap:35px;
-    flex-wrap:wrap;
-    padding:30px 20px 50px;
+.intro p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
 }
 
-.profile-card{
-    width:320px;
-    max-width:100%;
-    background:white;
-    border-radius:14px;
-    overflow:hidden;
-    cursor:pointer;
-    box-shadow:0 5px 20px rgba(0,0,0,0.12);
-    transition:transform 0.25s ease, box-shadow 0.25s ease;
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 30px 20px 55px;
 }
 
-.profile-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 28px rgba(0,0,0,0.18);
+.profile-card {
+    width: 320px;
+    max-width: 100%;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,.12);
+    transition: transform .25s ease, box-shadow .25s ease;
+    border: 1px solid #eeeeee;
 }
 
-.profile-card img{
-    width:100%;
-    height:250px;
-    display:block;
-    object-fit:cover;
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0,0,0,.17);
 }
 
-.card-title{
-    margin-top:14px;
-    padding:0 10px 18px;
-    font-size:20px;
-    font-weight:bold;
-    text-align:center;
-    color:#1d2433;
+.profile-card img {
+    width: 100%;
+    height: 250px;
+    display: block;
+    object-fit: cover;
 }
 
-
-/* MODAL */
-
-.modal{
-    display:none;
-    position:fixed;
-    z-index:1000;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.92);
-    overflow:auto;
+.card-title {
+    min-height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 12px 8px;
+    font-size: 19px;
+    line-height: 1.25;
+    font-weight: bold;
+    text-align: center;
+    color: var(--brand-dark);
+    border-top: 3px solid var(--brand-red);
 }
 
-.modal-content{
-    width:95%;
-    max-width:1400px;
-    margin:30px auto;
-    padding:20px;
+/* Keep the full Insurance Awareness title on one line */
+.insurance-card .card-title {
+    white-space: nowrap;
+    font-size: clamp(13px, 4.1vw, 17px);
+    letter-spacing: -.35px;
 }
 
-.modal-header{
-    position:relative;
-    text-align:center;
-    margin-bottom:25px;
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 10, 12, .96);
+    overflow: auto;
 }
 
-.modal-header h2{
-    color:white;
-    font-size:28px;
+.modal-content {
+    width: 95%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 20px;
 }
 
-.close{
-    position:fixed;
-    right:25px;
-    top:15px;
-    color:white;
-    font-size:42px;
-    font-weight:bold;
-    cursor:pointer;
-    z-index:1100;
-    line-height:1;
+.modal-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.close:hover{
-    opacity:0.7;
+.modal-header h2 {
+    color: white;
+    font-size: 28px;
 }
 
-
-/* DOWNLOAD BUTTON */
-
-.download-button-wrapper{
-    text-align:center;
-    margin-bottom:35px;
+.close {
+    position: fixed;
+    right: 25px;
+    top: 12px;
+    color: white;
+    font-size: 42px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1100;
+    line-height: 1;
 }
 
-.download-btn{
-    display:inline-block;
-    background:white;
-    color:#1d2433;
-    border:none;
-    padding:13px 24px;
-    border-radius:8px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 4px 12px rgba(0,0,0,0.2);
-    transition:transform 0.2s ease, box-shadow 0.2s ease;
+.close:hover {
+    color: #ffb8c4;
 }
 
-.download-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 7px 18px rgba(0,0,0,0.3);
+.download-button-wrapper {
+    text-align: center;
+    margin-bottom: 35px;
 }
 
-.download-btn:disabled{
-    opacity:0.6;
-    cursor:not-allowed;
+.download-btn {
+    display: inline-block;
+    background: var(--brand-red);
+    color: white;
+    border: none;
+    padding: 13px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,.2);
 }
 
-
-/* FIELD LEARNING */
-
-.photo-group{
-    margin-bottom:55px;
-    padding-bottom:35px;
-    border-bottom:1px solid rgba(255,255,255,0.25);
+.download-btn:hover {
+    background: var(--brand-dark);
 }
 
-.photo-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:12px;
-    align-items:start;
+.download-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
 }
 
-.photo-grid img{
-    width:100%;
-    aspect-ratio:3 / 4;
-    height:auto;
-    display:block;
-    cursor:pointer;
-    border-radius:8px;
-    background:#fff;
-    object-fit:contain;
-    transition:transform 0.2s ease;
+/* Field Learning gallery */
+.photo-group,
+.insurance-group {
+    margin-bottom: 45px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,.25);
 }
 
-.photo-grid img:hover{
-    transform:scale(1.03);
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    align-items: start;
 }
 
-.photo-name{
-    color:white;
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-    margin-top:18px;
+.photo-grid img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    height: auto;
+    display: block;
+    cursor: pointer;
+    border-radius: 8px;
+    background: white;
+    object-fit: contain;
+    transition: transform .2s ease;
 }
 
-
-/* INSURANCE AWARENESS */
-
-.insurance-group{
-    margin-bottom:55px;
-    padding-bottom:35px;
-    border-bottom:1px solid rgba(255,255,255,0.25);
+.photo-grid img:hover {
+    transform: scale(1.03);
 }
 
-.insurance-photo-grid{
-    width:100%;
-    max-width:850px;
-    margin:0 auto;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.photo-name {
+    color: white;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 18px;
 }
 
-.insurance-photo-grid img{
-    width:100%;
-    aspect-ratio:16 / 9;
-    height:auto;
-    display:block;
-    cursor:pointer;
-    border-radius:10px;
-    background:white;
-    object-fit:contain;
-    transition:transform 0.2s ease;
+/* Insurance gallery */
+.insurance-photo-grid {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.insurance-photo-grid img:hover{
-    transform:scale(1.02);
+.insurance-photo-grid img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    display: block;
+    cursor: pointer;
+    border-radius: 10px;
+    background: white;
+    object-fit: contain;
+    transition: transform .2s ease;
 }
 
-.insurance-text{
-    color:white;
-    text-align:center;
-    font-size:24px;
-    font-weight:bold;
-    margin-top:18px;
+.insurance-photo-grid img:hover {
+    transform: scale(1.02);
 }
 
-.insurance-description{
-    color:#e5e5e5;
-    text-align:center;
-    font-size:16px;
-    line-height:1.7;
-    max-width:850px;
-    margin:10px auto 0;
+.insurance-text {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 18px;
 }
 
-
-/* FULL SCREEN PHOTO */
-
-.photo-viewer{
-    display:none;
-    position:fixed;
-    z-index:2000;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.96);
-    justify-content:center;
-    align-items:center;
-    padding:30px;
+.insurance-description {
+    color: #e5e5e5;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 850px;
+    margin: 10px auto 0;
 }
 
-.photo-viewer img{
-    max-width:95%;
-    max-height:92%;
-    width:auto;
-    height:auto;
-    object-fit:contain;
-    border-radius:6px;
+/* Sales Activity PDF */
+.pdf-modal-content {
+    width: 96%;
+    max-width: 1200px;
+    height: 90vh;
+    margin: 4vh auto;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-.viewer-close{
-    position:absolute;
-    top:15px;
-    right:25px;
-    color:white;
-    font-size:45px;
-    cursor:pointer;
-    z-index:2100;
+.pdf-toolbar {
+    padding: 13px 18px;
+    background: var(--brand-red);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
+.pdf-toolbar h2 {
+    font-size: 19px;
+}
 
-/* TABLET */
+.pdf-toolbar a {
+    background: white;
+    color: var(--brand-dark);
+    padding: 9px 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
 
-@media(max-width:900px){
+.pdf-frame {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    border: none;
+}
 
-    .photo-grid{
-        grid-template-columns:repeat(3,1fr);
+.pdf-fallback {
+    padding: 12px;
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Full-screen photo */
+.photo-viewer {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.96);
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.photo-viewer img {
+    max-width: 95%;
+    max-height: 92%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.viewer-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: white;
+    font-size: 45px;
+    cursor: pointer;
+    z-index: 2100;
+}
+
+@media(max-width: 900px) {
+    .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+    .card-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
     }
 
+    .profile-card {
+        width: 320px;
+    }
+
+    .intro h1 {
+        font-size: 24px;
+    }
+
+    .modal-content {
+        width: 100%;
+        padding: 15px;
+        margin-top: 35px;
+    }
+
+    .modal-header h2 {
+        font-size: 22px;
+        padding: 0 24px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .photo-name {
+        font-size: 19px;
+    }
+
+    .insurance-text {
+        font-size: 20px;
+    }
+
+    .insurance-description {
+        font-size: 15px;
+    }
+
+    .pdf-modal-content {
+        width: 100%;
+        height: 92vh;
+        margin: 4vh auto;
+        border-radius: 0;
+    }
+
+    .pdf-toolbar h2 {
+        font-size: 16px;
+    }
+
+    .pdf-toolbar a {
+        font-size: 12px;
+        padding: 8px;
+    }
 }
-
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-    .card-wrapper{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .profile-card{
-        width:320px;
-    }
-
-    .intro h1{
-        font-size:24px;
-    }
-
-    .modal-content{
-        width:100%;
-        padding:15px;
-        margin-top:35px;
-    }
-
-    .modal-header h2{
-        font-size:22px;
-    }
-
-    .photo-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:10px;
-    }
-
-    .photo-name{
-        font-size:19px;
-    }
-
-    .insurance-photo-grid{
-        width:100%;
-        max-width:100%;
-    }
-
-    .insurance-photo-grid img{
-        width:100%;
-        aspect-ratio:16 / 9;
-        object-fit:contain;
-    }
-
-    .insurance-text{
-        font-size:20px;
-    }
-
-    .insurance-description{
-        font-size:15px;
-    }
-
-}
-
 </style>
 </head>
 
 <body>
 
-
-<!-- HEADER -->
-
+<!-- HEADER / LOGO -->
 <header>
-
-    <img
-        src="photos/logo.png"
-        alt="ABC Life Insurance Logo"
-    >
-
+    <img src="photos/logo.png" alt="ABC Life Insurance Logo">
 </header>
 
-
 <!-- INTRO -->
-
 <section class="intro">
-
-    <h1>
-        ABC Life Insurance Profile Gallery
-    </h1>
-
-    <p>
-        Welcome to the ABC Life Insurance Profile Gallery.
-        Explore and Connect with our people.
-    </p>
-
+    <h1>ABC Life Insurance Profile Gallery</h1>
+    <p>Welcome to the ABC Life Insurance Profile Gallery.<br>
+       Explore and Connect with our people.</p>
 </section>
 
-
 <!-- COVER CARDS -->
-
 <div class="card-wrapper">
 
-
-    <!-- FIELD LEARNING CARD -->
-
-    <div
-        class="profile-card"
-        onclick="openGallery()"
-    >
-
-        <img
-            src="photos/field-cover.jpg"
-            alt="Field Learning Activity"
-        >
-
-        <div class="card-title">
-            Field Learning Activity
-        </div>
-
+    <div class="profile-card" onclick="openGallery()">
+        <img src="photos/field-cover.jpg" alt="Field Learning Activity">
+        <div class="card-title">Field Learning Activity</div>
     </div>
 
+    <div class="profile-card insurance-card" onclick="openInsuranceGallery()">
+        <img src="photos/insurance-awareness-cover.jpg" alt="Insurance Awareness – Role Play">
+        <div class="card-title">Insurance Awareness – Role Play</div>
+    </div>
 
-    <!-- INSURANCE CARD -->
-
-    <div
-        class="profile-card"
-        onclick="openInsuranceGallery()"
-    >
-
-        <img
-            src="photos/insurance-awareness-cover.jpg"
-            alt="Insurance Awareness – Role Play"
-        >
-
-        <div class="card-title">
-            Insurance Awareness (RolePlay)
-        </div>
-
+    <div class="profile-card" onclick="openSalesActivity()">
+        <img src="photos/sales-activity-cover.jpg"
+             alt="Sales Activity"
+             onerror="this.onerror=null;this.src='photos/field-cover.jpg';">
+        <div class="card-title">SALES ACTIVITY</div>
     </div>
 
 </div>
 
-
-<!-- =========================================================
-     FIELD LEARNING MODAL
-     ========================================================= -->
-
+<!-- FIELD LEARNING MODAL -->
 <div id="galleryModal" class="modal">
-
-    <span
-        class="close"
-        onclick="closeGallery()"
-    >
-        &times;
-    </span>
-
+    <span class="close" onclick="closeGallery()">&times;</span>
 
     <div class="modal-content">
-
         <div class="modal-header">
-
-            <h2>
-                Field Learning Activity
-            </h2>
-
+            <h2>Field Learning Activity</h2>
         </div>
-
 
         <div class="download-button-wrapper">
-
-            <button
-                class="download-btn"
-                id="fieldDownloadBtn"
-                onclick="downloadAllFieldPhotos()"
-            >
+            <button class="download-btn" id="fieldDownloadBtn"
+                    onclick="downloadAllFieldPhotos()">
                 📥 Download All Photos
             </button>
-
         </div>
-
 
         <div id="galleryContainer"></div>
-
     </div>
-
 </div>
 
-
-<!-- =========================================================
-     INSURANCE MODAL
-     ========================================================= -->
-
+<!-- INSURANCE MODAL -->
 <div id="insuranceGalleryModal" class="modal">
-
-    <span
-        class="close"
-        onclick="closeInsuranceGallery()"
-    >
-        &times;
-    </span>
-
+    <span class="close" onclick="closeInsuranceGallery()">&times;</span>
 
     <div class="modal-content">
-
         <div class="modal-header">
-
-            <h2>
-                Insurance Awareness – Role Play
-            </h2>
-
+            <h2>Insurance Awareness – Role Play</h2>
         </div>
-
 
         <div class="download-button-wrapper">
-
-            <button
-                class="download-btn"
-                id="insuranceDownloadBtn"
-                onclick="downloadAllInsurancePhotos()"
-            >
+            <button class="download-btn" id="insuranceDownloadBtn"
+                    onclick="downloadAllInsurancePhotos()">
                 📥 Download All Photos
             </button>
-
         </div>
 
-
         <div id="insuranceContainer"></div>
-
     </div>
-
 </div>
 
+<!-- SALES ACTIVITY PDF MODAL -->
+<div id="salesModal" class="modal">
+    <span class="close" onclick="closeSalesActivity()">&times;</span>
 
-<!-- FULL SCREEN PHOTO VIEWER -->
+    <div class="pdf-modal-content">
+        <div class="pdf-toolbar">
+            <h2>SALES ACTIVITY</h2>
+            <a href="photos/sales-activity.pdf" target="_blank"
+               rel="noopener">Open / Download PDF ↗</a>
+        </div>
 
-<div
-    id="photoViewer"
-    class="photo-viewer"
->
+        <iframe class="pdf-frame"
+                src="photos/sales-activity.pdf"
+                title="Sales Activity PDF">
+        </iframe>
 
-    <span
-        class="viewer-close"
-        onclick="closePhoto()"
-    >
-        &times;
-    </span>
-
-    <img
-        id="viewerImage"
-        src=""
-        alt="Full Size Photo"
-    >
-
+        <div class="pdf-fallback">
+            If the PDF does not appear, use the Open / Download PDF link above.
+        </div>
+    </div>
 </div>
 
-
+<!-- FULL-SCREEN PHOTO VIEWER -->
+<div id="photoViewer" class="photo-viewer" onclick="closePhoto()">
+    <span class="viewer-close">&times;</span>
+    <img id="viewerImage" src="" alt="Full Size Photo">
+</div>
 
 <script>
-
-
-/* =========================================================
+/* =========================================
    FIELD LEARNING ACTIVITY
-   ========================================================= */
-
-
-/* First 20 photos */
+========================================= */
 
 const oldPhotos = [
-
     "field-01-01.jpg",
     "field-01-02.jpg",
     "field-01-03.jpg",
     "field-01-04.jpg",
     "field-01-05.jpg",
-
     "field-02-01.jpg",
     "field-02-02.jpg",
     "field-02-03.jpg",
     "field-02-04.jpg",
     "field-02-05.jpg",
-
     "field-03-01.jpg",
     "field-03-02.jpg",
     "field-03-03.jpg",
     "field-03-04.jpg",
     "field-03-05.jpg",
-
     "field-04-01.jpg",
     "field-04-02.jpg",
     "field-04-03.jpg",
     "field-04-04.jpg",
     "field-04-05.jpg"
-
 ];
-
-
-/* 21 to 155 */
 
 const newPhotos = [];
-
-for(let i = 21; i <= 155; i++){
-
-    newPhotos.push(
-        i + ".jpg"
-    );
-
+for (let i = 21; i <= 155; i++) {
+    newPhotos.push(i + ".jpg");
 }
 
-
-/* Section 32 = 156 to 160 */
-
 const section32Photos = [
-
-    "156.jpg",
-    "157.jpg",
-    "158.jpg",
-    "159.jpg",
-    "160.jpg"
-
+    "156.jpg", "157.jpg", "158.jpg", "159.jpg", "160.jpg"
 ];
 
-
-/* All 160 photos */
-
 const allPhotos = [
-
     ...oldPhotos,
     ...newPhotos,
     ...section32Photos
-
 ];
 
-
-/* Names */
-
 const names = [
-
     "1. Pawan Bhoyar",
     "2. Satyam Pandey",
     "3. Vinod Kumar",
@@ -681,679 +601,256 @@ const names = [
     "30. Shivani Rajpoot",
     "31. Beddala Raj Kumar",
     "32. Ajeet Gupta"
-
 ];
 
-
-/* =========================================================
-   OPEN FIELD GALLERY
-   ========================================================= */
-
-function openGallery(){
-
-    const modal =
-        document.getElementById(
-            "galleryModal"
-        );
-
-    const container =
-        document.getElementById(
-            "galleryContainer"
-        );
+function openGallery() {
+    const modal = document.getElementById("galleryModal");
+    const container = document.getElementById("galleryContainer");
 
     container.innerHTML = "";
 
+    for (let section = 0; section < 32; section++) {
+        const group = document.createElement("div");
+        group.className = "photo-group";
 
-    for(
-        let section = 0;
-        section < 32;
-        section++
-    ){
+        const grid = document.createElement("div");
+        grid.className = "photo-grid";
 
-        const group =
-            document.createElement(
-                "div"
-            );
+        for (let i = 0; i < 5; i++) {
+            const photoIndex = section * 5 + i;
 
-        group.className =
-            "photo-group";
-
-
-        const grid =
-            document.createElement(
-                "div"
-            );
-
-        grid.className =
-            "photo-grid";
-
-
-        for(
-            let i = 0;
-            i < 5;
-            i++
-        ){
-
-            const photoIndex =
-                section * 5 + i;
-
-
-            if(
-                photoIndex <
-                allPhotos.length
-            ){
-
-                const img =
-                    document.createElement(
-                        "img"
-                    );
-
-
-                img.src =
-                    "photos/" +
-                    allPhotos[photoIndex];
-
-
-                img.alt =
-                    "Field Learning Activity";
-
-
-                img.onclick =
-                    function(){
-
-                        openPhoto(
-                            this.src
-                        );
-
-                    };
-
-
+            if (photoIndex < allPhotos.length) {
+                const img = document.createElement("img");
+                img.src = "photos/" + allPhotos[photoIndex];
+                img.alt = "Field Learning Activity";
+                img.loading = "lazy";
+                img.onclick = function(event) {
+                    event.stopPropagation();
+                    openPhoto(this.src);
+                };
                 grid.appendChild(img);
-
             }
-
         }
-
 
         group.appendChild(grid);
 
-
-        if(names[section]){
-
-            const name =
-                document.createElement(
-                    "div"
-                );
-
-            name.className =
-                "photo-name";
-
-            name.textContent =
-                names[section];
-
+        if (names[section]) {
+            const name = document.createElement("div");
+            name.className = "photo-name";
+            name.textContent = names[section];
             group.appendChild(name);
-
         }
 
-
         container.appendChild(group);
-
     }
 
-
-    modal.style.display =
-        "block";
-
-    document.body.style.overflow =
-        "hidden";
-
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
 }
 
-
-/* =========================================================
-   DOWNLOAD ALL FIELD PHOTOS
-   ========================================================= */
-
-async function downloadAllFieldPhotos(){
-
-    const button =
-        document.getElementById(
-            "fieldDownloadBtn"
-        );
-
-
+async function downloadAllFieldPhotos() {
+    const button = document.getElementById("fieldDownloadBtn");
     button.disabled = true;
+    button.textContent = "⏳ Preparing downloads...";
 
-    button.textContent =
-        "⏳ Preparing downloads...";
+    try {
+        for (const photo of allPhotos) {
+            const link = document.createElement("a");
+            link.href = "photos/" + photo;
+            link.download = photo;
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
 
-
-    for(
-        let i = 0;
-        i < allPhotos.length;
-        i++
-    ){
-
-        const photo =
-            allPhotos[i];
-
-
-        const url =
-            "photos/" + photo;
-
-
-        const link =
-            document.createElement(
-                "a"
-            );
-
-
-        link.href = url;
-
-        link.download = photo;
-
-        link.style.display = "none";
-
-
-        document.body.appendChild(link);
-
-        link.click();
-
-        document.body.removeChild(link);
-
-
-        await new Promise(
-            resolve =>
-                setTimeout(
-                    resolve,
-                    150
-                )
-        );
-
+            await new Promise(resolve => setTimeout(resolve, 150));
+        }
+    } finally {
+        button.disabled = false;
+        button.textContent = "📥 Download All Photos";
     }
-
-
-    button.disabled = false;
-
-    button.textContent =
-        "📥 Download All Photos";
-
 }
 
-
-/* =========================================================
-   CLOSE FIELD GALLERY
-   ========================================================= */
-
-function closeGallery(){
-
-    document.getElementById(
-        "galleryModal"
-    ).style.display =
-        "none";
-
-    document.body.style.overflow =
-        "auto";
-
+function closeGallery() {
+    document.getElementById("galleryModal").style.display = "none";
+    document.body.style.overflow = "auto";
 }
 
-
-/* =========================================================
-   INSURANCE AWARENESS
-   ONE PHOTO PER SECTION
-   ========================================================= */
+/* =========================================
+   INSURANCE AWARENESS – ROLE PLAY
+========================================= */
 
 const insuranceSections = [
-
     {
-        photos:[
-            "a1.jpg"
-        ],
-
-        text:
-            "1. Insurance Awareness",
-
-        description:
-            "Students introduced the importance of insurance and explained why financial protection is important."
+        photos: ["a1.jpg"],
+        text: "1. Insurance Awareness",
+        description: "Students introduced the importance of insurance and explained why financial protection is important."
     },
-
-
     {
-        photos:[
-            "a2.jpg"
-        ],
-
-        text:
-            "2. Understanding Insurance",
-
-        description:
-            "The role play helped students understand the basic concept of insurance in a simple and engaging way."
+        photos: ["a2.jpg"],
+        text: "2. Understanding Insurance",
+        description: "The role play helped students understand the basic concept of insurance in a simple and engaging way."
     },
-
-
     {
-        photos:[
-            "a3.jpg"
-        ],
-
-        text:
-            "3. Customer Awareness",
-
-        description:
-            "Students presented situations showing how insurance can provide financial support during unexpected events."
+        photos: ["a3.jpg"],
+        text: "3. Customer Awareness",
+        description: "Students presented situations showing how insurance can provide financial support during unexpected events."
     },
-
-
     {
-        photos:[
-            "a4.jpg"
-        ],
-
-        text:
-            "4. Role Play Activity",
-
-        description:
-            "Students performed different roles to demonstrate insurance awareness through a practical role play."
+        photos: ["a4.jpg"],
+        text: "4. Role Play Activity",
+        description: "Students performed different roles to demonstrate insurance awareness through a practical role play."
     },
-
-
     {
-        photos:[
-            "a5.jpg"
-        ],
-
-        text:
-            "5. Learning Through Activity",
-
-        description:
-            "The activity encouraged students to learn important insurance concepts through participation and teamwork."
+        photos: ["a5.jpg"],
+        text: "5. Learning Through Activity",
+        description: "The activity encouraged students to learn important insurance concepts through participation and teamwork."
     },
-
-
     {
-        photos:[
-            "a6.jpg"
-        ],
-
-        text:
-            "6. Insurance Awareness Message",
-
-        description:
-            "The role play concluded with a simple message highlighting the importance of awareness and financial protection."
+        photos: ["a6.jpg"],
+        text: "6. Insurance Awareness Message",
+        description: "The role play concluded with a simple message highlighting the importance of awareness and financial protection."
     }
-
 ];
 
-
-/* =========================================================
-   OPEN INSURANCE GALLERY
-   ========================================================= */
-
-function openInsuranceGallery(){
-
-    const modal =
-        document.getElementById(
-            "insuranceGalleryModal"
-        );
-
-
-    const container =
-        document.getElementById(
-            "insuranceContainer"
-        );
-
+function openInsuranceGallery() {
+    const modal = document.getElementById("insuranceGalleryModal");
+    const container = document.getElementById("insuranceContainer");
 
     container.innerHTML = "";
 
+    insuranceSections.forEach(section => {
+        const group = document.createElement("div");
+        group.className = "insurance-group";
 
-    insuranceSections.forEach(
-        function(section){
+        const photoGrid = document.createElement("div");
+        photoGrid.className = "insurance-photo-grid";
 
-            const group =
-                document.createElement(
-                    "div"
-                );
+        section.photos.forEach(photo => {
+            const img = document.createElement("img");
+            img.src = "photos/" + photo;
+            img.alt = section.text;
+            img.loading = "lazy";
+            img.onclick = function(event) {
+                event.stopPropagation();
+                openPhoto(this.src);
+            };
+            photoGrid.appendChild(img);
+        });
 
-            group.className =
-                "insurance-group";
+        group.appendChild(photoGrid);
 
+        const text = document.createElement("div");
+        text.className = "insurance-text";
+        text.textContent = section.text;
+        group.appendChild(text);
 
-            const photoGrid =
-                document.createElement(
-                    "div"
-                );
+        const description = document.createElement("div");
+        description.className = "insurance-description";
+        description.textContent = section.description;
+        group.appendChild(description);
 
-            photoGrid.className =
-                "insurance-photo-grid";
+        container.appendChild(group);
+    });
 
-
-            /* ONE PHOTO */
-
-            section.photos.forEach(
-                function(photo){
-
-                    const img =
-                        document.createElement(
-                            "img"
-                        );
-
-
-                    img.src =
-                        "photos/" +
-                        photo;
-
-
-                    img.alt =
-                        section.text;
-
-
-                    img.onclick =
-                        function(){
-
-                            openPhoto(
-                                this.src
-                            );
-
-                        };
-
-
-                    photoGrid.appendChild(
-                        img
-                    );
-
-                }
-            );
-
-
-            group.appendChild(
-                photoGrid
-            );
-
-
-            /* TEXT */
-
-            const text =
-                document.createElement(
-                    "div"
-                );
-
-            text.className =
-                "insurance-text";
-
-            text.textContent =
-                section.text;
-
-            group.appendChild(text);
-
-
-            /* DESCRIPTION */
-
-            const description =
-                document.createElement(
-                    "div"
-                );
-
-            description.className =
-                "insurance-description";
-
-            description.textContent =
-                section.description;
-
-            group.appendChild(
-                description
-            );
-
-
-            container.appendChild(
-                group
-            );
-
-        }
-    );
-
-
-    modal.style.display =
-        "block";
-
-    document.body.style.overflow =
-        "hidden";
-
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
 }
 
-
-/* =========================================================
-   DOWNLOAD ALL INSURANCE PHOTOS
-   ========================================================= */
-
-async function downloadAllInsurancePhotos(){
-
-    const button =
-        document.getElementById(
-            "insuranceDownloadBtn"
-        );
-
+async function downloadAllInsurancePhotos() {
+    const button = document.getElementById("insuranceDownloadBtn");
+    const photos = insuranceSections.flatMap(section => section.photos);
 
     button.disabled = true;
+    button.textContent = "⏳ Preparing downloads...";
 
-    button.textContent =
-        "⏳ Preparing downloads...";
+    try {
+        for (const photo of photos) {
+            const link = document.createElement("a");
+            link.href = "photos/" + photo;
+            link.download = photo;
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
 
-
-    const photos = [];
-
-
-    insuranceSections.forEach(
-        function(section){
-
-            section.photos.forEach(
-                function(photo){
-
-                    photos.push(photo);
-
-                }
-            );
-
+            await new Promise(resolve => setTimeout(resolve, 200));
         }
-    );
-
-
-    for(
-        let i = 0;
-        i < photos.length;
-        i++
-    ){
-
-        const photo =
-            photos[i];
-
-
-        const url =
-            "photos/" + photo;
-
-
-        const link =
-            document.createElement(
-                "a"
-            );
-
-
-        link.href = url;
-
-        link.download = photo;
-
-        link.style.display = "none";
-
-
-        document.body.appendChild(link);
-
-        link.click();
-
-        document.body.removeChild(link);
-
-
-        await new Promise(
-            resolve =>
-                setTimeout(
-                    resolve,
-                    200
-                )
-        );
-
+    } finally {
+        button.disabled = false;
+        button.textContent = "📥 Download All Photos";
     }
-
-
-    button.disabled = false;
-
-    button.textContent =
-        "📥 Download All Photos";
-
 }
 
-
-/* =========================================================
-   CLOSE INSURANCE GALLERY
-   ========================================================= */
-
-function closeInsuranceGallery(){
-
-    document.getElementById(
-        "insuranceGalleryModal"
-    ).style.display =
-        "none";
-
-    document.body.style.overflow =
-        "auto";
-
+function closeInsuranceGallery() {
+    document.getElementById("insuranceGalleryModal").style.display = "none";
+    document.body.style.overflow = "auto";
 }
 
+/* =========================================
+   SALES ACTIVITY PDF
+========================================= */
 
-/* =========================================================
-   FULL SCREEN PHOTO
-   ========================================================= */
+function openSalesActivity() {
+    document.getElementById("salesModal").style.display = "block";
+    document.body.style.overflow = "hidden";
+}
 
-function openPhoto(src){
+function closeSalesActivity() {
+    document.getElementById("salesModal").style.display = "none";
+    document.body.style.overflow = "auto";
+}
 
-    const viewer =
-        document.getElementById(
-            "photoViewer"
-        );
+/* =========================================
+   FULL-SCREEN PHOTO VIEWER
+========================================= */
 
-    const image =
-        document.getElementById(
-            "viewerImage"
-        );
-
+function openPhoto(src) {
+    const viewer = document.getElementById("photoViewer");
+    const image = document.getElementById("viewerImage");
 
     image.src = src;
-
-    viewer.style.display =
-        "flex";
-
+    viewer.style.display = "flex";
 }
 
+function closePhoto() {
+    const viewer = document.getElementById("photoViewer");
+    const image = document.getElementById("viewerImage");
 
-function closePhoto(){
-
-    const viewer =
-        document.getElementById(
-            "photoViewer"
-        );
-
-    const image =
-        document.getElementById(
-            "viewerImage"
-        );
-
-
-    viewer.style.display =
-        "none";
-
+    viewer.style.display = "none";
     image.src = "";
-
 }
 
+/* =========================================
+   CLICK OUTSIDE TO CLOSE
+========================================= */
 
-/* =========================================================
-   OUTSIDE CLICK
-   ========================================================= */
-
-window.onclick =
-    function(event){
-
-        const galleryModal =
-            document.getElementById(
-                "galleryModal"
-            );
-
-
-        const insuranceModal =
-            document.getElementById(
-                "insuranceGalleryModal"
-            );
-
-
-        const viewer =
-            document.getElementById(
-                "photoViewer"
-            );
-
-
-        if(
-            event.target ===
-            galleryModal
-        ){
-
-            closeGallery();
-
-        }
-
-
-        if(
-            event.target ===
-            insuranceModal
-        ){
-
-            closeInsuranceGallery();
-
-        }
-
-
-        if(
-            event.target ===
-            viewer
-        ){
-
-            closePhoto();
-
-        }
-
-    };
-
-
-/* =========================================================
-   ESC KEY
-   ========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key ===
-            "Escape"
-        ){
-
-            closeGallery();
-
-            closeInsuranceGallery();
-
-            closePhoto();
-
-        }
-
+window.addEventListener("click", function(event) {
+    if (event.target === document.getElementById("galleryModal")) {
+        closeGallery();
     }
-);
 
+    if (event.target === document.getElementById("insuranceGalleryModal")) {
+        closeInsuranceGallery();
+    }
+
+    if (event.target === document.getElementById("salesModal")) {
+        closeSalesActivity();
+    }
+});
+
+/* =========================================
+   ESCAPE KEY
+========================================= */
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closeGallery();
+        closeInsuranceGallery();
+        closeSalesActivity();
+        closePhoto();
+    }
+});
 </script>
 
 </body>
