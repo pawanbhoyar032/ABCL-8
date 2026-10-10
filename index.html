@@ -4,9 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABC Life Insurance - Profile Gallery</title>
 
-<!-- PDF and ZIP libraries -->
+<title>Aditya Birla Sun Life Insurance - Profile Gallery</title>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
@@ -36,9 +36,20 @@ header {
     border-bottom: 3px solid var(--brand-red);
 }
 
+.header-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
 .logo {
-    max-width: 220px;
-    max-height: 100px;
+    max-width: 200px;
+    max-height: 85px;
+    width: auto;
+    height: auto;
     object-fit: contain;
 }
 
@@ -51,6 +62,7 @@ header h1 {
 header p {
     margin-top: 8px;
     color: #555;
+    line-height: 1.5;
 }
 
 main {
@@ -186,7 +198,7 @@ footer {
     overflow-wrap: anywhere;
 }
 
-/* Field gallery */
+/* Field Learning Gallery */
 .field-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -214,7 +226,7 @@ footer {
     font-weight: bold;
 }
 
-/* Insurance gallery */
+/* Insurance Awareness Gallery */
 .insurance-group {
     border: 1px solid #eee;
     border-radius: 10px;
@@ -246,7 +258,7 @@ footer {
     line-height: 1.5;
 }
 
-/* Sales Activity PDF list */
+/* Sales Activity PDF List */
 .pdf-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -280,7 +292,7 @@ footer {
     padding: 9px 11px;
 }
 
-/* PDF viewer */
+/* PDF Viewer */
 .viewer-modal {
     z-index: 2000;
     background: #111e;
@@ -353,6 +365,19 @@ footer {
 }
 
 @media (max-width: 600px) {
+    .header-logos {
+        gap: 15px;
+    }
+
+    .logo {
+        max-width: 42%;
+        max-height: 65px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
     .modal {
         padding: 7px;
     }
@@ -384,11 +409,30 @@ footer {
 
 <body>
 
+<!-- HEADER WITH TWO LOGOS -->
 <header>
-    <img class="logo" src="photos/logo.png" alt="ABC Life Insurance Logo"
-         onerror="this.style.display='none'">
-    <h1>ABC Life Insurance</h1>
-    <p>Welcome to the ABC Life Insurance Profile Gallery. Explore and Connect with our people.</p>
+    <div class="header-logos">
+        <img
+            class="logo"
+            src="photos/logo.png"
+            alt="First Logo"
+            onerror="this.style.display='none'"
+        >
+
+        <img
+            class="logo"
+            src="photos/absl-logo.png"
+            alt="Aditya Birla Sun Life Insurance Logo"
+            onerror="this.style.display='none'"
+        >
+    </div>
+
+    <h1>Aditya Birla Sun Life Insurance</h1>
+
+    <p>
+        Welcome to the Aditya Birla Sun Life Insurance Profile Gallery.
+        Explore and Connect with our people.
+    </p>
 </header>
 
 <main>
@@ -400,14 +444,19 @@ footer {
         </div>
 
         <div class="cover-card insurance-card" onclick="openInsuranceGallery()">
-            <img src="photos/insurance-awareness-cover.jpg" alt="Insurance Awareness Role Play">
+            <img
+                src="photos/insurance-awareness-cover.jpg"
+                alt="Insurance Awareness Role Play"
+            >
             <div class="card-title">Insurance Awareness – Role Play</div>
         </div>
 
         <div class="cover-card" onclick="openSalesActivity()">
-            <img src="photos/sales-activity-cover.jpg"
-                 alt="Sales Activity"
-                 onerror="this.onerror=null;this.src='photos/field-cover.jpg'">
+            <img
+                src="photos/sales-activity-cover.jpg"
+                alt="Sales Activity"
+                onerror="this.onerror=null;this.src='photos/field-cover.jpg'"
+            >
             <div class="card-title">SALES ACTIVITY</div>
         </div>
 
@@ -415,7 +464,7 @@ footer {
 </main>
 
 <footer>
-    © 2026 ABC Life Insurance
+    © 2026 Aditya Birla Sun Life Insurance
 </footer>
 
 <!-- FIELD GALLERY MODAL -->
@@ -444,9 +493,13 @@ footer {
         <h2>Sales Activity – PDF Gallery</h2>
         <p>Search a name to find and open the corresponding Sales Activity PDF.</p>
 
-        <input id="pdfSearch" class="search-input" type="search"
-               placeholder="Search by name..."
-               oninput="renderPdfList()">
+        <input
+            id="pdfSearch"
+            class="search-input"
+            type="search"
+            placeholder="Search by name..."
+            oninput="renderPdfList()"
+        >
 
         <button class="action-btn" id="downloadZipBtn" onclick="downloadAllPDFs()">
             Download All PDFs (ZIP)
@@ -458,8 +511,7 @@ footer {
 </div>
 
 <!-- PDF VIEWER MODAL -->
-<div class="modal viewer-modal" id="viewerModal"
-     onclick="closeOnBackdrop(event,'viewerModal')">
+<div class="modal viewer-modal" id="viewerModal" onclick="closeOnBackdrop(event,'viewerModal')">
     <div class="modal-content viewer-content">
         <button class="close" onclick="closeViewer()" aria-label="Close PDF viewer">&times;</button>
 
@@ -479,13 +531,16 @@ footer {
         <div class="pdf-page-area">
             <canvas id="pdfCanvas"></canvas>
         </div>
-        <p class="viewer-hint">Use Previous and Next to turn pages. On mobile, scroll to view the full page.</p>
+
+        <p class="viewer-hint">
+            Use Previous and Next to turn pages. On mobile, scroll to view the full page.
+        </p>
         <p class="status-message" id="viewerStatus" aria-live="polite"></p>
     </div>
 </div>
 
 <script>
-/* Set PDF.js worker */
+/* PDF.js worker */
 if (window.pdfjsLib) {
     pdfjsLib.GlobalWorkerOptions.workerSrc =
         "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
@@ -500,9 +555,7 @@ function openModal(id) {
 function closeModal(id) {
     document.getElementById(id).style.display = "none";
 
-    if (id === "viewerModal") {
-        return;
-    }
+    if (id === "viewerModal") return;
 
     if (!document.querySelector('.modal[style*="display: block"]')) {
         document.body.style.overflow = "";
@@ -534,8 +587,7 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
-/* FIELD LEARNING ACTIVITY
-   Replace or edit names and photo filenames here if needed. */
+/* FIELD LEARNING ACTIVITY */
 const fieldNames = [
     "Pawan Bhoyar",
     "Satyam Pandey",
@@ -560,11 +612,11 @@ function buildFieldGallery() {
         img.alt = "Field Learning Photo " + i;
         img.src = "photos/" + String(i).padStart(2, "0") + ".jpg";
 
-        /* Support alternate filenames, if your gallery uses them */
         img.onerror = function() {
             this.onerror = null;
-            this.src = "photos/field-" + String(Math.ceil(i / 5)).padStart(2, "0")
-                + "-" + (((i - 1) % 5) + 1) + ".jpg";
+            this.src = "photos/field-" +
+                String(Math.ceil(i / 5)).padStart(2, "0") +
+                "-" + (((i - 1) % 5) + 1) + ".jpg";
         };
 
         const name = document.createElement("p");
@@ -652,8 +704,7 @@ function openInsuranceGallery() {
     openModal("insuranceModal");
 }
 
-/* SALES ACTIVITY PDF FILES
-   Upload each PDF into the "pdfs" folder using these exact filenames. */
+/* SALES ACTIVITY PDF FILES */
 const salesParticipants = [
     "Pawan Bhoyar",
     "Gayathri Krishnan",
@@ -700,8 +751,10 @@ function slugifyName(name) {
 const salesPDFs = salesParticipants.map((name, index) => ({
     name: name,
     number: index + 1,
-    filename: String(index + 1).padStart(2, "0") + "-" + slugifyName(name) + ".pdf",
-    url: "pdfs/" + String(index + 1).padStart(2, "0") + "-" + slugifyName(name) + ".pdf"
+    filename: String(index + 1).padStart(2, "0") +
+        "-" + slugifyName(name) + ".pdf",
+    url: "pdfs/" + String(index + 1).padStart(2, "0") +
+        "-" + slugifyName(name) + ".pdf"
 }));
 
 function openSalesActivity() {
@@ -754,7 +807,7 @@ function renderPdfList() {
     });
 }
 
-/* PDF VIEWER: renders one PDF page at a time, with page navigation */
+/* PDF VIEWER */
 let currentPdfDocument = null;
 let currentPdfPage = 1;
 let currentPdfScale = 1.15;
@@ -762,6 +815,7 @@ let currentPdfTask = null;
 
 async function openPDFViewer(person) {
     openModal("viewerModal");
+
     document.getElementById("viewerTitle").textContent = person.name;
     document.getElementById("viewerStatus").textContent = "Loading PDF...";
     document.getElementById("pageCounter").textContent = "Loading...";
@@ -780,7 +834,9 @@ async function openPDFViewer(person) {
 
     try {
         if (currentPdfTask && currentPdfTask.destroy) {
-            try { await currentPdfTask.destroy(); } catch (e) {}
+            try {
+                await currentPdfTask.destroy();
+            } catch (e) {}
         }
 
         currentPdfTask = pdfjsLib.getDocument(person.url);
@@ -843,7 +899,9 @@ async function closeViewer() {
     document.getElementById("viewerModal").style.display = "none";
 
     if (currentPdfTask && currentPdfTask.destroy) {
-        try { await currentPdfTask.destroy(); } catch (e) {}
+        try {
+            await currentPdfTask.destroy();
+        } catch (e) {}
     }
 
     currentPdfTask = null;
