@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABC Life Insurance - Profile Gallery</title>
+<title>Aditya Birla Sun Life Insurance - Gallery</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -26,7 +26,7 @@ body {
 
 header {
     background:white;
-    padding:18px;
+    padding:24px 18px;
     text-align:center;
     border-bottom:3px solid var(--brand-red);
 }
@@ -45,9 +45,23 @@ header h1 {
     margin-top:10px;
     color:var(--brand-red);
     font-size:25px;
+    line-height:1.4;
 }
 
-header p { margin-top:8px; color:#555; }
+header p {
+    margin:10px auto 0;
+    color:#555;
+    line-height:1.6;
+    max-width:800px;
+}
+
+header .tagline {
+    margin-top:14px;
+    color:var(--brand-dark);
+    font-size:16px;
+    font-weight:bold;
+    letter-spacing:.3px;
+}
 
 main {
     max-width:1200px;
@@ -99,10 +113,11 @@ main {
 footer {
     margin-top:30px;
     padding:20px;
-    background:white;
+    background:#292929;
     text-align:center;
-    color:#666;
-    border-top:1px solid #eee;
+    color:#fff;
+    font-size:13px;
+    line-height:1.6;
 }
 
 .modal {
@@ -397,6 +412,11 @@ footer {
 }
 
 @media(max-width:600px) {
+    header { padding:20px 14px; }
+    header h1 { font-size:22px; }
+    header p { font-size:14px; }
+    header .tagline { font-size:15px; }
+
     .modal { padding:7px; }
     .modal-content { padding:15px; margin:8px auto; }
     .cover-card img { height:190px; }
@@ -412,13 +432,16 @@ footer {
 <body>
 
 <header>
-    <!-- UPDATED LOGO -->
     <img class="logo"
          src="./photos/abc-life-logo.jpg"
-         alt="ABC Life Insurance Logo"
+         alt="Aditya Birla Sun Life Insurance Logo"
          onerror="this.alt='Logo not found: check photos/abc-life-logo.jpg';">
-    <h1>ABC Life Insurance</h1>
-    <p>Welcome to the ABC Life Insurance Profile Gallery. Explore and Connect with our people.</p>
+
+    <h1>Aditya Birla Sun Life Insurance</h1>
+
+    <p>Explore our people, celebrate our experiences, and connect through the moments that bring us together.</p>
+
+    <p class="tagline">Our People. Our Learning. Our Journey.</p>
 </header>
 
 <main>
@@ -442,7 +465,7 @@ footer {
     </div>
 </main>
 
-<footer>© 2026 ABC Life Insurance</footer>
+<footer>© 2026 Aditya Birla Sun Life Insurance. All rights reserved.</footer>
 
 <div class="modal" id="fieldModal" onclick="closeOnBackdrop(event,'fieldModal')">
     <div class="modal-content">
