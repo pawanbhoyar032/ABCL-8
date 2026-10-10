@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -247,7 +247,12 @@ footer {
     color:var(--brand-red);
 }
 
-.insurance-description { margin-top:6px; line-height:1.5; }
+.insurance-description {
+    margin-top:6px;
+    line-height:1.5;
+}
+
+/* SALES ACTIVITY PDF GALLERY */
 
 .sales-toolbar {
     display:flex;
@@ -258,65 +263,98 @@ footer {
     margin-bottom:12px;
 }
 
-.sales-count { color:#555; font-size:14px; }
+.sales-count {
+    color:#555;
+    font-size:14px;
+}
 
 .pdf-list {
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:14px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
 }
 
+/* Each participant has a separate clickable PDF card */
 .pdf-item {
     background:white;
     border:1px solid #e4e4e4;
     border-radius:12px;
-    min-height:145px;
-    padding:20px 12px;
+    overflow:hidden;
     display:flex;
     flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
     text-align:center;
     cursor:pointer;
     transition:transform .2s,box-shadow .2s,border-color .2s;
 }
 
-.pdf-item:hover {
+.pdf-item:hover,
+.pdf-item:focus-visible {
     transform:translateY(-3px);
     border-color:var(--brand-red);
-    box-shadow:0 5px 16px #00000012;
+    box-shadow:0 5px 16px #00000018;
+    outline:none;
 }
 
-.pdf-icon {
-    width:54px;
-    height:64px;
+/* Thumbnail frame is always 16:9 landscape */
+.pdf-thumbnail {
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:#f0f0f0;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:#fff0f1;
-    color:#c8102e;
-    border:1px solid #f2c7ce;
-    border-radius:7px;
-    font-size:18px;
-    font-weight:bold;
-    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid #eee;
 }
 
-.pdf-icon::after {
-    content:"";
+.pdf-thumbnail img {
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#f0f0f0;
+}
+
+.pdf-thumbnail.loading::after {
+    content:"Loading PDF preview...";
     position:absolute;
-    top:0;
-    right:0;
-    border-top:13px solid white;
-    border-left:13px solid transparent;
+    left:5px;
+    right:5px;
+    bottom:8px;
+    text-align:center;
+    color:#666;
+    font-size:12px;
+    background:#ffffffd9;
+    padding:5px;
+    border-radius:4px;
+}
+
+.pdf-thumbnail.error::after {
+    content:"PDF preview unavailable";
+    position:absolute;
+    left:5px;
+    right:5px;
+    bottom:8px;
+    text-align:center;
+    color:#8d1025;
+    font-size:12px;
+    background:#ffffffed;
+    padding:5px;
+    border-radius:4px;
 }
 
 .pdf-name {
     font-weight:bold;
     font-size:14px;
-    line-height:1.4;
+    line-height:1.45;
     overflow-wrap:anywhere;
+    padding:13px 10px;
+    color:#292929;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .empty-result {
@@ -326,66 +364,7 @@ footer {
     color:#666;
 }
 
-.viewer-modal { z-index:2000; background:#111e; }
-
-.viewer-content {
-    max-width:1200px;
-    background:#222;
-    color:white;
-    min-height:90vh;
-    padding:18px;
-}
-
-.viewer-header {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:10px 45px 15px 0;
-}
-
-.viewer-header h3 { font-size:18px; overflow-wrap:anywhere; }
-.viewer-content .close { color:white; }
-
-.viewer-controls {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:8px;
-    flex-wrap:wrap;
-    margin:10px 0 16px;
-}
-
-.viewer-controls .action-btn { margin:0; }
-.page-counter { color:white; font-size:14px; padding:0 5px; }
-
-.pdf-page-area {
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
-    min-height:60vh;
-    max-height:72vh;
-    overflow:auto;
-    background:#333;
-    border-radius:8px;
-    padding:12px;
-}
-
-#pdfCanvas {
-    display:block;
-    max-width:100%;
-    height:auto;
-    background:white;
-    box-shadow:0 2px 12px #0005;
-}
-
-.viewer-hint {
-    text-align:center;
-    font-size:12px;
-    color:#ddd;
-    margin-top:10px;
-}
-
+/* Full-screen photo viewer */
 .photo-viewer {
     display:none;
     position:fixed;
@@ -421,11 +400,16 @@ footer {
     .modal { padding:7px; }
     .modal-content { padding:15px; margin:8px auto; }
     .cover-card img { height:190px; }
-    .pdf-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-    .pdf-item { min-height:135px; padding:15px 8px; }
-    .pdf-page-area { min-height:50vh; padding:5px; }
-    .viewer-content { min-height:95vh; }
-    .viewer-controls .action-btn { padding:9px 10px; font-size:12px; }
+
+    .pdf-list {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+    }
+
+    .pdf-name {
+        font-size:13px;
+        padding:10px 7px;
+    }
 }
 </style>
 </head>
@@ -447,6 +431,7 @@ footer {
 
 <main>
     <div class="cards">
+
         <div class="cover-card" onclick="openGallery()">
             <img src="photos/field-cover.jpg" alt="Field Learning Activity">
             <div class="card-title">Field Learning Activity</div>
@@ -463,11 +448,13 @@ footer {
                  onerror="this.onerror=null;this.src='photos/field-cover.jpg'">
             <div class="card-title">SALES ACTIVITY</div>
         </div>
+
     </div>
 </main>
 
 <footer>© 2026 Aditya Birla Sun Life Insurance. All rights reserved.</footer>
 
+<!-- FIELD LEARNING MODAL -->
 <div class="modal" id="fieldModal" onclick="closeOnBackdrop(event,'fieldModal')">
     <div class="modal-content">
         <button class="close" onclick="closeModal('fieldModal')" aria-label="Close">&times;</button>
@@ -477,6 +464,7 @@ footer {
     </div>
 </div>
 
+<!-- INSURANCE AWARENESS MODAL -->
 <div class="modal" id="insuranceModal" onclick="closeOnBackdrop(event,'insuranceModal')">
     <div class="modal-content">
         <button class="close" onclick="closeModal('insuranceModal')" aria-label="Close">&times;</button>
@@ -485,19 +473,26 @@ footer {
     </div>
 </div>
 
+<!-- SALES ACTIVITY PDF GALLERY -->
 <div class="modal" id="salesModal" onclick="closeOnBackdrop(event,'salesModal')">
     <div class="modal-content">
         <button class="close" onclick="closeModal('salesModal')" aria-label="Close">&times;</button>
-        <h2>Sales Activity – PDF Gallery</h2>
-        <p>Search a participant's name or click a PDF card to open the flipbook.</p>
 
-        <input id="pdfSearch" class="search-input" type="search"
+        <h2>Sales Activity – PDF Gallery</h2>
+        <p>Click a participant's card to open their PDF.</p>
+
+        <input id="pdfSearch"
+               class="search-input"
+               type="search"
                placeholder="Search participant name..."
-               oninput="renderPdfList()" autocomplete="off">
+               oninput="renderPdfList()"
+               autocomplete="off">
 
         <div class="sales-toolbar">
             <span id="pdfCount" class="sales-count">32 participants</span>
-            <button class="action-btn" id="downloadZipBtn" onclick="downloadAllPDFs()">Download All PDFs (ZIP)</button>
+            <button class="action-btn"
+                    id="downloadZipBtn"
+                    onclick="downloadAllPDFs()">Download All PDFs (ZIP)</button>
         </div>
 
         <p id="pdfStatus" class="status-message" aria-live="polite"></p>
@@ -505,26 +500,7 @@ footer {
     </div>
 </div>
 
-<div class="modal viewer-modal" id="viewerModal" onclick="closeOnBackdrop(event,'viewerModal')">
-    <div class="modal-content viewer-content">
-        <button class="close" onclick="closeViewer()" aria-label="Close PDF viewer">&times;</button>
-        <div class="viewer-header"><h3 id="viewerTitle">PDF Flipbook</h3></div>
-
-        <div class="viewer-controls">
-            <button class="action-btn" onclick="previousPage()">Previous</button>
-            <span class="page-counter" id="pageCounter">Page 1 / 1</span>
-            <button class="action-btn" onclick="nextPage()">Next</button>
-            <button class="action-btn" onclick="zoomOut()">− Zoom</button>
-            <button class="action-btn" onclick="zoomIn()">+ Zoom</button>
-            <a id="downloadCurrentPDF" class="action-btn" href="#" download>Download PDF</a>
-        </div>
-
-        <div class="pdf-page-area"><canvas id="pdfCanvas"></canvas></div>
-        <p class="viewer-hint">Use Previous and Next to turn pages. Use the zoom buttons to adjust the page size.</p>
-        <p class="status-message" id="viewerStatus" aria-live="polite"></p>
-    </div>
-</div>
-
+<!-- FULL-SCREEN PHOTO VIEWER -->
 <div id="photoViewer" class="photo-viewer" onclick="closePhoto()">
     <span class="viewer-close">&times;</span>
     <img id="viewerImage" src="" alt="Full Size Photo">
@@ -537,6 +513,7 @@ if (window.pdfjsLib) {
 }
 
 /* GENERAL MODALS */
+
 function openModal(id) {
     document.getElementById(id).style.display = "block";
     document.body.style.overflow = "hidden";
@@ -548,33 +525,26 @@ function closeModal(id) {
     const anyOpen = [...document.querySelectorAll(".modal")]
         .some(modal => modal.style.display === "block");
 
-    if (!anyOpen) document.body.style.overflow = "";
+    if (!anyOpen) {
+        document.body.style.overflow = "";
+    }
 }
 
 function closeOnBackdrop(event,id) {
     if (event.target.id === id) {
-        if (id === "viewerModal") closeViewer();
-        else closeModal(id);
+        closeModal(id);
     }
 }
 
 document.addEventListener("keydown",function(event) {
     if (event.key === "Escape") {
-        if (document.getElementById("viewerModal").style.display === "block") {
-            closeViewer();
-        } else {
-            ["fieldModal","insuranceModal","salesModal"].forEach(closeModal);
-            closePhoto();
-        }
-    }
-
-    if (document.getElementById("viewerModal").style.display === "block") {
-        if (event.key === "ArrowRight") nextPage();
-        if (event.key === "ArrowLeft") previousPage();
+        ["fieldModal","insuranceModal","salesModal"].forEach(closeModal);
+        closePhoto();
     }
 });
 
 /* FIELD LEARNING ACTIVITY */
+
 const oldPhotos = [
     "field-01-01.jpg","field-01-02.jpg","field-01-03.jpg","field-01-04.jpg","field-01-05.jpg",
     "field-02-01.jpg","field-02-02.jpg","field-02-03.jpg","field-02-04.jpg","field-02-05.jpg",
@@ -583,7 +553,9 @@ const oldPhotos = [
 ];
 
 const newPhotos = [];
-for (let i=21;i<=155;i++) newPhotos.push(i+".jpg");
+for (let i=21;i<=155;i++) {
+    newPhotos.push(i+".jpg");
+}
 
 const section32Photos = ["156.jpg","157.jpg","158.jpg","159.jpg","160.jpg"];
 const allPhotos = [...oldPhotos,...newPhotos,...section32Photos];
@@ -671,8 +643,10 @@ async function downloadFieldPhotos() {
         link.remove();
 
         setTimeout(() => URL.revokeObjectURL(url),2000);
+
     } catch (error) {
         alert("Could not create the ZIP file. Please try again.");
+
     } finally {
         button.disabled = false;
         button.textContent = originalText;
@@ -680,6 +654,7 @@ async function downloadFieldPhotos() {
 }
 
 /* INSURANCE AWARENESS */
+
 const insuranceSections = [
     {
         title:"1. Insurance Awareness",
@@ -749,6 +724,7 @@ function openInsuranceGallery() {
 }
 
 /* SALES ACTIVITY PDF GALLERY */
+
 const salesParticipants = [
     "Pawan Bhoyar","Gayathri Krishnan","Vinod Kumar","Satyam Pandey",
     "Rahul Kumar","Abendra Mishra","K.Dhivya","Mahesh Sajjan",
@@ -768,6 +744,7 @@ function slugifyName(name) {
 }
 
 /* PDF FILES ARE STORED IN THE ROOT pdfs/ FOLDER */
+
 const salesPDFs = salesParticipants.map((name,index) => {
     const number = String(index+1).padStart(2,"0");
     const filename = number+"-"+slugifyName(name)+".pdf";
@@ -787,6 +764,66 @@ function openSalesActivity() {
     openModal("salesModal");
 }
 
+/*
+ * Create a real thumbnail from page 1 of each PDF.
+ * The image is displayed inside a 16:9 landscape frame.
+ */
+async function renderPdfThumbnail(person,image,frame) {
+    if (!window.pdfjsLib) {
+        frame.classList.remove("loading");
+        frame.classList.add("error");
+        return;
+    }
+
+    let loadingTask = null;
+    let pdf = null;
+
+    try {
+        loadingTask = pdfjsLib.getDocument({url:person.url});
+        pdf = await loadingTask.promise;
+
+        const page = await pdf.getPage(1);
+
+        /* Render a reasonably clear thumbnail without loading all pages */
+        const originalViewport = page.getViewport({scale:1});
+        const scale = Math.min(1.2,320/originalViewport.width);
+        const viewport = page.getViewport({scale});
+
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        canvas.width = Math.ceil(viewport.width);
+        canvas.height = Math.ceil(viewport.height);
+
+        await page.render({
+            canvasContext:context,
+            viewport:viewport
+        }).promise;
+
+        image.src = canvas.toDataURL("image/jpeg",0.85);
+        image.alt = "First page preview - "+person.name;
+
+        frame.classList.remove("loading","error");
+
+        canvas.width = 0;
+        canvas.height = 0;
+
+        page.cleanup();
+
+    } catch (error) {
+        console.error("Thumbnail error for "+person.filename,error);
+        frame.classList.remove("loading");
+        frame.classList.add("error");
+
+    } finally {
+        if (pdf) {
+            try { await pdf.destroy(); } catch (error) {}
+        } else if (loadingTask && loadingTask.destroy) {
+            try { await loadingTask.destroy(); } catch (error) {}
+        }
+    }
+}
+
 function renderPdfList() {
     const search = document.getElementById("pdfSearch").value.trim().toLowerCase();
     const list = document.getElementById("pdfList");
@@ -796,6 +833,7 @@ function renderPdfList() {
     );
 
     list.innerHTML = "";
+
     document.getElementById("pdfCount").textContent =
         matches.length+" participant"+(matches.length===1?"":"s");
 
@@ -811,232 +849,57 @@ function renderPdfList() {
         const card = document.createElement("div");
         card.className = "pdf-item";
         card.tabIndex = 0;
-        card.setAttribute("role","button");
+        card.setAttribute("role","link");
         card.setAttribute("aria-label","Open PDF for "+person.name);
 
-        const icon = document.createElement("div");
-        icon.className = "pdf-icon";
-        icon.textContent = "PDF";
+        const thumbnail = document.createElement("div");
+        thumbnail.className = "pdf-thumbnail loading";
+
+        const image = document.createElement("img");
+        image.alt = "Loading first page of "+person.name;
+        image.loading = "lazy";
+
+        thumbnail.appendChild(image);
 
         const name = document.createElement("div");
         name.className = "pdf-name";
         name.textContent = person.number+". "+person.name;
 
-        card.append(icon,name);
+        card.append(thumbnail,name);
 
-        card.onclick = () => openPDFViewer(person);
+        /* Clicking anywhere on the card opens the original PDF */
+        card.onclick = () => openParticipantPDF(person);
+
         card.onkeydown = event => {
             if (event.key==="Enter" || event.key===" ") {
                 event.preventDefault();
-                openPDFViewer(person);
+                openParticipantPDF(person);
             }
         };
 
         list.appendChild(card);
+
+        /* Generate the thumbnail after adding the card to the page */
+        renderPdfThumbnail(person,image,thumbnail);
     });
 }
 
-/* PDF FLIPBOOK VIEWER */
-let currentPdfDocument = null;
-let currentPdfPage = 1;
-let currentPdfScale = 1.15;
-let currentPdfTask = null;
-let currentRenderTask = null;
-let viewerSession = 0;
+/*
+ * Open the original PDF in a new browser tab.
+ * The browser's built-in PDF viewer provides its own download option.
+ * No flipbook or custom PDF viewer is used.
+ */
+function openParticipantPDF(person) {
+    const pdfWindow = window.open(person.url,"_blank");
 
-async function openPDFViewer(person) {
-    const session = ++viewerSession;
-
-    currentPdfDocument = null;
-    currentPdfPage = 1;
-    currentPdfScale = 1.15;
-
-    document.getElementById("viewerTitle").textContent = person.name;
-    document.getElementById("viewerStatus").textContent = "Loading PDF...";
-    document.getElementById("pageCounter").textContent = "Loading...";
-
-    const downloadLink = document.getElementById("downloadCurrentPDF");
-    downloadLink.href = person.url;
-    downloadLink.download = person.filename;
-
-    openModal("viewerModal");
-
-    if (!window.pdfjsLib) {
-        document.getElementById("viewerStatus").textContent =
-            "The PDF viewer library could not load. Check your internet connection.";
-        return;
+    if (!pdfWindow) {
+        document.getElementById("pdfStatus").textContent =
+            "The PDF tab was blocked by your browser. Allow pop-ups for this website and click the card again.";
     }
-
-    try {
-        if (currentRenderTask) {
-            const oldRender = currentRenderTask;
-            currentRenderTask = null;
-
-            try { oldRender.cancel(); } catch (error) {}
-            try { await oldRender.promise; } catch (error) {}
-        }
-
-        if (currentPdfTask && currentPdfTask.destroy) {
-            const oldTask = currentPdfTask;
-            currentPdfTask = null;
-
-            try { await oldTask.destroy(); } catch (error) {}
-        }
-
-        if (session !== viewerSession) return;
-
-        const loadingTask = pdfjsLib.getDocument({
-            url:person.url
-        });
-
-        currentPdfTask = loadingTask;
-
-        const pdf = await loadingTask.promise;
-
-        if (session !== viewerSession) {
-            try { await pdf.destroy(); } catch (error) {}
-            return;
-        }
-
-        currentPdfDocument = pdf;
-        await renderCurrentPage(session);
-
-    } catch (error) {
-        if (session !== viewerSession) return;
-
-        console.error("PDF loading error:",error);
-
-        document.getElementById("viewerStatus").textContent =
-            "Could not display this PDF in the viewer. Use Download PDF to open the original file.";
-
-        document.getElementById("pageCounter").textContent = "PDF unavailable";
-    }
-}
-
-/* FIXED PDF PAGE RENDERING */
-async function renderCurrentPage(session = viewerSession) {
-    if (!currentPdfDocument) return;
-
-    const pdf = currentPdfDocument;
-    let task = null;
-
-    try {
-        /* Cancel and wait for the previous canvas render */
-        if (currentRenderTask) {
-            const previousTask = currentRenderTask;
-            currentRenderTask = null;
-
-            try {
-                previousTask.cancel();
-            } catch (error) {}
-
-            try {
-                await previousTask.promise;
-            } catch (error) {
-                /* Previous render cancellation is expected */
-            }
-        }
-
-        if (session !== viewerSession || pdf !== currentPdfDocument) return;
-
-        const page = await pdf.getPage(currentPdfPage);
-
-        if (session !== viewerSession || pdf !== currentPdfDocument) return;
-
-        const canvas = document.getElementById("pdfCanvas");
-        const context = canvas.getContext("2d");
-
-        const viewport = page.getViewport({
-            scale:currentPdfScale
-        });
-
-        canvas.width = Math.ceil(viewport.width);
-        canvas.height = Math.ceil(viewport.height);
-
-        task = page.render({
-            canvasContext:context,
-            viewport:viewport
-        });
-
-        currentRenderTask = task;
-
-        await task.promise;
-
-        if (session !== viewerSession || pdf !== currentPdfDocument) return;
-
-        document.getElementById("pageCounter").textContent =
-            "Page "+currentPdfPage+" / "+pdf.numPages;
-
-        document.getElementById("viewerStatus").textContent = "";
-
-    } catch (error) {
-        if (error && error.name === "RenderingCancelledException") return;
-        if (session !== viewerSession) return;
-
-        console.error("PDF rendering error:",error);
-
-        document.getElementById("viewerStatus").textContent =
-            "There was a problem displaying this PDF page. Try Download PDF to open the original file.";
-
-    } finally {
-        if (task && currentRenderTask === task) {
-            currentRenderTask = null;
-        }
-    }
-}
-
-async function previousPage() {
-    if (!currentPdfDocument || currentPdfPage <= 1) return;
-
-    currentPdfPage--;
-    await renderCurrentPage();
-}
-
-async function nextPage() {
-    if (!currentPdfDocument ||
-        currentPdfPage >= currentPdfDocument.numPages) return;
-
-    currentPdfPage++;
-    await renderCurrentPage();
-}
-
-async function zoomIn() {
-    if (!currentPdfDocument) return;
-
-    currentPdfScale = Math.min(currentPdfScale+0.15,3);
-    await renderCurrentPage();
-}
-
-async function zoomOut() {
-    if (!currentPdfDocument) return;
-
-    currentPdfScale = Math.max(currentPdfScale-0.15,0.5);
-    await renderCurrentPage();
-}
-
-async function closeViewer() {
-    viewerSession++;
-
-    if (currentRenderTask) {
-        const task = currentRenderTask;
-        currentRenderTask = null;
-
-        try { task.cancel(); } catch (error) {}
-        try { await task.promise; } catch (error) {}
-    }
-
-    if (currentPdfTask && currentPdfTask.destroy) {
-        const task = currentPdfTask;
-        currentPdfTask = null;
-
-        try { await task.destroy(); } catch (error) {}
-    }
-
-    currentPdfDocument = null;
-    closeModal("viewerModal");
 }
 
 /* DOWNLOAD ALL PDFs AS ZIP */
+
 async function downloadAllPDFs() {
     const button = document.getElementById("downloadZipBtn");
     const status = document.getElementById("pdfStatus");
@@ -1127,6 +990,7 @@ async function downloadAllPDFs() {
 }
 
 /* FULL-SCREEN PHOTO VIEWER */
+
 function openPhoto(src) {
     document.getElementById("viewerImage").src = src;
     document.getElementById("photoViewer").style.display = "flex";
@@ -1140,3 +1004,4 @@ function closePhoto() {
 
 </body>
 </html>
+```
