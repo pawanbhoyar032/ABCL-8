@@ -6,416 +6,377 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ABC Life Insurance - Profile Gallery</title>
 
-<style>
-:root {
-    --brand-red: #c8102e;
-    --brand-dark: #8d1025;
-    --brand-light: #fff4f5;
-    --page-bg: #f7f7f9;
-    --text: #252525;
-}
+<!-- PDF and ZIP libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
+<style>
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+:root {
+    --brand-red: #c8102e;
+    --brand-dark: #8d1025;
+    --brand-light: #fff4f5;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: var(--page-bg);
-    color: var(--text);
+    background: #f7f7f9;
+    color: #222;
 }
 
 header {
     background: white;
-    padding: 22px 20px;
+    padding: 18px;
     text-align: center;
     border-bottom: 3px solid var(--brand-red);
-    box-shadow: 0 3px 14px rgba(0,0,0,.07);
 }
 
-header img {
-    width: 190px;
-    max-width: 80%;
-    height: auto;
+.logo {
+    max-width: 220px;
+    max-height: 100px;
+    object-fit: contain;
 }
 
-.intro {
-    text-align: center;
-    padding: 32px 18px 10px;
+header h1 {
+    margin-top: 10px;
+    color: var(--brand-red);
+    font-size: 25px;
 }
 
-.intro h1 {
-    font-size: 30px;
-    color: var(--brand-dark);
-    margin-bottom: 10px;
+header p {
+    margin-top: 8px;
+    color: #555;
 }
 
-.intro p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #666;
+main {
+    max-width: 1200px;
+    padding: 25px 16px;
+    margin: auto;
 }
 
-.card-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 30px;
-    padding: 30px 20px 55px;
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
 }
 
-.profile-card {
-    width: 320px;
-    max-width: 100%;
+.cover-card {
     background: white;
     border-radius: 14px;
     overflow: hidden;
+    box-shadow: 0 4px 15px #00000012;
     cursor: pointer;
-    box-shadow: 0 5px 20px rgba(0,0,0,.12);
-    transition: transform .25s ease, box-shadow .25s ease;
-    border: 1px solid #eeeeee;
+    transition: transform .2s, box-shadow .2s;
 }
 
-.profile-card:hover {
+.cover-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 28px rgba(0,0,0,.17);
+    box-shadow: 0 8px 22px #00000020;
 }
 
-.profile-card img {
-    width: 100%;
-    height: 250px;
+.cover-card img {
     display: block;
+    width: 100%;
+    height: 210px;
     object-fit: cover;
 }
 
 .card-title {
-    min-height: 58px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 12px 8px;
-    font-size: 19px;
-    line-height: 1.25;
-    font-weight: bold;
+    padding: 17px 12px;
     text-align: center;
-    color: var(--brand-dark);
-    border-top: 3px solid var(--brand-red);
+    color: var(--brand-red);
+    font-size: 17px;
+    font-weight: bold;
 }
 
-/* Keep the full Insurance Awareness title on one line */
 .insurance-card .card-title {
     white-space: nowrap;
     font-size: clamp(13px, 4.1vw, 17px);
     letter-spacing: -.35px;
 }
 
-/* Modal */
+footer {
+    margin-top: 30px;
+    padding: 20px;
+    background: white;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid #eee;
+}
+
+/* Modals */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(20, 10, 12, .96);
-    overflow: auto;
-}
-
-.modal-content {
-    width: 95%;
-    max-width: 1400px;
-    margin: 30px auto;
+    z-index: 1000;
+    background: #000c;
+    overflow-y: auto;
     padding: 20px;
 }
 
-.modal-header {
+.modal-content {
+    background: #fff;
+    max-width: 1100px;
+    width: 100%;
+    margin: 15px auto;
+    border-radius: 12px;
+    padding: 22px;
     position: relative;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.modal-header h2 {
-    color: white;
-    font-size: 28px;
+    min-height: 300px;
 }
 
 .close {
-    position: fixed;
-    right: 25px;
-    top: 12px;
-    color: white;
-    font-size: 42px;
-    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
+    border: none;
+    background: transparent;
+    color: #333;
     cursor: pointer;
-    z-index: 1100;
-    line-height: 1;
+    z-index: 5;
 }
 
-.close:hover {
-    color: #ffb8c4;
+.modal h2 {
+    color: var(--brand-red);
+    margin: 12px 35px 20px 0;
 }
 
-.download-button-wrapper {
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-.download-btn {
+.action-btn {
     display: inline-block;
     background: var(--brand-red);
     color: white;
     border: none;
-    padding: 13px 24px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 11px 16px;
+    border-radius: 7px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    font-size: 14px;
+    text-decoration: none;
+    margin: 4px 4px 10px 0;
 }
 
-.download-btn:hover {
+.action-btn:hover {
     background: var(--brand-dark);
 }
 
-.download-btn:disabled {
+.action-btn:disabled {
     opacity: .6;
-    cursor: not-allowed;
+    cursor: wait;
 }
 
-/* Field Learning gallery */
-.photo-group,
-.insurance-group {
-    margin-bottom: 45px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgba(255,255,255,.25);
+.search-input {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 8px 0 18px;
 }
 
-.photo-grid {
+.status-message {
+    margin: 12px 0;
+    color: #555;
+    overflow-wrap: anywhere;
+}
+
+/* Field gallery */
+.field-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
 }
 
-.photo-grid img {
+.field-item {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 8px;
+    background: white;
+}
+
+.field-item img {
+    display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
-    height: auto;
-    display: block;
-    cursor: pointer;
-    border-radius: 8px;
-    background: white;
     object-fit: contain;
-    transition: transform .2s ease;
+    background: #f5f5f5;
 }
 
-.photo-grid img:hover {
-    transform: scale(1.03);
-}
-
-.photo-name {
-    color: white;
+.field-item p {
     text-align: center;
-    font-size: 22px;
+    padding: 9px 0 3px;
     font-weight: bold;
-    margin-top: 18px;
 }
 
 /* Insurance gallery */
+.insurance-group {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    padding: 15px;
+}
+
 .insurance-photo-grid {
-    width: 100%;
-    max-width: 850px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
 }
 
 .insurance-photo-grid img {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    height: auto;
-    display: block;
-    cursor: pointer;
-    border-radius: 10px;
-    background: white;
+    aspect-ratio: 3 / 4;
     object-fit: contain;
-    transition: transform .2s ease;
-}
-
-.insurance-photo-grid img:hover {
-    transform: scale(1.02);
+    background: #f5f5f5;
 }
 
 .insurance-text {
-    color: white;
-    text-align: center;
-    font-size: 24px;
+    margin-top: 12px;
     font-weight: bold;
-    margin-top: 18px;
+    color: var(--brand-red);
 }
 
 .insurance-description {
-    color: #e5e5e5;
-    text-align: center;
-    font-size: 16px;
-    line-height: 1.7;
-    max-width: 850px;
-    margin: 10px auto 0;
+    margin-top: 6px;
+    line-height: 1.5;
 }
 
-/* Sales Activity PDF */
-.pdf-modal-content {
-    width: 96%;
-    max-width: 1200px;
-    height: 90vh;
-    margin: 4vh auto;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
+/* Sales Activity PDF list */
+.pdf-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.pdf-item {
+    border: 1px solid #eee;
+    background: #fffafa;
+    border-radius: 9px;
+    padding: 13px;
     display: flex;
     flex-direction: column;
-}
-
-.pdf-toolbar {
-    padding: 13px 18px;
-    background: var(--brand-red);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     gap: 10px;
 }
 
-.pdf-toolbar h2 {
-    font-size: 19px;
-}
-
-.pdf-toolbar a {
-    background: white;
-    color: var(--brand-dark);
-    padding: 9px 13px;
-    border-radius: 6px;
-    text-decoration: none;
+.pdf-name {
     font-weight: bold;
-    font-size: 14px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
 }
 
-.pdf-frame {
-    width: 100%;
-    flex: 1;
-    min-height: 0;
-    border: none;
+.pdf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 
-.pdf-fallback {
-    padding: 12px;
-    text-align: center;
-    color: #555;
-    font-size: 14px;
+.pdf-actions .action-btn {
+    margin: 0;
+    padding: 9px 11px;
 }
 
-/* Full-screen photo */
-.photo-viewer {
-    display: none;
-    position: fixed;
+/* PDF viewer */
+.viewer-modal {
     z-index: 2000;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,.96);
+    background: #111e;
+}
+
+.viewer-content {
+    max-width: 1200px;
+    background: #222;
+    color: white;
+    min-height: 90vh;
+    padding: 18px;
+}
+
+.viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 45px 15px 0;
+}
+
+.viewer-header h3 {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+}
+
+.viewer-header .close {
+    color: white;
+    top: 8px;
+    right: 14px;
+}
+
+.viewer-controls {
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px 0 16px;
 }
 
-.photo-viewer img {
-    max-width: 95%;
-    max-height: 92%;
-    width: auto;
+.pdf-page-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    overflow: auto;
+    background: #333;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+#pdfCanvas {
+    max-width: 100%;
     height: auto;
-    object-fit: contain;
-    border-radius: 6px;
+    background: white;
+    box-shadow: 0 2px 12px #0005;
 }
 
-.viewer-close {
-    position: absolute;
-    top: 15px;
-    right: 25px;
+.page-counter {
     color: white;
-    font-size: 45px;
-    cursor: pointer;
-    z-index: 2100;
+    font-size: 14px;
 }
 
-@media(max-width: 900px) {
-    .photo-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+.viewer-hint {
+    text-align: center;
+    font-size: 12px;
+    color: #ddd;
+    margin-top: 10px;
 }
 
-@media(max-width: 600px) {
-    .card-wrapper {
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
-    }
-
-    .profile-card {
-        width: 320px;
-    }
-
-    .intro h1 {
-        font-size: 24px;
+@media (max-width: 600px) {
+    .modal {
+        padding: 7px;
     }
 
     .modal-content {
-        width: 100%;
         padding: 15px;
-        margin-top: 35px;
+        margin: 8px auto;
     }
 
-    .modal-header h2 {
-        font-size: 22px;
-        padding: 0 24px;
+    .cover-card img {
+        height: 190px;
     }
 
-    .photo-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+    .insurance-photo-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .photo-name {
-        font-size: 19px;
+    .viewer-content {
+        min-height: 95vh;
     }
 
-    .insurance-text {
-        font-size: 20px;
-    }
-
-    .insurance-description {
-        font-size: 15px;
-    }
-
-    .pdf-modal-content {
-        width: 100%;
-        height: 92vh;
-        margin: 4vh auto;
-        border-radius: 0;
-    }
-
-    .pdf-toolbar h2 {
-        font-size: 16px;
-    }
-
-    .pdf-toolbar a {
-        font-size: 12px;
-        padding: 8px;
+    .pdf-page-area {
+        min-height: 50vh;
+        padding: 5px;
     }
 }
 </style>
@@ -423,300 +384,242 @@ header img {
 
 <body>
 
-<!-- HEADER / LOGO -->
 <header>
-    <img src="photos/logo.png" alt="ABC Life Insurance Logo">
+    <img class="logo" src="photos/logo.png" alt="ABC Life Insurance Logo"
+         onerror="this.style.display='none'">
+    <h1>ABC Life Insurance</h1>
+    <p>Welcome to the ABC Life Insurance Profile Gallery. Explore and Connect with our people.</p>
 </header>
 
-<!-- INTRO -->
-<section class="intro">
-    <h1>ABC Life Insurance Profile Gallery</h1>
-    <p>Welcome to the ABC Life Insurance Profile Gallery.<br>
-       Explore and Connect with our people.</p>
-</section>
+<main>
+    <div class="cards">
 
-<!-- COVER CARDS -->
-<div class="card-wrapper">
+        <div class="cover-card" onclick="openGallery()">
+            <img src="photos/field-cover.jpg" alt="Field Learning Activity">
+            <div class="card-title">Field Learning Activity</div>
+        </div>
 
-    <div class="profile-card" onclick="openGallery()">
-        <img src="photos/field-cover.jpg" alt="Field Learning Activity">
-        <div class="card-title">Field Learning Activity</div>
+        <div class="cover-card insurance-card" onclick="openInsuranceGallery()">
+            <img src="photos/insurance-awareness-cover.jpg" alt="Insurance Awareness Role Play">
+            <div class="card-title">Insurance Awareness – Role Play</div>
+        </div>
+
+        <div class="cover-card" onclick="openSalesActivity()">
+            <img src="photos/sales-activity-cover.jpg"
+                 alt="Sales Activity"
+                 onerror="this.onerror=null;this.src='photos/field-cover.jpg'">
+            <div class="card-title">SALES ACTIVITY</div>
+        </div>
+
     </div>
+</main>
 
-    <div class="profile-card insurance-card" onclick="openInsuranceGallery()">
-        <img src="photos/insurance-awareness-cover.jpg" alt="Insurance Awareness – Role Play">
-        <div class="card-title">Insurance Awareness – Role Play</div>
-    </div>
+<footer>
+    © 2026 ABC Life Insurance
+</footer>
 
-    <div class="profile-card" onclick="openSalesActivity()">
-        <img src="photos/sales-activity-cover.jpg"
-             alt="Sales Activity"
-             onerror="this.onerror=null;this.src='photos/field-cover.jpg';">
-        <div class="card-title">SALES ACTIVITY</div>
-    </div>
-
-</div>
-
-<!-- FIELD LEARNING MODAL -->
-<div id="galleryModal" class="modal">
-    <span class="close" onclick="closeGallery()">&times;</span>
-
+<!-- FIELD GALLERY MODAL -->
+<div class="modal" id="fieldModal" onclick="closeOnBackdrop(event,'fieldModal')">
     <div class="modal-content">
-        <div class="modal-header">
-            <h2>Field Learning Activity</h2>
-        </div>
-
-        <div class="download-button-wrapper">
-            <button class="download-btn" id="fieldDownloadBtn"
-                    onclick="downloadAllFieldPhotos()">
-                📥 Download All Photos
-            </button>
-        </div>
-
-        <div id="galleryContainer"></div>
+        <button class="close" onclick="closeModal('fieldModal')" aria-label="Close">&times;</button>
+        <h2>Field Learning Activity</h2>
+        <button class="action-btn" onclick="downloadFieldPhotos()">Download All Photos</button>
+        <div class="field-grid" id="fieldGrid"></div>
     </div>
 </div>
 
-<!-- INSURANCE MODAL -->
-<div id="insuranceGalleryModal" class="modal">
-    <span class="close" onclick="closeInsuranceGallery()">&times;</span>
-
+<!-- INSURANCE GALLERY MODAL -->
+<div class="modal" id="insuranceModal" onclick="closeOnBackdrop(event,'insuranceModal')">
     <div class="modal-content">
-        <div class="modal-header">
-            <h2>Insurance Awareness – Role Play</h2>
-        </div>
-
-        <div class="download-button-wrapper">
-            <button class="download-btn" id="insuranceDownloadBtn"
-                    onclick="downloadAllInsurancePhotos()">
-                📥 Download All Photos
-            </button>
-        </div>
-
-        <div id="insuranceContainer"></div>
+        <button class="close" onclick="closeModal('insuranceModal')" aria-label="Close">&times;</button>
+        <h2>Insurance Awareness – Role Play</h2>
+        <div id="insuranceContent"></div>
     </div>
 </div>
 
-<!-- SALES ACTIVITY PDF MODAL -->
-<div id="salesModal" class="modal">
-    <span class="close" onclick="closeSalesActivity()">&times;</span>
+<!-- SALES ACTIVITY MODAL -->
+<div class="modal" id="salesModal" onclick="closeOnBackdrop(event,'salesModal')">
+    <div class="modal-content">
+        <button class="close" onclick="closeModal('salesModal')" aria-label="Close">&times;</button>
+        <h2>Sales Activity – PDF Gallery</h2>
+        <p>Search a name to find and open the corresponding Sales Activity PDF.</p>
 
-    <div class="pdf-modal-content">
-        <div class="pdf-toolbar">
-            <h2>SALES ACTIVITY</h2>
-            <a href="photos/sales-activity.pdf" target="_blank"
-               rel="noopener">Open / Download PDF ↗</a>
-        </div>
+        <input id="pdfSearch" class="search-input" type="search"
+               placeholder="Search by name..."
+               oninput="renderPdfList()">
 
-        <iframe class="pdf-frame"
-                src="photos/sales-activity.pdf"
-                title="Sales Activity PDF">
-        </iframe>
+        <button class="action-btn" id="downloadZipBtn" onclick="downloadAllPDFs()">
+            Download All PDFs (ZIP)
+        </button>
 
-        <div class="pdf-fallback">
-            If the PDF does not appear, use the Open / Download PDF link above.
-        </div>
+        <p id="pdfStatus" class="status-message" aria-live="polite"></p>
+        <div id="pdfList" class="pdf-list"></div>
     </div>
 </div>
 
-<!-- FULL-SCREEN PHOTO VIEWER -->
-<div id="photoViewer" class="photo-viewer" onclick="closePhoto()">
-    <span class="viewer-close">&times;</span>
-    <img id="viewerImage" src="" alt="Full Size Photo">
+<!-- PDF VIEWER MODAL -->
+<div class="modal viewer-modal" id="viewerModal"
+     onclick="closeOnBackdrop(event,'viewerModal')">
+    <div class="modal-content viewer-content">
+        <button class="close" onclick="closeViewer()" aria-label="Close PDF viewer">&times;</button>
+
+        <div class="viewer-header">
+            <h3 id="viewerTitle">PDF Viewer</h3>
+        </div>
+
+        <div class="viewer-controls">
+            <button class="action-btn" onclick="previousPage()">Previous</button>
+            <span class="page-counter" id="pageCounter">Page 1 / 1</span>
+            <button class="action-btn" onclick="nextPage()">Next</button>
+            <button class="action-btn" onclick="zoomOut()">− Zoom</button>
+            <button class="action-btn" onclick="zoomIn()">+ Zoom</button>
+            <a id="downloadCurrentPDF" class="action-btn" href="#" download>Download PDF</a>
+        </div>
+
+        <div class="pdf-page-area">
+            <canvas id="pdfCanvas"></canvas>
+        </div>
+        <p class="viewer-hint">Use Previous and Next to turn pages. On mobile, scroll to view the full page.</p>
+        <p class="status-message" id="viewerStatus" aria-live="polite"></p>
+    </div>
 </div>
 
 <script>
-/* =========================================
-   FIELD LEARNING ACTIVITY
-========================================= */
-
-const oldPhotos = [
-    "field-01-01.jpg",
-    "field-01-02.jpg",
-    "field-01-03.jpg",
-    "field-01-04.jpg",
-    "field-01-05.jpg",
-    "field-02-01.jpg",
-    "field-02-02.jpg",
-    "field-02-03.jpg",
-    "field-02-04.jpg",
-    "field-02-05.jpg",
-    "field-03-01.jpg",
-    "field-03-02.jpg",
-    "field-03-03.jpg",
-    "field-03-04.jpg",
-    "field-03-05.jpg",
-    "field-04-01.jpg",
-    "field-04-02.jpg",
-    "field-04-03.jpg",
-    "field-04-04.jpg",
-    "field-04-05.jpg"
-];
-
-const newPhotos = [];
-for (let i = 21; i <= 155; i++) {
-    newPhotos.push(i + ".jpg");
+/* Set PDF.js worker */
+if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 }
 
-const section32Photos = [
-    "156.jpg", "157.jpg", "158.jpg", "159.jpg", "160.jpg"
-];
-
-const allPhotos = [
-    ...oldPhotos,
-    ...newPhotos,
-    ...section32Photos
-];
-
-const names = [
-    "1. Pawan Bhoyar",
-    "2. Satyam Pandey",
-    "3. Vinod Kumar",
-    "4. Yogendra Rana",
-    "5. Abendra Mishra",
-    "6. Gayathri Krishnan",
-    "7. K.Dhivya",
-    "8. Mahesh Sajjan",
-    "9. Vaibhav Shukla",
-    "10. Jaya",
-    "11. Rohan Yadav",
-    "12. Nitin Shukla",
-    "13. Akash Mohanty",
-    "14. Devendra singh",
-    "15. Deepak Jatav",
-    "16. C R Adhithya Kumar",
-    "17. Sumit Kumar",
-    "18. Lokesh Kaimoria",
-    "19. Kshma Kumari",
-    "20. Jayakrishna Sai",
-    "21. Apanna Patra",
-    "22. Rakesh Chaurasiya",
-    "23. Gourav Sengupta",
-    "24. Shubham Kharde",
-    "25. Sonam Kumari",
-    "26. Siva Bramha Ganesh",
-    "27. Rahul Kumar",
-    "28. Bandaru Venkateshwarlu",
-    "29. Vinita Bhardwaj",
-    "30. Shivani Rajpoot",
-    "31. Beddala Raj Kumar",
-    "32. Ajeet Gupta"
-];
-
-function openGallery() {
-    const modal = document.getElementById("galleryModal");
-    const container = document.getElementById("galleryContainer");
-
-    container.innerHTML = "";
-
-    for (let section = 0; section < 32; section++) {
-        const group = document.createElement("div");
-        group.className = "photo-group";
-
-        const grid = document.createElement("div");
-        grid.className = "photo-grid";
-
-        for (let i = 0; i < 5; i++) {
-            const photoIndex = section * 5 + i;
-
-            if (photoIndex < allPhotos.length) {
-                const img = document.createElement("img");
-                img.src = "photos/" + allPhotos[photoIndex];
-                img.alt = "Field Learning Activity";
-                img.loading = "lazy";
-                img.onclick = function(event) {
-                    event.stopPropagation();
-                    openPhoto(this.src);
-                };
-                grid.appendChild(img);
-            }
-        }
-
-        group.appendChild(grid);
-
-        if (names[section]) {
-            const name = document.createElement("div");
-            name.className = "photo-name";
-            name.textContent = names[section];
-            group.appendChild(name);
-        }
-
-        container.appendChild(group);
-    }
-
-    modal.style.display = "block";
+/* GENERAL MODAL CONTROLS */
+function openModal(id) {
+    document.getElementById(id).style.display = "block";
     document.body.style.overflow = "hidden";
 }
 
-async function downloadAllFieldPhotos() {
-    const button = document.getElementById("fieldDownloadBtn");
-    button.disabled = true;
-    button.textContent = "⏳ Preparing downloads...";
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
 
-    try {
-        for (const photo of allPhotos) {
-            const link = document.createElement("a");
-            link.href = "photos/" + photo;
-            link.download = photo;
-            link.style.display = "none";
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
+    if (id === "viewerModal") {
+        return;
+    }
 
-            await new Promise(resolve => setTimeout(resolve, 150));
-        }
-    } finally {
-        button.disabled = false;
-        button.textContent = "📥 Download All Photos";
+    if (!document.querySelector('.modal[style*="display: block"]')) {
+        document.body.style.overflow = "";
     }
 }
 
-function closeGallery() {
-    document.getElementById("galleryModal").style.display = "none";
-    document.body.style.overflow = "auto";
+function closeOnBackdrop(event, id) {
+    if (event.target.id === id) {
+        if (id === "viewerModal") {
+            closeViewer();
+        } else {
+            closeModal(id);
+        }
+    }
 }
 
-/* =========================================
-   INSURANCE AWARENESS – ROLE PLAY
-========================================= */
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        if (document.getElementById("viewerModal").style.display === "block") {
+            closeViewer();
+        } else {
+            ["fieldModal", "insuranceModal", "salesModal"].forEach(closeModal);
+        }
+    }
 
+    if (document.getElementById("viewerModal").style.display === "block") {
+        if (event.key === "ArrowRight") nextPage();
+        if (event.key === "ArrowLeft") previousPage();
+    }
+});
+
+/* FIELD LEARNING ACTIVITY
+   Replace or edit names and photo filenames here if needed. */
+const fieldNames = [
+    "Pawan Bhoyar",
+    "Satyam Pandey",
+    "Vinod Kumar",
+    "Yogendra Rana",
+    "Add Name Here"
+];
+
+function buildFieldGallery() {
+    const grid = document.getElementById("fieldGrid");
+    grid.innerHTML = "";
+
+    for (let i = 1; i <= 160; i++) {
+        const groupIndex = Math.ceil(i / 5);
+        const groupName = fieldNames[groupIndex - 1] || ("Participant " + groupIndex);
+
+        const item = document.createElement("div");
+        item.className = "field-item";
+
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.alt = "Field Learning Photo " + i;
+        img.src = "photos/" + String(i).padStart(2, "0") + ".jpg";
+
+        /* Support alternate filenames, if your gallery uses them */
+        img.onerror = function() {
+            this.onerror = null;
+            this.src = "photos/field-" + String(Math.ceil(i / 5)).padStart(2, "0")
+                + "-" + (((i - 1) % 5) + 1) + ".jpg";
+        };
+
+        const name = document.createElement("p");
+        name.textContent = groupName;
+
+        item.append(img, name);
+        grid.appendChild(item);
+    }
+}
+
+function openGallery() {
+    buildFieldGallery();
+    openModal("fieldModal");
+}
+
+function downloadFieldPhotos() {
+    alert("To download all Field Learning photos together, use the original photo ZIP or download them individually.");
+}
+
+/* INSURANCE AWARENESS GALLERY */
 const insuranceSections = [
     {
-        photos: ["a1.jpg"],
-        text: "1. Insurance Awareness",
-        description: "Students introduced the importance of insurance and explained why financial protection is important."
+        title: "1. Insurance Awareness",
+        description: "An activity focused on understanding the importance of life insurance and financial protection.",
+        photos: ["a1.jpg", "a2.jpg"]
     },
     {
-        photos: ["a2.jpg"],
-        text: "2. Understanding Insurance",
-        description: "The role play helped students understand the basic concept of insurance in a simple and engaging way."
+        title: "2. Understanding Insurance",
+        description: "Participants learn the basic concepts of insurance and how it can help protect families.",
+        photos: ["a3.jpg", "a4.jpg"]
     },
     {
-        photos: ["a3.jpg"],
-        text: "3. Customer Awareness",
-        description: "Students presented situations showing how insurance can provide financial support during unexpected events."
+        title: "3. Customer Awareness",
+        description: "A customer-focused activity explaining insurance benefits and the importance of informed decisions.",
+        photos: ["a5.jpg", "a6.jpg"]
     },
     {
-        photos: ["a4.jpg"],
-        text: "4. Role Play Activity",
-        description: "Students performed different roles to demonstrate insurance awareness through a practical role play."
+        title: "4. Role Play Activity",
+        description: "A role play exercise to practise explaining insurance products and answering customer questions.",
+        photos: ["a1.jpg", "a2.jpg"]
     },
     {
-        photos: ["a5.jpg"],
-        text: "5. Learning Through Activity",
-        description: "The activity encouraged students to learn important insurance concepts through participation and teamwork."
+        title: "5. Learning Through Activity",
+        description: "Interactive learning helps participants develop communication and presentation skills.",
+        photos: ["a3.jpg", "a4.jpg"]
     },
     {
-        photos: ["a6.jpg"],
-        text: "6. Insurance Awareness Message",
-        description: "The role play concluded with a simple message highlighting the importance of awareness and financial protection."
+        title: "6. Insurance Awareness Message",
+        description: "The activity highlights the importance of awareness, planning, and financial protection.",
+        photos: ["a5.jpg", "a6.jpg"]
     }
 ];
 
 function openInsuranceGallery() {
-    const modal = document.getElementById("insuranceGalleryModal");
-    const container = document.getElementById("insuranceContainer");
-
+    const container = document.getElementById("insuranceContent");
     container.innerHTML = "";
 
     insuranceSections.forEach(section => {
@@ -726,131 +629,307 @@ function openInsuranceGallery() {
         const photoGrid = document.createElement("div");
         photoGrid.className = "insurance-photo-grid";
 
-        section.photos.forEach(photo => {
+        section.photos.forEach(filename => {
             const img = document.createElement("img");
-            img.src = "photos/" + photo;
-            img.alt = section.text;
+            img.src = "photos/" + filename;
+            img.alt = section.title;
             img.loading = "lazy";
-            img.onclick = function(event) {
-                event.stopPropagation();
-                openPhoto(this.src);
-            };
             photoGrid.appendChild(img);
         });
 
-        group.appendChild(photoGrid);
+        const title = document.createElement("div");
+        title.className = "insurance-text";
+        title.textContent = section.title;
 
-        const text = document.createElement("div");
-        text.className = "insurance-text";
-        text.textContent = section.text;
-        group.appendChild(text);
-
-        const description = document.createElement("div");
+        const description = document.createElement("p");
         description.className = "insurance-description";
         description.textContent = section.description;
-        group.appendChild(description);
 
+        group.append(photoGrid, title, description);
         container.appendChild(group);
     });
 
-    modal.style.display = "block";
-    document.body.style.overflow = "hidden";
+    openModal("insuranceModal");
 }
 
-async function downloadAllInsurancePhotos() {
-    const button = document.getElementById("insuranceDownloadBtn");
-    const photos = insuranceSections.flatMap(section => section.photos);
+/* SALES ACTIVITY PDF FILES
+   Upload each PDF into the "pdfs" folder using these exact filenames. */
+const salesParticipants = [
+    "Pawan Bhoyar",
+    "Gayathri Krishnan",
+    "Vinod Kumar",
+    "Satyam Pandey",
+    "Rahul Kumar",
+    "Abendra Mishra",
+    "K.Dhivya",
+    "Mahesh Sajjan",
+    "Vaibhav Shukla",
+    "Jaya",
+    "Rohan Yadav",
+    "Nitin Shukla",
+    "Akash Mohanty",
+    "Devendra singh",
+    "Deepak Jatav",
+    "C R Adhithya Kumar",
+    "Sumit Kumar",
+    "Lokesh Kaimoria",
+    "Kshma Kumari",
+    "Jayakrishna Sai",
+    "Apanna Patra",
+    "Rakesh Chaurasiya",
+    "Gourav Sengupta",
+    "Shubham Kharde",
+    "Sonam Kumari",
+    "Siva Bramha Ganesh",
+    "Yogendra Rana",
+    "Bandaru Venkateshwarlu",
+    "Vinita Bhardwaj",
+    "Shivani Rajpoot",
+    "Beddala Raj Kumar",
+    "Ajeet Gupta"
+];
 
-    button.disabled = true;
-    button.textContent = "⏳ Preparing downloads...";
-
-    try {
-        for (const photo of photos) {
-            const link = document.createElement("a");
-            link.href = "photos/" + photo;
-            link.download = photo;
-            link.style.display = "none";
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-
-            await new Promise(resolve => setTimeout(resolve, 200));
-        }
-    } finally {
-        button.disabled = false;
-        button.textContent = "📥 Download All Photos";
-    }
+function slugifyName(name) {
+    return name
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
 }
 
-function closeInsuranceGallery() {
-    document.getElementById("insuranceGalleryModal").style.display = "none";
-    document.body.style.overflow = "auto";
-}
-
-/* =========================================
-   SALES ACTIVITY PDF
-========================================= */
+const salesPDFs = salesParticipants.map((name, index) => ({
+    name: name,
+    number: index + 1,
+    filename: String(index + 1).padStart(2, "0") + "-" + slugifyName(name) + ".pdf",
+    url: "pdfs/" + String(index + 1).padStart(2, "0") + "-" + slugifyName(name) + ".pdf"
+}));
 
 function openSalesActivity() {
-    document.getElementById("salesModal").style.display = "block";
-    document.body.style.overflow = "hidden";
+    document.getElementById("pdfSearch").value = "";
+    renderPdfList();
+    openModal("salesModal");
 }
 
-function closeSalesActivity() {
-    document.getElementById("salesModal").style.display = "none";
-    document.body.style.overflow = "auto";
+function renderPdfList() {
+    const search = document.getElementById("pdfSearch").value
+        .trim().toLowerCase();
+
+    const list = document.getElementById("pdfList");
+    const matches = salesPDFs.filter(person =>
+        person.name.toLowerCase().includes(search)
+    );
+
+    list.innerHTML = "";
+
+    if (matches.length === 0) {
+        list.innerHTML = "<p>No matching name found.</p>";
+        return;
+    }
+
+    matches.forEach(person => {
+        const item = document.createElement("div");
+        item.className = "pdf-item";
+
+        const name = document.createElement("div");
+        name.className = "pdf-name";
+        name.textContent = person.number + ". " + person.name;
+
+        const actions = document.createElement("div");
+        actions.className = "pdf-actions";
+
+        const view = document.createElement("button");
+        view.className = "action-btn";
+        view.textContent = "Open Flipbook";
+        view.onclick = () => openPDFViewer(person);
+
+        const download = document.createElement("a");
+        download.className = "action-btn";
+        download.textContent = "Download";
+        download.href = person.url;
+        download.download = person.filename;
+
+        actions.append(view, download);
+        item.append(name, actions);
+        list.appendChild(item);
+    });
 }
 
-/* =========================================
-   FULL-SCREEN PHOTO VIEWER
-========================================= */
+/* PDF VIEWER: renders one PDF page at a time, with page navigation */
+let currentPdfDocument = null;
+let currentPdfPage = 1;
+let currentPdfScale = 1.15;
+let currentPdfTask = null;
 
-function openPhoto(src) {
-    const viewer = document.getElementById("photoViewer");
-    const image = document.getElementById("viewerImage");
+async function openPDFViewer(person) {
+    openModal("viewerModal");
+    document.getElementById("viewerTitle").textContent = person.name;
+    document.getElementById("viewerStatus").textContent = "Loading PDF...";
+    document.getElementById("pageCounter").textContent = "Loading...";
+    document.getElementById("downloadCurrentPDF").href = person.url;
+    document.getElementById("downloadCurrentPDF").download = person.filename;
 
-    image.src = src;
-    viewer.style.display = "flex";
+    currentPdfDocument = null;
+    currentPdfPage = 1;
+    currentPdfScale = 1.15;
+
+    if (!window.pdfjsLib) {
+        document.getElementById("viewerStatus").textContent =
+            "PDF viewer library could not load. Please check your internet connection.";
+        return;
+    }
+
+    try {
+        if (currentPdfTask && currentPdfTask.destroy) {
+            try { await currentPdfTask.destroy(); } catch (e) {}
+        }
+
+        currentPdfTask = pdfjsLib.getDocument(person.url);
+        currentPdfDocument = await currentPdfTask.promise;
+        await renderCurrentPage();
+    } catch (error) {
+        document.getElementById("viewerStatus").textContent =
+            "Could not load this PDF. Check that the file exists at: " + person.url;
+        document.getElementById("pageCounter").textContent = "PDF unavailable";
+    }
 }
 
-function closePhoto() {
-    const viewer = document.getElementById("photoViewer");
-    const image = document.getElementById("viewerImage");
+async function renderCurrentPage() {
+    if (!currentPdfDocument) return;
 
-    viewer.style.display = "none";
-    image.src = "";
+    const page = await currentPdfDocument.getPage(currentPdfPage);
+    const viewport = page.getViewport({ scale: currentPdfScale });
+    const canvas = document.getElementById("pdfCanvas");
+    const context = canvas.getContext("2d");
+
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    await page.render({
+        canvasContext: context,
+        viewport: viewport
+    }).promise;
+
+    document.getElementById("pageCounter").textContent =
+        "Page " + currentPdfPage + " / " + currentPdfDocument.numPages;
+
+    document.getElementById("viewerStatus").textContent = "";
 }
 
-/* =========================================
-   CLICK OUTSIDE TO CLOSE
-========================================= */
+async function previousPage() {
+    if (!currentPdfDocument || currentPdfPage <= 1) return;
+    currentPdfPage--;
+    await renderCurrentPage();
+}
 
-window.addEventListener("click", function(event) {
-    if (event.target === document.getElementById("galleryModal")) {
-        closeGallery();
+async function nextPage() {
+    if (!currentPdfDocument || currentPdfPage >= currentPdfDocument.numPages) return;
+    currentPdfPage++;
+    await renderCurrentPage();
+}
+
+async function zoomIn() {
+    if (!currentPdfDocument) return;
+    currentPdfScale = Math.min(currentPdfScale + 0.15, 3);
+    await renderCurrentPage();
+}
+
+async function zoomOut() {
+    if (!currentPdfDocument) return;
+    currentPdfScale = Math.max(currentPdfScale - 0.15, 0.5);
+    await renderCurrentPage();
+}
+
+async function closeViewer() {
+    document.getElementById("viewerModal").style.display = "none";
+
+    if (currentPdfTask && currentPdfTask.destroy) {
+        try { await currentPdfTask.destroy(); } catch (e) {}
     }
 
-    if (event.target === document.getElementById("insuranceGalleryModal")) {
-        closeInsuranceGallery();
+    currentPdfTask = null;
+    currentPdfDocument = null;
+
+    if (!document.querySelector('.modal[style*="display: block"]')) {
+        document.body.style.overflow = "";
+    }
+}
+
+/* DOWNLOAD ALL 32 PDFs AS A ZIP */
+async function downloadAllPDFs() {
+    const button = document.getElementById("downloadZipBtn");
+    const status = document.getElementById("pdfStatus");
+
+    if (!window.JSZip) {
+        status.textContent =
+            "ZIP library could not load. Please check your internet connection.";
+        return;
     }
 
-    if (event.target === document.getElementById("salesModal")) {
-        closeSalesActivity();
-    }
-});
+    button.disabled = true;
+    button.textContent = "Preparing ZIP...";
+    status.textContent = "Collecting PDF files. This may take a moment...";
 
-/* =========================================
-   ESCAPE KEY
-========================================= */
+    try {
+        const zip = new JSZip();
+        const folder = zip.folder("Sales Activity PDFs");
+        const missing = [];
 
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-        closeGallery();
-        closeInsuranceGallery();
-        closeSalesActivity();
-        closePhoto();
+        for (const person of salesPDFs) {
+            try {
+                const response = await fetch(person.url);
+
+                if (!response.ok) {
+                    throw new Error("File not found");
+                }
+
+                const blob = await response.blob();
+
+                if (blob.size === 0) {
+                    throw new Error("Empty PDF");
+                }
+
+                folder.file(person.filename, blob);
+            } catch (error) {
+                missing.push(person.name + " (" + person.filename + ")");
+            }
+        }
+
+        if (Object.keys(folder.files).length === 0) {
+            throw new Error("No PDF files were found. Upload the PDFs to the pdfs folder first.");
+        }
+
+        if (missing.length > 0) {
+            status.textContent =
+                "Some PDFs were missing. ZIP will contain available files only. Missing: " +
+                missing.join(", ");
+        } else {
+            status.textContent = "All 32 PDFs collected. Creating ZIP...";
+        }
+
+        const zipBlob = await zip.generateAsync({ type: "blob" });
+        const url = URL.createObjectURL(zipBlob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = "Sales-Activity-All-PDFs.zip";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+
+        if (missing.length === 0) {
+            status.textContent = "ZIP downloaded successfully with all 32 PDFs.";
+        } else {
+            status.textContent += " ZIP downloaded with available files.";
+        }
+    } catch (error) {
+        status.textContent = "Could not create ZIP: " + error.message;
+    } finally {
+        button.disabled = false;
+        button.textContent = "Download All PDFs (ZIP)";
     }
-});
+}
 </script>
 
 </body>
