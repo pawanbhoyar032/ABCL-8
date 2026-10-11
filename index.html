@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,6 +75,8 @@ main {
     gap:22px;
 }
 
+/* COVER CARD DESIGN KEPT UNCHANGED */
+
 .cover-card {
     background:white;
     border-radius:14px;
@@ -88,7 +91,6 @@ main {
     box-shadow:0 8px 22px #00000020;
 }
 
-/* Cover card design intentionally unchanged */
 .cover-card img {
     display:block;
     width:100%;
@@ -120,6 +122,8 @@ footer {
     line-height:1.6;
 }
 
+/* MODALS */
+
 .modal {
     display:none;
     position:fixed;
@@ -135,10 +139,11 @@ footer {
     max-width:1100px;
     width:100%;
     margin:15px auto;
-    border-radius:12px;
+    border-radius:14px;
     padding:22px;
     position:relative;
     min-height:300px;
+    box-shadow:0 15px 45px #00000030;
 }
 
 .close {
@@ -156,17 +161,1071 @@ footer {
 .modal h2 {
     color:var(--brand-red);
     margin:12px 35px 20px 0;
+    line-height:1.4;
 }
+
+/* ATTRACTIVE ACTION BUTTONS */
 
 .action-btn {
     display:inline-flex;
     align-items:center;
     justify-content:center;
     gap:8px;
-    background:linear-gradient(135deg,var(--brand-red),var(--brand-dark));
+    background:linear-gradient(135deg,#c8102e,#8d1025);
     color:white;
     border:none;
     padding:12px 18px;
     border-radius:9px;
     cursor:pointer;
-    font
+    font-size:14px;
+    font-weight:bold;
+    text-decoration:none;
+    margin:4px;
+    box-shadow:0 4px 10px #c8102e25;
+    transition:transform .2s,box-shadow .2s,background .2s;
+}
+
+.action-btn:hover {
+    background:linear-gradient(135deg,#a90c26,#720b1d);
+    transform:translateY(-2px);
+    box-shadow:0 6px 15px #c8102e35;
+}
+
+.action-btn:disabled {
+    opacity:.6;
+    cursor:wait;
+    transform:none;
+}
+
+.download-icon {
+    font-size:18px;
+    line-height:1;
+}
+
+.download-toolbar {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px;
+    margin:0 0 20px;
+    padding:14px;
+    border-radius:12px;
+    background:var(--brand-light);
+    border:1px solid #f3d5da;
+}
+
+.download-note {
+    color:#6b4650;
+    font-size:12px;
+    line-height:1.5;
+    flex-basis:100%;
+    margin:2px 4px 0;
+}
+
+.search-input {
+    display:block;
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    margin:8px 0 18px;
+}
+
+.status-message {
+    margin:12px 0;
+    color:#555;
+    overflow-wrap:anywhere;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* FIELD LEARNING GALLERY: 5:7 IMAGE RATIO */
+
+.field-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
+    gap:18px;
+    align-items:start;
+}
+
+.field-item {
+    min-width:0;
+    overflow:hidden;
+    border:1px solid #e8e8ec;
+    border-radius:12px;
+    padding:9px;
+    background:white;
+    box-shadow:0 3px 12px #00000008;
+    transition:transform .2s,box-shadow .2s;
+}
+
+.field-item:hover {
+    transform:translateY(-3px);
+    box-shadow:0 7px 18px #00000013;
+}
+
+/* Hide until the image has successfully loaded */
+.field-item {
+    display:none;
+}
+
+.field-item img {
+    display:block;
+    width:100%;
+    aspect-ratio:5/7;
+    height:auto;
+    object-fit:contain;
+    object-position:center;
+    background:#f5f5f7;
+    border-radius:7px;
+    cursor:zoom-in;
+}
+
+.field-item p {
+    text-align:center;
+    padding:11px 3px 5px;
+    font-size:13px;
+    line-height:1.4;
+    font-weight:bold;
+    overflow-wrap:anywhere;
+}
+
+/* INSURANCE AWARENESS GALLERY: 16:9 IMAGE RATIO */
+
+.insurance-group {
+    display:none;
+    border:1px solid #e8e8ec;
+    border-radius:13px;
+    margin-bottom:22px;
+    padding:14px;
+    background:white;
+    box-shadow:0 4px 14px #00000008;
+}
+
+.insurance-photo-grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+    align-items:start;
+}
+
+.insurance-photo-grid img {
+    display:none;
+    width:100%;
+    aspect-ratio:16/9;
+    height:auto;
+    object-fit:contain;
+    object-position:center;
+    background:#f3f3f5;
+    border:1px solid #eee;
+    border-radius:9px;
+    cursor:zoom-in;
+}
+
+.insurance-text {
+    margin-top:14px;
+    font-weight:bold;
+    color:var(--brand-red);
+    font-size:16px;
+    line-height:1.5;
+}
+
+.insurance-description {
+    margin-top:7px;
+    line-height:1.7;
+    color:#555;
+    font-size:14px;
+}
+
+/* SALES ACTIVITY PDF GALLERY */
+
+.sales-toolbar {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:12px;
+}
+
+.sales-count {
+    color:#555;
+    font-size:14px;
+}
+
+.pdf-list {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+
+.pdf-item {
+    background:white;
+    border:1px solid #e4e4e4;
+    border-radius:12px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    cursor:pointer;
+    transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+
+.pdf-item:hover,
+.pdf-item:focus-visible {
+    transform:translateY(-3px);
+    border-color:var(--brand-red);
+    box-shadow:0 5px 16px #00000018;
+    outline:none;
+}
+
+.pdf-thumbnail {
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:#f0f0f0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    border-bottom:1px solid #eee;
+}
+
+.pdf-thumbnail img {
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#f0f0f0;
+}
+
+.pdf-thumbnail.loading::after {
+    content:"Loading PDF preview...";
+    position:absolute;
+    left:5px;
+    right:5px;
+    bottom:8px;
+    text-align:center;
+    color:#666;
+    font-size:12px;
+    background:#ffffffd9;
+    padding:5px;
+    border-radius:4px;
+}
+
+.pdf-thumbnail.error::after {
+    content:"PDF preview unavailable";
+    position:absolute;
+    left:5px;
+    right:5px;
+    bottom:8px;
+    text-align:center;
+    color:#8d1025;
+    font-size:12px;
+    background:#ffffffed;
+    padding:5px;
+    border-radius:4px;
+}
+
+.pdf-name {
+    font-weight:bold;
+    font-size:14px;
+    line-height:1.45;
+    overflow-wrap:anywhere;
+    padding:13px 10px;
+    color:#292929;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.empty-result {
+    grid-column:1/-1;
+    padding:25px;
+    text-align:center;
+    color:#666;
+}
+
+/* FULL-SCREEN PHOTO VIEWER */
+
+.photo-viewer {
+    display:none;
+    position:fixed;
+    z-index:3000;
+    inset:0;
+    background:#000f;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.photo-viewer img {
+    max-width:95%;
+    max-height:92%;
+    object-fit:contain;
+}
+
+.viewer-close {
+    position:absolute;
+    top:15px;
+    right:25px;
+    color:white;
+    font-size:45px;
+    cursor:pointer;
+}
+
+@media(max-width:600px) {
+    header { padding:20px 14px; }
+    header h1 { font-size:22px; }
+    header p { font-size:14px; }
+    header .tagline { font-size:15px; }
+
+    .modal { padding:7px; }
+    .modal-content {
+        padding:15px;
+        margin:8px auto;
+        border-radius:11px;
+    }
+
+    .cover-card img { height:190px; }
+
+    .field-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:11px;
+    }
+
+    .field-item { padding:6px; }
+    .field-item p { font-size:12px; }
+
+    .insurance-photo-grid {
+        grid-template-columns:1fr;
+        gap:10px;
+    }
+
+    .insurance-group { padding:10px; }
+    .insurance-text { font-size:15px; }
+    .insurance-description { font-size:13px; }
+
+    .download-toolbar { padding:10px; }
+    .action-btn { padding:11px 13px; }
+
+    .pdf-list {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+    }
+
+    .pdf-name {
+        font-size:13px;
+        padding:10px 7px;
+    }
+
+    .photo-viewer { padding:12px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img class="logo"
+         src="./photos/abc-life-logo.jpg"
+         alt="Aditya Birla Sun Life Insurance Logo"
+         onerror="this.alt='Logo not found: check photos/abc-life-logo.jpg';">
+
+    <h1>Aditya Birla Sun Life Insurance</h1>
+
+    <p>Explore our people, celebrate our experiences, and connect through the moments that bring us together.</p>
+
+    <p class="tagline">Our People. Our Learning. Our Journey.</p>
+</header>
+
+<main>
+    <div class="cards">
+
+        <div class="cover-card" onclick="openGallery()">
+            <img src="photos/field-cover.jpg" alt="Field Learning Activity">
+            <div class="card-title">Field Learning Activity</div>
+        </div>
+
+        <div class="cover-card insurance-card" onclick="openInsuranceGallery()">
+            <img src="photos/insurance-awareness-cover.jpg" alt="Insurance Awareness Role Play">
+            <div class="card-title">Insurance Awareness – Role Play</div>
+        </div>
+
+        <div class="cover-card" onclick="openSalesActivity()">
+            <img src="photos/sales-activity-cover.jpg"
+                 alt="Sales Activity"
+                 onerror="this.onerror=null;this.src='photos/field-cover.jpg'">
+            <div class="card-title">SALES ACTIVITY</div>
+        </div>
+
+    </div>
+</main>
+
+<footer>© 2026 Aditya Birla Sun Life Insurance. All rights reserved.</footer>
+
+<!-- FIELD LEARNING MODAL -->
+
+<div class="modal" id="fieldModal" onclick="closeOnBackdrop(event,'fieldModal')">
+    <div class="modal-content">
+        <button class="close" onclick="closeModal('fieldModal')" aria-label="Close">&times;</button>
+
+        <h2>Field Learning Activity</h2>
+
+        <div class="download-toolbar">
+            <button class="action-btn" id="fieldDownloadBtn" onclick="downloadFieldPhotos()">
+                <span class="download-icon">⬇</span>
+                Download All Photos
+            </button>
+            <p class="download-note">Download all available Field Learning Activity photos together in one ZIP file.</p>
+        </div>
+
+        <p id="fieldStatus" class="status-message" aria-live="polite"></p>
+        <div class="field-grid" id="fieldGrid"></div>
+    </div>
+</div>
+
+<!-- INSURANCE AWARENESS MODAL -->
+
+<div class="modal" id="insuranceModal" onclick="closeOnBackdrop(event,'insuranceModal')">
+    <div class="modal-content">
+        <button class="close" onclick="closeModal('insuranceModal')" aria-label="Close">&times;</button>
+
+        <h2>Insurance Awareness – Role Play</h2>
+
+        <div class="download-toolbar">
+            <button class="action-btn" id="insuranceDownloadBtn" onclick="downloadInsurancePhotos()">
+                <span class="download-icon">⬇</span>
+                Download All Photos
+            </button>
+            <p class="download-note">Download all available Insurance Awareness photos together in one ZIP file.</p>
+        </div>
+
+        <p id="insuranceStatus" class="status-message" aria-live="polite"></p>
+        <div id="insuranceContent"></div>
+    </div>
+</div>
+
+<!-- SALES ACTIVITY PDF GALLERY -->
+
+<div class="modal" id="salesModal" onclick="closeOnBackdrop(event,'salesModal')">
+    <div class="modal-content">
+        <button class="close" onclick="closeModal('salesModal')" aria-label="Close">&times;</button>
+
+        <h2>Sales Activity – PDF Gallery</h2>
+        <p>Click a participant's card to open their PDF.</p>
+
+        <input id="pdfSearch"
+               class="search-input"
+               type="search"
+               placeholder="Search participant name..."
+               oninput="renderPdfList()"
+               autocomplete="off">
+
+        <div class="sales-toolbar">
+            <span id="pdfCount" class="sales-count">32 participants</span>
+            <button class="action-btn"
+                    id="downloadZipBtn"
+                    onclick="downloadAllPDFs()">⬇ Download All PDFs (ZIP)</button>
+        </div>
+
+        <p id="pdfStatus" class="status-message" aria-live="polite"></p>
+        <div id="pdfList" class="pdf-list"></div>
+    </div>
+</div>
+
+<!-- FULL-SCREEN PHOTO VIEWER -->
+
+<div id="photoViewer" class="photo-viewer" onclick="closePhoto()">
+    <span class="viewer-close">&times;</span>
+    <img id="viewerImage" src="" alt="Full Size Photo">
+</div>
+
+<script>
+if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+}
+
+/* GENERAL MODALS */
+
+function openModal(id) {
+    document.getElementById(id).style.display = "block";
+    document.body.style.overflow = "hidden";
+}
+
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+
+    const anyOpen = [...document.querySelectorAll(".modal")]
+        .some(modal => modal.style.display === "block");
+
+    if (!anyOpen) {
+        document.body.style.overflow = "";
+    }
+}
+
+function closeOnBackdrop(event,id) {
+    if (event.target.id === id) {
+        closeModal(id);
+    }
+}
+
+document.addEventListener("keydown",function(event) {
+    if (event.key === "Escape") {
+        ["fieldModal","insuranceModal","salesModal"].forEach(closeModal);
+        closePhoto();
+    }
+});
+
+/* FIELD LEARNING ACTIVITY */
+
+const oldPhotos = [
+    "field-01-01.jpg","field-01-02.jpg","field-01-03.jpg","field-01-04.jpg","field-01-05.jpg",
+    "field-02-01.jpg","field-02-02.jpg","field-02-03.jpg","field-02-04.jpg","field-02-05.jpg",
+    "field-03-01.jpg","field-03-02.jpg","field-03-03.jpg","field-03-04.jpg","field-03-05.jpg",
+    "field-04-01.jpg","field-04-02.jpg","field-04-03.jpg","field-04-04.jpg","field-04-05.jpg"
+];
+
+const newPhotos = [];
+for (let i=21;i<=155;i++) {
+    newPhotos.push(i+".jpg");
+}
+
+const section32Photos = ["156.jpg","157.jpg","158.jpg","159.jpg","160.jpg"];
+const allPhotos = [...oldPhotos,...newPhotos,...section32Photos];
+
+const fieldNames = [
+    "1. Pawan Bhoyar","2. Satyam Pandey","3. Vinod Kumar","4. Yogendra Rana",
+    "5. Abendra Mishra","6. Gayathri Krishnan","7. K.Dhivya","8. Mahesh Sajjan",
+    "9. Vaibhav Shukla","10. Jaya","11. Rohan Yadav","12. Nitin Shukla",
+    "13. Akash Mohanty","14. Devendra singh","15. Deepak Jatav","16. C R Adhithya Kumar",
+    "17. Sumit Kumar","18. Lokesh Kaimoria","19. Kshma Kumari","20. Jayakrishna Sai",
+    "21. Apanna Patra","22. Rakesh Chaurasiya","23. Gourav Sengupta","24. Shubham Kharde",
+    "25. Sonam Kumari","26. Siva Bramha Ganesh","27. Rahul Kumar","28. Bandaru Venkateshwarlu",
+    "29. Vinita Bhardwaj","30. Shivani Rajpoot","31. Beddala Raj Kumar","32. Ajeet Gupta"
+];
+
+function buildFieldGallery() {
+    const grid = document.getElementById("fieldGrid");
+    grid.innerHTML = "";
+
+    allPhotos.forEach((filename,i) => {
+        const groupIndex = Math.floor(i/5);
+        const item = document.createElement("div");
+        item.className = "field-item";
+
+        const img = document.createElement("img");
+        img.src = "photos/"+filename;
+        img.alt = fieldNames[groupIndex] || ("Participant "+(groupIndex+1));
+        img.loading = "lazy";
+
+        /* Show only photos that load successfully */
+        img.onload = () => {
+            item.style.display = "block";
+        };
+
+        img.onerror = () => {
+            item.remove();
+        };
+
+        img.onclick = () => openPhoto(img.src);
+
+        const name = document.createElement("p");
+        name.textContent = fieldNames[groupIndex] || ("Participant "+(groupIndex+1));
+
+        item.append(img,name);
+        grid.appendChild(item);
+    });
+}
+
+function openGallery() {
+    buildFieldGallery();
+    document.getElementById("fieldStatus").textContent = "";
+    openModal("fieldModal");
+}
+
+async function downloadFieldPhotos() {
+    if (!window.JSZip) {
+        alert("ZIP library could not load. Please refresh and try again.");
+        return;
+    }
+
+    const button = document.getElementById("fieldDownloadBtn");
+    const status = document.getElementById("fieldStatus");
+    const originalText = button.innerHTML;
+
+    button.disabled = true;
+    button.textContent = "Preparing ZIP...";
+    status.textContent = "Collecting available photos. Please wait...";
+
+    try {
+        const zip = new JSZip();
+        let count = 0;
+
+        for (const filename of allPhotos) {
+            try {
+                const response = await fetch("photos/"+filename);
+
+                if (!response.ok) continue;
+
+                const blob = await response.blob();
+                if (!blob.size) continue;
+
+                zip.file(filename,blob);
+                count++;
+
+                status.textContent = "Added "+count+" photos to the ZIP...";
+            } catch (error) {
+                /* Skip unavailable files */
+            }
+        }
+
+        if (!count) {
+            status.textContent = "No photos were found. Please check the photos folder.";
+            return;
+        }
+
+        const blob = await zip.generateAsync({type:"blob"});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = "Field-Learning-Photos.zip";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url),3000);
+
+        status.textContent = "Successfully downloaded "+count+" available photos in a ZIP file.";
+
+    } catch (error) {
+        console.error(error);
+        status.textContent = "Could not create the ZIP file. Please try again.";
+
+    } finally {
+        button.disabled = false;
+        button.innerHTML = originalText;
+    }
+}
+
+/* INSURANCE AWARENESS */
+
+const insuranceSections = [
+    {
+        title:"1. Insurance Awareness",
+        description:"Students introduced the importance of insurance and explained why financial protection is important.",
+        photos:["a1.jpg"]
+    },
+    {
+        title:"2. Understanding Insurance",
+        description:"The role play helped students understand the basic concept of insurance in a simple and engaging way.",
+        photos:["a2.jpg"]
+    },
+    {
+        title:"3. Customer Awareness",
+        description:"Students presented situations showing how insurance can provide financial support during unexpected events.",
+        photos:["a3.jpg"]
+    },
+    {
+        title:"4. Role Play Activity",
+        description:"Students performed different roles to demonstrate insurance awareness through a practical role play.",
+        photos:["a4.jpg"]
+    },
+    {
+        title:"5. Learning Through Activity",
+        description:"The activity encouraged students to learn important insurance concepts through participation and teamwork.",
+        photos:["a5.jpg"]
+    },
+    {
+        title:"6. Insurance Awareness Message",
+        description:"The role play concluded with a message highlighting the importance of awareness and financial protection.",
+        photos:["a6.jpg"]
+    }
+];
+
+function openInsuranceGallery() {
+    const container = document.getElementById("insuranceContent");
+    container.innerHTML = "";
+    document.getElementById("insuranceStatus").textContent = "";
+
+    insuranceSections.forEach(section => {
+        const group = document.createElement("div");
+        group.className = "insurance-group";
+
+        const photoGrid = document.createElement("div");
+        photoGrid.className = "insurance-photo-grid";
+
+        let loadedImages = 0;
+
+        section.photos.forEach(filename => {
+            const img = document.createElement("img");
+            img.src = "photos/"+filename;
+            img.alt = section.title;
+            img.loading = "lazy";
+
+            img.onload = () => {
+                img.style.display = "block";
+                loadedImages++;
+                group.style.display = "block";
+            };
+
+            img.onerror = () => {
+                img.remove();
+
+                /* Hide the whole section if all its images are missing */
+                if (photoGrid.querySelectorAll("img").length === 0) {
+                    group.remove();
+                }
+            };
+
+            img.onclick = () => openPhoto(img.src);
+            photoGrid.appendChild(img);
+        });
+
+        const title = document.createElement("div");
+        title.className = "insurance-text";
+        title.textContent = section.title;
+
+        const description = document.createElement("p");
+        description.className = "insurance-description";
+        description.textContent = section.description;
+
+        group.append(photoGrid,title,description);
+        container.appendChild(group);
+    });
+
+    openModal("insuranceModal");
+}
+
+async function downloadInsurancePhotos() {
+    if (!window.JSZip) {
+        alert("ZIP library could not load. Please refresh and try again.");
+        return;
+    }
+
+    const button = document.getElementById("insuranceDownloadBtn");
+    const status = document.getElementById("insuranceStatus");
+    const originalText = button.innerHTML;
+
+    button.disabled = true;
+    button.textContent = "Preparing ZIP...";
+    status.textContent = "Collecting available Insurance Awareness photos...";
+
+    try {
+        const zip = new JSZip();
+        let count = 0;
+        const filenames = [
+            ...new Set(insuranceSections.flatMap(section => section.photos))
+        ];
+
+        for (const filename of filenames) {
+            try {
+                const response = await fetch("photos/"+filename);
+
+                if (!response.ok) continue;
+
+                const blob = await response.blob();
+                if (!blob.size) continue;
+
+                zip.file(filename,blob);
+                count++;
+
+                status.textContent = "Added "+count+" photos to the ZIP...";
+            } catch (error) {
+                /* Skip unavailable files */
+            }
+        }
+
+        if (!count) {
+            status.textContent = "No Insurance Awareness photos were found. Check the photos folder.";
+            return;
+        }
+
+        const blob = await zip.generateAsync({type:"blob"});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = "Insurance-Awareness-Photos.zip";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url),3000);
+
+        status.textContent = "Successfully downloaded "+count+" available photos in a ZIP file.";
+
+    } catch (error) {
+        console.error(error);
+        status.textContent = "Could not create the ZIP file. Please try again.";
+
+    } finally {
+        button.disabled = false;
+        button.innerHTML = originalText;
+    }
+}
+
+/* SALES ACTIVITY PDF GALLERY */
+
+const salesParticipants = [
+    "Pawan Bhoyar","Gayathri Krishnan","Vinod Kumar","Satyam Pandey",
+    "Rahul Kumar","Abendra Mishra","K.Dhivya","Mahesh Sajjan",
+    "Vaibhav Shukla","Jaya","Rohan Yadav","Nitin Shukla",
+    "Akash Mohanty","Devendra singh","Deepak Jatav","C R Adhithya Kumar",
+    "Sumit Kumar","Lokesh Kaimoria","Kshma Kumari","Jayakrishna Sai",
+    "Apanna Patra","Rakesh Chaurasiya","Gourav Sengupta","Shubham Kharde",
+    "Sonam Kumari","Siva Bramha Ganesh","Yogendra Rana","Bandaru Venkateshwarlu",
+    "Vinita Bhardwaj","Shivani Rajpoot","Beddala Raj Kumar","Ajeet Gupta"
+];
+
+function slugifyName(name) {
+    return name.normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .replace(/[^a-zA-Z0-9]+/g,"-")
+        .replace(/^-+|-+$/g,"");
+}
+
+const salesPDFs = salesParticipants.map((name,index) => {
+    const number = String(index+1).padStart(2,"0");
+    const filename = number+"-"+slugifyName(name)+".pdf";
+
+    return {
+        name,
+        number:index+1,
+        filename,
+        url:"pdfs/"+filename
+    };
+});
+
+function openSalesActivity() {
+    document.getElementById("pdfSearch").value = "";
+    document.getElementById("pdfStatus").textContent = "";
+    renderPdfList();
+    openModal("salesModal");
+}
+
+async function renderPdfThumbnail(person,image,frame) {
+    if (!window.pdfjsLib) {
+        frame.classList.remove("loading");
+        frame.classList.add("error");
+        return;
+    }
+
+    let loadingTask = null;
+    let pdf = null;
+
+    try {
+        loadingTask = pdfjsLib.getDocument({url:person.url});
+        pdf = await loadingTask.promise;
+
+        const page = await pdf.getPage(1);
+        const originalViewport = page.getViewport({scale:1});
+        const scale = Math.min(1.2,320/originalViewport.width);
+        const viewport = page.getViewport({scale});
+
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        canvas.width = Math.ceil(viewport.width);
+        canvas.height = Math.ceil(viewport.height);
+
+        await page.render({
+            canvasContext:context,
+            viewport:viewport
+        }).promise;
+
+        image.src = canvas.toDataURL("image/jpeg",0.85);
+        image.alt = "First page preview - "+person.name;
+
+        frame.classList.remove("loading","error");
+
+        canvas.width = 0;
+        canvas.height = 0;
+        page.cleanup();
+
+    } catch (error) {
+        console.error("Thumbnail error for "+person.filename,error);
+        frame.classList.remove("loading");
+        frame.classList.add("error");
+
+    } finally {
+        if (pdf) {
+            try { await pdf.destroy(); } catch (error) {}
+        } else if (loadingTask && loadingTask.destroy) {
+            try { await loadingTask.destroy(); } catch (error) {}
+        }
+    }
+}
+
+function renderPdfList() {
+    const search = document.getElementById("pdfSearch").value.trim().toLowerCase();
+    const list = document.getElementById("pdfList");
+
+    const matches = salesPDFs.filter(person =>
+        person.name.toLowerCase().includes(search)
+    );
+
+    list.innerHTML = "";
+
+    document.getElementById("pdfCount").textContent =
+        matches.length+" participant"+(matches.length===1?"":"s");
+
+    if (!matches.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty-result";
+        empty.textContent = "No matching participant found.";
+        list.appendChild(empty);
+        return;
+    }
+
+    matches.forEach(person => {
+        const card = document.createElement("div");
+        card.className = "pdf-item";
+        card.tabIndex = 0;
+        card.setAttribute("role","link");
+        card.setAttribute("aria-label","Open PDF for "+person.name);
+
+        const thumbnail = document.createElement("div");
+        thumbnail.className = "pdf-thumbnail loading";
+
+        const image = document.createElement("img");
+        image.alt = "Loading first page of "+person.name;
+        image.loading = "lazy";
+
+        thumbnail.appendChild(image);
+
+        const name = document.createElement("div");
+        name.className = "pdf-name";
+        name.textContent = person.number+". "+person.name;
+
+        card.append(thumbnail,name);
+        card.onclick = () => openParticipantPDF(person);
+
+        card.onkeydown = event => {
+            if (event.key==="Enter" || event.key===" ") {
+                event.preventDefault();
+                openParticipantPDF(person);
+            }
+        };
+
+        list.appendChild(card);
+        renderPdfThumbnail(person,image,thumbnail);
+    });
+}
+
+function openParticipantPDF(person) {
+    const pdfWindow = window.open(person.url,"_blank");
+
+    if (!pdfWindow) {
+        document.getElementById("pdfStatus").textContent =
+            "The PDF tab was blocked by your browser. Allow pop-ups for this website and click the card again.";
+    }
+}
+
+async function downloadAllPDFs() {
+    const button = document.getElementById("downloadZipBtn");
+    const status = document.getElementById("pdfStatus");
+
+    if (!window.JSZip) {
+        status.textContent = "ZIP library could not load. Please refresh and try again.";
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Preparing ZIP...";
+    status.textContent = "Checking participant PDFs. Please wait...";
+
+    try {
+        const zip = new JSZip();
+        let addedCount = 0;
+        const missingFiles = [];
+
+        for (const person of salesPDFs) {
+            try {
+                const response = await fetch(person.url);
+
+                if (!response.ok) {
+                    missingFiles.push(person.filename);
+                    continue;
+                }
+
+                const blob = await response.blob();
+
+                if (!blob.size) {
+                    missingFiles.push(person.filename);
+                    continue;
+                }
+
+                zip.file(person.filename,blob);
+                addedCount++;
+
+                status.textContent =
+                    "Added "+addedCount+" of "+salesPDFs.length+" PDFs...";
+
+            } catch (error) {
+                missingFiles.push(person.filename);
+            }
+        }
+
+        if (!addedCount) {
+            status.textContent =
+                "No PDFs were found. Check the filenames in the pdfs folder.";
+            return;
+        }
+
+        if (missingFiles.length) {
+            zip.file(
+                "Missing-PDF-Files.txt",
+                "These PDF files were not found:\n\n"+missingFiles.join("\n")
+            );
+        }
+
+        const zipBlob = await zip.generateAsync({type:"blob"});
+        const zipUrl = URL.createObjectURL(zipBlob);
+        const link = document.createElement("a");
+
+        link.href = zipUrl;
+        link.download = "Sales-Activity-PDFs.zip";
+
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(() => URL.revokeObjectURL(zipUrl),3000);
+
+        status.textContent =
+            addedCount+" PDF(s) added to the ZIP."+
+            (missingFiles.length
+                ? " "+missingFiles.length+
+                  " file(s) were missing; see Missing-PDF-Files.txt in the ZIP."
+                : "");
+
+    } catch (error) {
+        console.error("ZIP download error:",error);
+        status.textContent = "Could not create the ZIP file. Please try again.";
+
+    } finally {
+        button.disabled = false;
+        button.textContent = "⬇ Download All PDFs (ZIP)";
+    }
+}
+
+/* FULL-SCREEN PHOTO VIEWER */
+
+function openPhoto(src) {
+    document.getElementById("viewerImage").src = src;
+    document.getElementById("photoViewer").style.display = "flex";
+}
+
+function closePhoto() {
+    document.getElementById("photoViewer").style.display = "none";
+    document.getElementById("viewerImage").src = "";
+}
+</script>
+
+</body>
+</html>
